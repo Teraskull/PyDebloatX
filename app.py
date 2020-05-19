@@ -30,6 +30,10 @@ class Logic():
         }
         ui.button_deselect_all.setDisabled(True)
         ui.button_uninstall.setDisabled(True)
+        self.worker = Worker()
+        self.worker.start()
+        self.worker.finished.connect(self.thread_finished)
+        self.worker.progress_signal.connect(self.update_progress)
 
     def logic_setup(self):
         ui.actionRefresh.triggered.connect(self.app_refresh)
@@ -41,13 +45,6 @@ class Logic():
         ui.button_deselect_all.clicked.connect(self.deselect_all)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
-        self.start_thread()
-
-    def start_thread(self):
-        self.worker = Worker()
-        self.worker.start()
-        self.worker.finished.connect(self.thread_finished)
-        self.worker.progress_signal.connect(self.update_progress)
 
     def thread_finished(self):
         ui.progressbar.hide()
@@ -77,7 +74,7 @@ class Logic():
             ui.button_select_all.setDisabled(False)
 
     def app_refresh(self):
-        self.start_thread()
+        self.worker.start()
 
     @staticmethod
     def app_homepage():
