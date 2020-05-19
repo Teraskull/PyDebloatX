@@ -1,11 +1,22 @@
-# PyDebloatX
-Python GUI for uninstalling the default Windows 10 apps.
 
-![image](images/app_main.png)
+<h1 align="center">
+    PyDebloatX
+</h1>
 
-![image](images/app_loading.png)
+<p align="center">
+    A Python GUI for uninstalling the default Windows 10 apps.
+</p>
 
-![image](images/app_confirm.png)
+<div align="center">
+
+![Main window screenshot](images/app_main.png)
+
+![Loading screenshot](images/app_loading.png)
+
+![Confirmation screenshot](images/app_confirm.png)
+
+</div>
+
 
 ## Shortcuts:
 
