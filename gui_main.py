@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtCore import Qt, QSize, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtWidgets import QApplication, QPushButton, QMainWindow, QWidget, QFrame, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PyQt5.QtCore import QRect, QCoreApplication, QMetaObject
+from PyQt5.QtWidgets import QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
+from PyQt5.QtGui import QIcon
 
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super(Ui_MainWindow, self).__init__()
-        # self.setWindowFlags(Qt.WindowStaysOnTopHint)
         # self.setWindowIcon(QIcon('icon.ico'))
         self.setFixedSize(481, 447)
 

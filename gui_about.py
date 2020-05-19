@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QIcon, QFont
 
 

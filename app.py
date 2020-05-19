@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
+from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-app_version = "1.3.0"
+app_version = "1.3.1"
 
 
 class Logic():
@@ -59,7 +59,8 @@ class Logic():
         for i in self.installed_apps:
             i.setEnabled(True)
 
-    def update_progress(self, progress):
+    @staticmethod
+    def update_progress(progress):
         ui.progressbar.setValue(progress)
 
     def enable_buttons(self):
@@ -78,15 +79,18 @@ class Logic():
     def app_refresh(self):
         self.start_thread()
 
-    def app_homepage(self):
+    @staticmethod
+    def app_homepage():
         webbrowser.open_new('https://github.com/Teraskull/PyDebloatX')
 
-    def app_about(self):
+    @staticmethod
+    def app_about():
         about.setWindowModality(Qt.ApplicationModal)
         about.show()
 
-    def app_quit(self):
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Quit PyDebloatX?", QMessageBox.Yes | QMessageBox.No)
+    @staticmethod
+    def app_quit():
+        buttonReply = QMessageBox.question(ui, 'PyDebloatX', "Quit PyDebloatX?", QMessageBox.Yes | QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             app.quit()
 
@@ -115,7 +119,7 @@ class Logic():
                     i.setChecked(False)
                     i.setEnabled(False)
             self.deselect_all()
-            QMessageBox.information(ui, 'PyDebloatX', f"Successfully uninstalled {j} app(s).", QMessageBox.Ok)
+            QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app(s).", QMessageBox.Ok)
 
 
 class Worker(QThread):
@@ -123,6 +127,7 @@ class Worker(QThread):
     progress_signal = pyqtSignal(int)
 
     def run(self):
+        logic.installed_apps = []
         ui.progressbar.show()
         ui.actionRefresh.setDisabled(True)
         ui.button_select_all.setDisabled(True)
