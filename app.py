@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-app_version = "1.3.1"
+app_version = "1.3.2"
 
 
 class Logic():
@@ -28,14 +28,6 @@ class Logic():
             ui.checkBox_22: "*Microsoft.WindowsStore*", ui.checkBox_23: "*Microsoft.WindowsSoundRecorder*", ui.checkBox_24: "*Microsoft.BingWeather*",
             ui.checkBox_25: "*Microsoft.WindowsFeedbackHub*", ui.checkBox_26: "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", ui.checkBox_27: "*Microsoft.YourPhone*",
         }
-        ui.button_deselect_all.setDisabled(True)
-        ui.button_uninstall.setDisabled(True)
-        self.worker = Worker()
-        self.worker.start()
-        self.worker.finished.connect(self.thread_finished)
-        self.worker.progress_signal.connect(self.update_progress)
-
-    def logic_setup(self):
         ui.actionRefresh.triggered.connect(self.app_refresh)
         ui.actionHomepage.triggered.connect(self.app_homepage)
         ui.actionAbout.triggered.connect(self.app_about)
@@ -46,13 +38,18 @@ class Logic():
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
 
+        self.worker = Worker()
+        self.worker.start()
+        self.worker.finished.connect(self.thread_finished)
+        self.worker.progress_signal.connect(self.update_progress)
+
     def thread_finished(self):
         ui.progressbar.hide()
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
         ui.label_info.setText('Select the default Windows 10 apps to uninstall:')
         ui.actionRefresh.setDisabled(False)
-        ui.button_select_all.setDisabled(False)
+        self.enable_buttons()
         for i in self.installed_apps:
             i.setEnabled(True)
 
@@ -128,6 +125,8 @@ class Worker(QThread):
         ui.progressbar.show()
         ui.actionRefresh.setDisabled(True)
         ui.button_select_all.setDisabled(True)
+        ui.button_deselect_all.setDisabled(True)
+        ui.button_uninstall.setDisabled(True)
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         progress = 100 / 27
         for i in logic.checkbox_dict:
@@ -148,6 +147,5 @@ if __name__ == '__main__':
     ui = Ui_MainWindow()
     ui.setupUi()
     logic = Logic()
-    logic.logic_setup()
     ui.show()
     sys.exit(app.exec_())
