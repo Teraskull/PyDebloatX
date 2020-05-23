@@ -7,7 +7,7 @@ from PyQt5.QtGui import QIcon
 class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super(Ui_MainWindow, self).__init__()
-        # self.setWindowIcon(QIcon('icon.ico'))
+        self.setWindowIcon(QIcon('icon.ico'))
         self.setFixedSize(481, 447)
 
     def setupUi(self):
@@ -90,6 +90,7 @@ class Ui_MainWindow(QMainWindow):
         self.label_info.setGeometry(QRect(20, 20, 331, 20))
         self.progressbar = QProgressBar(self.centralwidget)
         self.progressbar.setGeometry(QRect(20, 40, 175, 10))
+        self.progressbar.hide()
         self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
         self.horizontalLayoutWidget_2.setGeometry(QRect(20, 380, 160, 31))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)

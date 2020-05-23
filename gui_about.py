@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout
-from PyQt5.QtGui import QIcon, QFont
+from PyQt5.QtGui import QIcon, QFont, QPixmap
 
 
 class Ui_AboutWindow(QMainWindow):
     def __init__(self):
         super(Ui_AboutWindow, self).__init__()
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint)
-        # self.setWindowIcon(QIcon('icon.ico'))
-        self.setFixedSize(240, 130)
+        self.setWindowIcon(QIcon('icon.ico'))
+        self.setFixedSize(240, 150)
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
         self.verticalLayoutWidget = QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 221, 51))
+        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 221, 81))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.label_logo = QLabel(self.verticalLayoutWidget)
+        self.pixmap = QPixmap('icon.ico')
+        self.pixmap = self.pixmap.scaledToWidth(30, Qt.SmoothTransformation)
+        self.label_logo.setPixmap(self.pixmap)
+        self.verticalLayout.addWidget(self.label_logo, 0, Qt.AlignHCenter)
         self.label_name = QLabel(self.verticalLayoutWidget)
         font = QFont()
         font.setPointSize(13)
@@ -31,7 +36,7 @@ class Ui_AboutWindow(QMainWindow):
         self.label_version.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout.addWidget(self.label_version, 0, Qt.AlignHCenter)
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 80, 221, 41))
+        self.verticalLayoutWidget_2.setGeometry(QRect(10, 100, 221, 41))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.label_copyright = QLabel(self.verticalLayoutWidget_2)
