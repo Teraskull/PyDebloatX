@@ -39,13 +39,17 @@
 
 ## App limitations:
 
-* It takes a few seconds to list all currently installed apps, due to the   Windows PowerShell subprocesses.
+* It takes a few seconds to list all currently installed apps, due to the Windows PowerShell subprocesses.
 * You can only **uninstall** apps with this GUI, hence the name.
 
 ## Dependencies:
 
 * PyQt5
     ```pip install pyqt5```
+
+## Usage:
+
+* ```python3 app.py```
 
 ## Licence:
 
