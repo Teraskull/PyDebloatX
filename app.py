@@ -124,7 +124,7 @@ class Worker(QThread):
     app_signal = pyqtSignal(object)
 
     def __init__(self, checkbox_dict):
-        super(Worker, self).__init__()
+        super().__init__()
         self.checkbox_dict = checkbox_dict
 
     def run(self):
