@@ -138,7 +138,7 @@ class Worker(QThread):
         for i in self.checkbox_dict:
             i.setEnabled(False)
         for i in self.checkbox_dict:
-            x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE).communicate()[0]
+            x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE, shell=True).communicate()[0]
             progress += 100 / 27
             self.progress_signal.emit(int(progress))
             if x.decode().strip() == "True":
