@@ -79,7 +79,7 @@ class Ui_MainWindow(QMainWindow):
         self.checkBox_27 = QCheckBox(self.verticalLayoutWidget_3)
         self.verticalLayout_3.addWidget(self.checkBox_27)
         self.label_note = QLabel(self.centralwidget)
-        self.label_note.setGeometry(QRect(20, 340, 291, 16))
+        self.label_note.setGeometry(QRect(20, 340, 350, 16))
         self.horizontalLayoutWidget = QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(QRect(379, 380, 81, 31))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
@@ -165,7 +165,7 @@ class Ui_MainWindow(QMainWindow):
         self.checkBox_26.setText(_translate("MainWindow", "Xbox"))
         self.checkBox_27.setText(_translate("MainWindow", "Your Phone"))
 
-        self.label_note.setText(_translate("MainWindow", "NOTE: Microsoft Edge and Cortana cannot be uninstalled."))
+        self.label_note.setText(_translate("MainWindow", "NOTE: Microsoft Edge and Cortana cannot be uninstalled using this GUI."))
 
         self.button_select_all.setText(_translate("MainWindow", "Select All"))
         self.button_deselect_all.setText(_translate("MainWindow", "Deselect All"))
