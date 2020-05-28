@@ -165,7 +165,7 @@ class Ui_MainWindow(QMainWindow):
         self.checkBox_26.setText(_translate("MainWindow", "Xbox"))
         self.checkBox_27.setText(_translate("MainWindow", "Your Phone"))
 
-        self.label_note.setText(_translate("MainWindow", "NOTE: Microsoft Edge and Cortana can not be uninstalled."))
+        self.label_note.setText(_translate("MainWindow", "NOTE: Microsoft Edge and Cortana cannot be uninstalled."))
 
         self.button_select_all.setText(_translate("MainWindow", "Select All"))
         self.button_deselect_all.setText(_translate("MainWindow", "Deselect All"))
