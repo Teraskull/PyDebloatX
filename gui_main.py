@@ -87,7 +87,7 @@ class Ui_MainWindow(QMainWindow):
         self.button_uninstall = QPushButton(self.horizontalLayoutWidget)
         self.horizontalLayout.addWidget(self.button_uninstall)
         self.label_info = QLabel(self.centralwidget)
-        self.label_info.setGeometry(QRect(20, 20, 331, 20))
+        self.label_info.setGeometry(QRect(20, 20, 415, 20))
         self.progressbar = QProgressBar(self.centralwidget)
         self.progressbar.setGeometry(QRect(20, 40, 175, 10))
         self.progressbar.hide()
