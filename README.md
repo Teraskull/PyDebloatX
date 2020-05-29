@@ -14,6 +14,9 @@
   <a style="text-decoration:none" href="https://www.codefactor.io/repository/github/teraskull/pydebloatx">
     <img src="https://www.codefactor.io/repository/github/teraskull/pydebloatx/badge?style=flat-square" alt="CodeFactor" />
   </a>
+  <a style="text-decoration:none" href="https://github.com/Teraskull/PyDebloatX/releases">
+    <img src="https://img.shields.io/github/downloads/teraskull/pydebloatx/total?color=00B16A&style=flat-square" alt="Downloads" />
+  </a>
   <a style="text-decoration:none">
     <img src="https://img.shields.io/badge/OS-Windows%2010-blue?style=flat-square" alt="OS" />
   </a>
@@ -56,7 +59,7 @@
 * ```cd PyDebloatX```
 * ```python3 app.py```
 
-## Licence:
+## License:
 
 This software is available under the following licenses:
 
