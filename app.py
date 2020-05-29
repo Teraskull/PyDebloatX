@@ -27,6 +27,7 @@ class Logic():
             ui.checkBox_22: "*Microsoft.WindowsStore*", ui.checkBox_23: "*Microsoft.WindowsSoundRecorder*", ui.checkBox_24: "*Microsoft.BingWeather*",
             ui.checkBox_25: "*Microsoft.WindowsFeedbackHub*", ui.checkBox_26: "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", ui.checkBox_27: "*Microsoft.YourPhone*",
         }
+        self.warning_apps = [ui.checkBox_22]
         ui.actionRefresh.triggered.connect(self.app_refresh)
         ui.actionHomepage.triggered.connect(self.app_homepage)
         ui.actionAbout.triggered.connect(self.app_about)
@@ -104,10 +105,16 @@ class Logic():
 
     def uninstall(self):
         j = 0
+        warning_selected = False
         for i in self.installed_apps:
             if i.isChecked():
                 j += 1
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} selected app(s)?", QMessageBox.Yes | QMessageBox.No)
+                if i in self.warning_apps and not warning_selected:
+                    warning_selected = True
+        if warning_selected:
+            buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Warning. Uninstalling Microsoft Store can cause potential issues. Uninstall {j} selected app(s)?", QMessageBox.Yes | QMessageBox.No)
+        else:
+            buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} selected app(s)?", QMessageBox.Yes | QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             for i in self.installed_apps:
                 if i.isChecked():
