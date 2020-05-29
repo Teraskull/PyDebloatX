@@ -51,7 +51,7 @@ class Logic():
         ui.progressbar.hide()
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
-        ui.label_info.setText('Select the default Windows 10 apps to uninstall:')
+        ui.label_info.setText('Select the default Windows 10 apps to uninstall (Hover over items to view description):')
         ui.actionRefresh.setDisabled(False)
         self.enable_buttons()
 
