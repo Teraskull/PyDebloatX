@@ -127,7 +127,7 @@ class Logic():
         for i in self.installed_apps:
             if i.isChecked():
                 j += 1
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} app{'s' if test > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.", QMessageBox.Yes | QMessageBox.No)
+        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} app{'s' if self.installed_apps > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.", QMessageBox.Yes | QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             for i in self.installed_apps:
                 if i.isChecked():
