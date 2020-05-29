@@ -14,20 +14,33 @@ app_version = "1.3.4"
 class Logic():
     def __init__(self):
         about.label_version.setText(f"Version {app_version}")
+        self.total_size = 0
         self.checkbox_dict = {
-            ui.checkBox: "*Microsoft.Microsoft3DViewer*", ui.checkBox_2: "*Microsoft.WindowsAlarms*", ui.checkBox_3: "*Microsoft.WindowsCalculator*",
-            ui.checkBox_4: "*microsoft.windowscommunicationsapps*", ui.checkBox_5: "*Microsoft.WindowsCamera*", ui.checkBox_6: "*Microsoft.GetHelp*",
-            ui.checkBox_7: "*Microsoft.Getstarted*", ui.checkBox_8: "*Microsoft.ZuneMusic*", ui.checkBox_9: "*Microsoft.WindowsMaps*",
+            ui.checkBox: "*Microsoft.3DBuilder*", ui.checkBox_2: "*Microsoft.Microsoft3DViewer*", ui.checkBox_3: "*Microsoft.WindowsAlarms*",
+            ui.checkBox_4: "*Microsoft.WindowsCalculator*", ui.checkBox_5: "*microsoft.windowscommunicationsapps*", ui.checkBox_6: "*Microsoft.WindowsCamera*",
+            ui.checkBox_7: "*Microsoft.GetHelp*", ui.checkBox_8: "*Microsoft.ZuneMusic*", ui.checkBox_9: "*Microsoft.WindowsMaps*",
 
             ui.checkBox_10: "*Microsoft.Messaging*", ui.checkBox_11: "*Microsoft.BingFinance*", ui.checkBox_12: "*Microsoft.ZuneVideo*",
             ui.checkBox_13: "*Microsoft.BingNews*", ui.checkBox_14: "*Microsoft.MicrosoftOfficeHub*", ui.checkBox_15: "*Microsoft.Office.OneNote*",
             ui.checkBox_16: "*Microsoft.MSPaint*", ui.checkBox_17: "*Microsoft.People*", ui.checkBox_18: "*Microsoft.Windows.Photos*",
 
             ui.checkBox_19: "*Microsoft.SkypeApp*", ui.checkBox_20: "*Microsoft.MicrosoftSolitaireCollection*", ui.checkBox_21: "*Microsoft.BingSports*",
-            ui.checkBox_22: "*Microsoft.WindowsStore*", ui.checkBox_23: "*Microsoft.WindowsSoundRecorder*", ui.checkBox_24: "*Microsoft.BingWeather*",
+            ui.checkBox_22: "*Microsoft.Getstarted*", ui.checkBox_23: "*Microsoft.WindowsSoundRecorder*", ui.checkBox_24: "*Microsoft.BingWeather*",
             ui.checkBox_25: "*Microsoft.WindowsFeedbackHub*", ui.checkBox_26: "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", ui.checkBox_27: "*Microsoft.YourPhone*",
         }
-        self.warning_apps = [ui.checkBox_22]
+        self.size_dict = {
+            ui.checkBox: 35.02, ui.checkBox_2: 121.46, ui.checkBox_3: 11.87,
+            ui.checkBox_4: 9.27, ui.checkBox_5: 230.90, ui.checkBox_6: 49.05,
+            ui.checkBox_7: 11.89, ui.checkBox_8: 50.34, ui.checkBox_9: 29.93,
+
+            ui.checkBox_10: 30.08, ui.checkBox_11: 31.92, ui.checkBox_12: 51.80,
+            ui.checkBox_13: 33.70, ui.checkBox_14: 29.97, ui.checkBox_15: 156.01,
+            ui.checkBox_16: 65.79, ui.checkBox_17: 31.97, ui.checkBox_18: 346.04,
+
+            ui.checkBox_19: 104.70, ui.checkBox_20: 134.37, ui.checkBox_21: 30.92,
+            ui.checkBox_22: 16.62, ui.checkBox_23: 12.40, ui.checkBox_24: 30.59,
+            ui.checkBox_25: 35.02, ui.checkBox_26: 119.06, ui.checkBox_27: 64.59,
+        }
         ui.actionRefresh.triggered.connect(self.app_refresh)
         ui.actionHomepage.triggered.connect(self.app_homepage)
         ui.actionAbout.triggered.connect(self.app_about)
@@ -64,12 +77,18 @@ class Logic():
         ui.progressbar.setValue(progress)
 
     def enable_buttons(self):
+        self.total_size = 0
+        for i in self.installed_apps:
+            if i.isChecked():
+                self.total_size += self.size_dict[i]
+                ui.label_size.setText(f'{self.total_size:.2f} MB')
         if any(i.isChecked() for i in self.installed_apps):
             ui.button_uninstall.setDisabled(False)
             ui.button_deselect_all.setDisabled(False)
         else:
             ui.button_deselect_all.setDisabled(True)
             ui.button_uninstall.setDisabled(True)
+            ui.label_size.setText('0 MB')
 
         if all(i.isChecked() for i in self.installed_apps):
             ui.button_select_all.setDisabled(True)
@@ -105,16 +124,10 @@ class Logic():
 
     def uninstall(self):
         j = 0
-        warning_selected = False
         for i in self.installed_apps:
             if i.isChecked():
                 j += 1
-                if i in self.warning_apps and not warning_selected:
-                    warning_selected = True
-        if warning_selected:
-            buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Warning. Uninstalling Microsoft Store can cause potential issues. Uninstall {j} selected app(s)?", QMessageBox.Yes | QMessageBox.No)
-        else:
-            buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} selected app(s)?", QMessageBox.Yes | QMessageBox.No)
+        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} app(s)?\n\n{self.total_size:.2f} MB of of disk space will be available.", QMessageBox.Yes | QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             for i in self.installed_apps:
                 if i.isChecked():
