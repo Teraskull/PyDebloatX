@@ -146,7 +146,7 @@ class Logic():
                     i.setChecked(False)
                     i.setEnabled(False)
             self.deselect_all()
-            QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app(s).", QMessageBox.Ok)
+            QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app{'s' if j > 1 else ''}.", QMessageBox.Ok)
 
 
 class Worker(QThread):
