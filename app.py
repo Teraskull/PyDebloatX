@@ -142,7 +142,7 @@ class Logic():
         if buttonReply == QMessageBox.Yes:
             for i in self.installed_apps:
                 if i.isChecked():
-                    subprocess.Popen(f"powershell (Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)")
+                    subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
                     i.setChecked(False)
                     i.setEnabled(False)
             self.deselect_all()
@@ -161,10 +161,10 @@ class Worker(QThread):
     def run(self):
         progress = 100 / 27
         for i in self.checkbox_dict:
-            x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE, shell=True).communicate()[0]
+            x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE, shell=True)
             progress += 100 / 27
             self.progress_signal.emit(int(progress))
-            if x.decode().strip() == "True":
+            if x.communicate()[0].decode().strip() == "True":
                 self.app_signal.emit(i)
         self.end_signal.emit()
 
