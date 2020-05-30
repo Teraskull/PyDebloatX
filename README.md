@@ -57,6 +57,7 @@
 
 * ```git clone https://github.com/Teraskull/PyDebloatX```
 * ```cd PyDebloatX```
+* ```pip install -r requirements.txt```
 * ```python app.py``` or ```py app.py```
 
 ## License:
