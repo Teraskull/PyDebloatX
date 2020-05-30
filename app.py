@@ -58,6 +58,16 @@ class Logic():
 
     def app_refresh(self):
         self.installed_apps = []
+        for i in self.checkbox_dict:
+            i.setEnabled(False)
+            i.setChecked(False)
+        ui.progressbar.show()
+        ui.actionRefresh.setDisabled(True)
+        ui.button_select_all.setDisabled(True)
+        ui.button_deselect_all.setDisabled(True)
+        ui.button_uninstall.setDisabled(True)
+        QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
+        ui.label_info.setText('Updating list of installed apps...')
         self.worker.start()
 
     def thread_finished(self):
@@ -69,6 +79,7 @@ class Logic():
         self.enable_buttons()
 
     def enable_installed(self, i):
+        i.setEnabled(True)
         self.installed_apps.append(i)
         self.enable_buttons()
 
@@ -148,21 +159,12 @@ class Worker(QThread):
         self.checkbox_dict = checkbox_dict
 
     def run(self):
-        ui.progressbar.show()
-        ui.actionRefresh.setDisabled(True)
-        ui.button_select_all.setDisabled(True)
-        ui.button_deselect_all.setDisabled(True)
-        ui.button_uninstall.setDisabled(True)
-        QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         progress = 100 / 27
-        for i in self.checkbox_dict:
-            i.setEnabled(False)
         for i in self.checkbox_dict:
             x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE, shell=True).communicate()[0]
             progress += 100 / 27
             self.progress_signal.emit(int(progress))
             if x.decode().strip() == "True":
-                i.setEnabled(True)
                 self.app_signal.emit(i)
         self.end_signal.emit()
 
