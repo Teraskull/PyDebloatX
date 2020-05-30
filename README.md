@@ -43,7 +43,7 @@
 ## App limitations:
 
 * It takes a few seconds to list all currently installed apps, due to the Windows PowerShell subprocesses.
-* When uninstalling apps, PowerShell windows will open. Powershell cannot run in the background when called as a subprocess.
+* [FIXED] ~~When uninstalling apps, PowerShell windows will open.~~
 * You can only **uninstall** apps with this GUI, hence the name.
 * You cannot uninstall other apps, for example Cortana, with this GUI, because PowerShell does not support it.
 * App disk space is approximate and taken from Microsoft Store, there is no other way to get real-time app size.
@@ -57,7 +57,7 @@
 
 * ```git clone https://github.com/Teraskull/PyDebloatX```
 * ```cd PyDebloatX```
-* ```python3 app.py```
+* ```python app.py``` or ```py app.py```
 
 ## License:
 
