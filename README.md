@@ -57,7 +57,7 @@
 
 * ```git clone https://github.com/Teraskull/PyDebloatX```
 * ```cd PyDebloatX```
-* ```python3 app.py```
+* ```python app.py``` or ```py app.py```
 
 ## License:
 
