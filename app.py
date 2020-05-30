@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-app_version = "1.3.4"
+app_version = "1.3.5"
 
 
 class Logic():
