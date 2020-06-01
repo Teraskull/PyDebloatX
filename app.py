@@ -1,10 +1,12 @@
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QThreadPool
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 from PyQt5.QtGui import QCursor
 import webbrowser
 import subprocess
+import threading
+import time
 import sys
 
 
@@ -50,11 +52,28 @@ class Logic():
         ui.button_deselect_all.clicked.connect(self.deselect_all)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
-        self.worker = Worker(self.checkbox_dict)
+        # self.worker = Worker(self.checkbox_dict)
+        # self.app_refresh()
+        # self.worker.finished.connect(self.thread_finished)
+        # self.worker.app_signal.connect(self.enable_installed)
+        # self.worker.progress_signal.connect(self.update_progress)
+
         self.app_refresh()
-        self.worker.finished.connect(self.thread_finished)
-        self.worker.app_signal.connect(self.enable_installed)
-        self.worker.progress_signal.connect(self.update_progress)
+        self.progress = 100 / 27
+        for i in self.checkbox_dict:
+            x = threading.Thread(target=self.test, args=(i,))
+            x.start()
+            # x.join()
+
+    def test(self, args):
+        # print(args)
+        x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[args]}) -and $?"], stdout=subprocess.PIPE, shell=True)
+        self.progress += 100 / 27
+        if x.communicate()[0].decode().strip() == "True":
+            print(x)
+        else:
+            print('No app.')
+        self.update_progress(int(self.progress))
 
     def app_refresh(self):
         self.installed_apps = []
@@ -68,7 +87,7 @@ class Logic():
         ui.button_uninstall.setDisabled(True)
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         ui.label_info.setText('Updating list of installed apps...')
-        self.worker.start()
+        # self.worker.start()
 
     def thread_finished(self):
         ui.progressbar.hide()
