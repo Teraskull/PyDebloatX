@@ -42,7 +42,7 @@
 
 ## App limitations:
 
-* It takes a few seconds to list all currently installed apps, due to the Windows PowerShell subprocesses.
+* [FIXED] ~~It takes a few seconds to list all currently installed apps.~~
 * [FIXED] ~~When uninstalling apps, PowerShell windows will open.~~
 * You can only **uninstall** apps with this GUI, hence the name.
 * You cannot uninstall other apps, for example Cortana, with this GUI, because PowerShell does not support it.
