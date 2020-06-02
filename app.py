@@ -41,6 +41,7 @@ class Logic():
             ui.checkBox_22: 16.62, ui.checkBox_23: 12.40, ui.checkBox_24: 30.59,
             ui.checkBox_25: 35.02, ui.checkBox_26: 119.06, ui.checkBox_27: 64.59,
         }
+        ui.progressbar.setMaximum(len(self.checkbox_dict))
         ui.actionRefresh.triggered.connect(self.app_refresh)
         ui.actionHomepage.triggered.connect(self.app_homepage)
         ui.actionAbout.triggered.connect(self.app_about)
@@ -90,10 +91,9 @@ class Logic():
         self.enable_buttons()
 
     def update_progress(self):
-        progress = 100 / 27
-        self.progress += progress
-        ui.progressbar.setValue(int(self.progress))
-        if self.progress >= 100:
+        self.progress += 1
+        ui.progressbar.setValue(self.progress)
+        if self.progress >= len(self.checkbox_dict):
             self.thread_finished()
 
     def enable_buttons(self):
