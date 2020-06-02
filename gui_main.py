@@ -137,7 +137,7 @@ class Ui_MainWindow(QMainWindow):
         self.actionQuit.setText(_translate("MainWindow", "&Quit"))
         self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
 
-        self.label_info.setText(_translate("MainWindow", "Updating list of installed apps..."))
+        self.label_info.setText(_translate("MainWindow", "Refreshing list of installed apps..."))
 
         self.checkBox.setText(_translate("MainWindow", "3D Builder"))
         self.checkBox_2.setText(_translate("MainWindow", "3D Viewer"))
