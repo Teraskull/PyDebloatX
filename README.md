@@ -1,6 +1,8 @@
-
+<p align="center">
+  <img width="10%" align="center" src="icon.ico">
+</p>
 <h1 align="center">
-    PyDebloatX
+  PyDebloatX
 </h1>
 
 <p align="center">
@@ -9,7 +11,7 @@
 
 <p align="center">
   <a style="text-decoration:none" href="https://github.com/Teraskull/PyDebloatX/releases">
-    <img src="https://img.shields.io/github/v/release/Teraskull/PyDebloatX?label=Version&style=flat-square" alt="Releases" />
+    <img src="https://img.shields.io/github/v/release/Teraskull/PyDebloatX?label=Version&style=flat-square&color=00B16A" alt="Releases" />
   </a>
   <a style="text-decoration:none" href="https://www.codefactor.io/repository/github/teraskull/pydebloatx">
     <img src="https://www.codefactor.io/repository/github/teraskull/pydebloatx/badge?style=flat-square" alt="CodeFactor" />
@@ -18,7 +20,7 @@
     <img src="https://img.shields.io/github/downloads/teraskull/pydebloatx/total?color=00B16A&style=flat-square" alt="Downloads" />
   </a>
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/OS-Windows%2010-blue?style=flat-square" alt="OS" />
+    <img src="https://img.shields.io/badge/OS-Windows%2010-blue?style=flat-square&color=00B16A" alt="OS" />
   </a>
 </p>
 
