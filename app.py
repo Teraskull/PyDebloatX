@@ -1,21 +1,20 @@
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QThreadPool
 from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 from PyQt5.QtGui import QCursor
 import webbrowser
 import subprocess
 import threading
-import time
 import sys
 
 
-app_version = "1.3.5"
+__version__ = "1.3.5"
 
 
 class Logic():
     def __init__(self):
-        about.label_version.setText(f"Version {app_version}")
+        about.label_version.setText(f"Version {__version__}")
         self.total_size = 0
         self.checkbox_dict = {
             ui.checkBox: "*Microsoft.3DBuilder*", ui.checkBox_2: "*Microsoft.Microsoft3DViewer*", ui.checkBox_3: "*Microsoft.WindowsAlarms*",
@@ -52,31 +51,19 @@ class Logic():
         ui.button_deselect_all.clicked.connect(self.deselect_all)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
-        # self.worker = Worker(self.checkbox_dict)
-        # self.app_refresh()
-        # self.worker.finished.connect(self.thread_finished)
-        # self.worker.app_signal.connect(self.enable_installed)
-        # self.worker.progress_signal.connect(self.update_progress)
 
+        self.workerThread = QThread()
+        self.thread_list = []
+        for item, i in enumerate(self.checkbox_dict):
+            self.thread_list.append(CheckApps(self.checkbox_dict, i))
+            self.thread_list[item].moveToThread(self.workerThread)
+            self.thread_list[item].app_signal.connect(self.enable_installed)
+            self.thread_list[item].progress_signal.connect(self.update_progress)
         self.app_refresh()
-        self.progress = 100 / 27
-        for i in self.checkbox_dict:
-            x = threading.Thread(target=self.test, args=(i,))
-            x.start()
-            # x.join()
-
-    def test(self, args):
-        # print(args)
-        x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[args]}) -and $?"], stdout=subprocess.PIPE, shell=True)
-        self.progress += 100 / 27
-        if x.communicate()[0].decode().strip() == "True":
-            print(x)
-        else:
-            print('No app.')
-        self.update_progress(int(self.progress))
 
     def app_refresh(self):
         self.installed_apps = []
+        self.progress = 0
         for i in self.checkbox_dict:
             i.setEnabled(False)
             i.setChecked(False)
@@ -86,8 +73,9 @@ class Logic():
         ui.button_deselect_all.setDisabled(True)
         ui.button_uninstall.setDisabled(True)
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
-        ui.label_info.setText('Updating list of installed apps...')
-        # self.worker.start()
+        ui.label_info.setText('Refreshing list of installed apps...')
+        for new_thread in self.thread_list:
+            new_thread.start()
 
     def thread_finished(self):
         ui.progressbar.hide()
@@ -102,9 +90,12 @@ class Logic():
         self.installed_apps.append(i)
         self.enable_buttons()
 
-    @staticmethod
-    def update_progress(progress):
-        ui.progressbar.setValue(progress)
+    def update_progress(self):
+        progress = 100 / 27
+        self.progress += progress
+        ui.progressbar.setValue(int(self.progress))
+        if self.progress >= 100:
+            self.thread_finished()
 
     def enable_buttons(self):
         self.total_size = 0
@@ -168,24 +159,20 @@ class Logic():
             QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app{'s' if j > 1 else ''}.", QMessageBox.Ok)
 
 
-class Worker(QThread):
-    end_signal = pyqtSignal()
-    progress_signal = pyqtSignal(int)
+class CheckApps(QThread):
+    progress_signal = pyqtSignal()
     app_signal = pyqtSignal(object)
 
-    def __init__(self, checkbox_dict):
+    def __init__(self, checkbox_dict, i):
         super().__init__()
         self.checkbox_dict = checkbox_dict
+        self.i = i
 
     def run(self):
-        progress = 100 / 27
-        for i in self.checkbox_dict:
-            x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]}) -and $?"], stdout=subprocess.PIPE, shell=True)
-            progress += 100 / 27
-            self.progress_signal.emit(int(progress))
-            if x.communicate()[0].decode().strip() == "True":
-                self.app_signal.emit(i)
-        self.end_signal.emit()
+        x = subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[self.i]}) -and $?"], stdout=subprocess.PIPE, shell=True)
+        if x.communicate()[0].decode().strip() == "True":
+            self.app_signal.emit(self.i)
+        self.progress_signal.emit()
 
 
 if __name__ == '__main__':
@@ -194,6 +181,6 @@ if __name__ == '__main__':
     about.setupUi()
     ui = Ui_MainWindow()
     ui.setupUi()
-    logic = Logic()
     ui.show()
+    logic = Logic()
     sys.exit(app.exec_())
