@@ -5,7 +5,6 @@ from gui_main import Ui_MainWindow
 from PyQt5.QtGui import QCursor
 import webbrowser
 import subprocess
-import threading
 import sys
 
 
