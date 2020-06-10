@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtCore import QRect, QCoreApplication, QMetaObject
 from PyQt5.QtWidgets import QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
+from PyQt5.QtCore import QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui import QIcon
 
 
@@ -12,10 +12,16 @@ class Ui_MainWindow(QMainWindow):
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
+        self.centralwidget.setStyleSheet(open('style.css').read())
+        self.progressbar = QProgressBar(self.centralwidget)
+        self.progressbar.setGeometry(QRect(20, 10, 441, 20))
+        self.progressbar.setStyleSheet(open('style.css').read())
+
         self.label_info = QLabel(self.centralwidget)
-        self.label_info.setGeometry(QRect(20, 20, 415, 20))
+        self.label_info.setGeometry(QRect(20, 35, 441, 15))
+
         self.verticalLayoutWidget = QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QRect(20, 50, 121, 271))
+        self.verticalLayoutWidget.setGeometry(QRect(20, 55, 121, 271))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.checkBox = QCheckBox(self.verticalLayoutWidget)
@@ -36,8 +42,9 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout.addWidget(self.checkBox_8)
         self.checkBox_9 = QCheckBox(self.verticalLayoutWidget)
         self.verticalLayout.addWidget(self.checkBox_9)
+
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QRect(170, 50, 131, 271))
+        self.verticalLayoutWidget_2.setGeometry(QRect(170, 55, 131, 271))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.checkBox_10 = QCheckBox(self.verticalLayoutWidget_2)
@@ -58,8 +65,9 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_2.addWidget(self.checkBox_17)
         self.checkBox_18 = QCheckBox(self.verticalLayoutWidget_2)
         self.verticalLayout_2.addWidget(self.checkBox_18)
+
         self.verticalLayoutWidget_3 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_3.setGeometry(QRect(330, 50, 131, 271))
+        self.verticalLayoutWidget_3.setGeometry(QRect(330, 55, 131, 271))
         self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.checkBox_19 = QCheckBox(self.verticalLayoutWidget_3)
@@ -80,30 +88,39 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_3.addWidget(self.checkBox_26)
         self.checkBox_27 = QCheckBox(self.verticalLayoutWidget_3)
         self.verticalLayout_3.addWidget(self.checkBox_27)
+
         self.label_note = QLabel(self.centralwidget)
         self.label_note.setGeometry(QRect(20, 330, 350, 16))
         self.label_space = QLabel(self.centralwidget)
         self.label_space.setGeometry(QRect(20, 350, 350, 16))
         self.label_size = QLabel(self.centralwidget)
-        self.label_size.setGeometry(QRect(200, 350, 350, 16))
-        self.horizontalLayoutWidget = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QRect(379, 380, 81, 31))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.button_uninstall = QPushButton(self.horizontalLayoutWidget)
-        self.horizontalLayout.addWidget(self.button_uninstall)
-        self.progressbar = QProgressBar(self.centralwidget)
-        self.progressbar.setGeometry(QRect(20, 40, 175, 10))
-        self.progressbar.hide()
+        self.label_size.setGeometry(QRect(155, 350, 350, 16))
+
         self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 380, 160, 31))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 380, 220, 31))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.button_select_all = QPushButton(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.addWidget(self.button_select_all)
+        self.button_select_all.setStyleSheet(open('style.css').read())
+        self.button_select_all.setMinimumSize(100, 30)
+        self.button_select_all.setProperty('class', 'Aqua')
         self.button_deselect_all = QPushButton(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.addWidget(self.button_deselect_all)
-        self.setCentralWidget(self.centralwidget)
+        self.button_deselect_all.setStyleSheet(open('style.css').read())
+        self.button_deselect_all.setMinimumSize(100, 30)
+        self.button_deselect_all.setProperty('class', 'Aqua')
+
+        self.horizontalLayoutWidget = QWidget(self.centralwidget)
+        self.horizontalLayoutWidget.setGeometry(QRect(354, 380, 107, 31))
+        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.button_uninstall = QPushButton(self.horizontalLayoutWidget)
+        self.horizontalLayout.addWidget(self.button_uninstall)
+        self.button_uninstall.setStyleSheet(open('style.css').read())
+        self.button_uninstall.setMinimumSize(100, 30)
+        self.button_uninstall.setProperty('class', 'Grapefruit')
+
         self.menubar = QMenuBar(self)
         self.menubar.setGeometry(QRect(0, 0, 481, 21))
         self.menuHelp = QMenu(self.menubar)
@@ -118,7 +135,9 @@ class Ui_MainWindow(QMainWindow):
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionQuit)
         self.menubar.addAction(self.menuHelp.menuAction())
+        self.menubar.setStyleSheet(open('style.css').read())
 
+        self.setCentralWidget(self.centralwidget)
         self.retranslateUi()
         QMetaObject.connectSlotsByName(self)
 
@@ -170,7 +189,7 @@ class Ui_MainWindow(QMainWindow):
         self.checkBox_27.setText(_translate("MainWindow", "Your Phone"))
 
         self.label_note.setText(_translate("MainWindow", "NOTE: Microsoft Edge and Cortana cannot be uninstalled using this GUI."))
-        self.label_space.setText(_translate("MainWindow", "Total amount of disk space you gain:"))
+        self.label_space.setText(_translate("MainWindow", "Total amount of disk space:"))
         self.label_size.setText(_translate("MainWindow", "0 MB"))
 
         self.button_select_all.setText(_translate("MainWindow", "Select All"))

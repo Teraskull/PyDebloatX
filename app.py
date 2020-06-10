@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import QCursor, QPixmap, QIcon
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
-from PyQt5.QtGui import QCursor
 import webbrowser
 import subprocess
 import sys
@@ -41,6 +41,7 @@ class Logic():
             ui.checkBox_22: 16.62, ui.checkBox_23: 12.40, ui.checkBox_24: 30.59,
             ui.checkBox_25: 35.02, ui.checkBox_26: 119.06, ui.checkBox_27: 64.59,
         }
+        ui.progressbar.hide()
         ui.progressbar.setMaximum(len(self.checkbox_dict))
         ui.actionRefresh.triggered.connect(self.app_refresh)
         ui.actionHomepage.triggered.connect(self.app_homepage)
@@ -51,6 +52,7 @@ class Logic():
         ui.button_deselect_all.clicked.connect(self.deselect_all)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
+            i.setStyleSheet(open('style.css').read())
 
         self.workerThread = QThread()
         self.thread_list = []
@@ -126,8 +128,18 @@ class Logic():
 
     @staticmethod
     def app_quit():
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', "Quit PyDebloatX?", QMessageBox.Yes | QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
+        pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
+        msg_quit = QMessageBox()
+        msg_quit.setText("Quit PyDebloatX?")
+        msg_quit.addButton(QMessageBox.Yes).setProperty('class', 'button_yes')
+        msg_quit.addButton(QMessageBox.No).setProperty('class', 'button_no')
+        msg_quit.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+        msg_quit.setWindowIcon(QIcon('icon.ico'))
+        msg_quit.setWindowTitle("PyDebloatX")
+        msg_quit.setIconPixmap(pixmap)
+        msg_quit.setStyleSheet(open('style.css').read())
+        msg_quit_result = msg_quit.exec_()
+        if msg_quit_result == QMessageBox.Yes:
             app.quit()
 
     def select_all(self):
@@ -147,15 +159,36 @@ class Logic():
         for i in self.installed_apps:
             if i.isChecked():
                 j += 1
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} app{'s' if j > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.", QMessageBox.Yes | QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
-            for i in self.installed_apps:
+        pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
+
+        msg_confirm = QMessageBox()
+        msg_confirm.setText(f"Uninstall {j} app{'s' if j > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.")
+        msg_confirm.addButton(QMessageBox.Yes).setProperty('class', 'button_yes')
+        msg_confirm.addButton(QMessageBox.No).setProperty('class', 'button_no')
+        msg_confirm.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+        msg_confirm.setWindowIcon(QIcon('icon.ico'))
+        msg_confirm.setWindowTitle("PyDebloatX")
+        msg_confirm.setIconPixmap(pixmap)
+        msg_confirm.setStyleSheet(open('style.css').read())
+        msg_confirm_result = msg_confirm.exec_()
+
+        if msg_confirm_result == QMessageBox.Yes:
+            for i in self.checkbox_dict:
                 if i.isChecked():
-                    subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
+                    # subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
                     i.setChecked(False)
                     i.setEnabled(False)
+                    self.installed_apps.remove(i)
             self.deselect_all()
-            QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app{'s' if j > 1 else ''}.", QMessageBox.Ok)
+
+            msg_proceed = QMessageBox()
+            msg_proceed.setText(f"Uninstalling {j} app{'s' if j > 1 else ''}.")
+            msg_proceed.addButton(QMessageBox.Ok).setProperty('class', 'button_yes')
+            msg_proceed.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+            msg_proceed.setWindowTitle("PyDebloatX")
+            msg_proceed.setIconPixmap(pixmap)
+            msg_proceed.setStyleSheet(open('style.css').read())
+            msg_proceed_result = msg_proceed.exec_()
 
 
 class CheckApps(QThread):

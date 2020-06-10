@@ -13,6 +13,7 @@ class Ui_AboutWindow(QMainWindow):
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
+        self.centralwidget.setStyleSheet(open('style.css').read())
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QRect(10, 10, 221, 81))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
