@@ -5,7 +5,7 @@ from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 import webbrowser
 import subprocess
-import img_res
+import img_res  # skipcq: PYL-W0611
 import sys
 
 
