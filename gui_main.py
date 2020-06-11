@@ -1,27 +1,65 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
-from PyQt5.QtCore import QRect, QCoreApplication, QMetaObject
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
+from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
+from PyQt5.QtGui import QIcon, QKeySequence
 
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super(Ui_MainWindow, self).__init__()
         self.setWindowIcon(QIcon('icon.ico'))
-        self.setFixedSize(481, 447)
+        self.setFixedSize(531, 430)
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
         self.centralwidget.setStyleSheet(open('style.css').read())
+        self.sidebar = QFrame(self)
+        self.sidebar.setFrameShape(QFrame.StyledPanel)
+        self.sidebar.setGeometry(0, 0, 50, 430)
+        self.sidebar.setStyleSheet(open('style.css').read())
+        self.sidebar.setProperty('class', 'sidebar')
+
+        self.refresh_btn = QPushButton(self.sidebar)
+        self.refresh_btn.setGeometry(QRect(0, 0, 51, 51))
+        self.refresh_btn.setStyleSheet(open('style.css').read())
+        self.refresh_btn.setProperty('class', 'sidebar_btns')
+        self.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
+        self.refresh_btn.setIconSize(QSize(24, 24))
+        self.refresh_bind = QShortcut(QKeySequence('Ctrl+R'), self)
+
+        self.homepage_btn = QPushButton(self.sidebar)
+        self.homepage_btn.setGeometry(QRect(0, 51, 51, 51))
+        self.homepage_btn.setStyleSheet(open('style.css').read())
+        self.homepage_btn.setProperty('class', 'sidebar_btns')
+        self.homepage_btn.setIcon(QIcon(':/icon/github_icon.png'))
+        self.homepage_btn.setIconSize(QSize(24, 24))
+        self.homepage_bind = QShortcut(QKeySequence('Ctrl+G'), self)
+
+        self.about_btn = QPushButton(self.sidebar)
+        self.about_btn.setGeometry(QRect(0, 102, 51, 51))
+        self.about_btn.setStyleSheet(open('style.css').read())
+        self.about_btn.setProperty('class', 'sidebar_btns')
+        self.about_btn.setIcon(QIcon(':/icon/about_icon.png'))
+        self.about_btn.setIconSize(QSize(24, 24))
+        self.about_bind = QShortcut(QKeySequence('Ctrl+A'), self)
+
+        self.quit_btn = QPushButton(self.sidebar)
+        self.quit_btn.setGeometry(QRect(0, 380, 51, 51))
+        self.quit_btn.setStyleSheet(open('style.css').read())
+        self.quit_btn.setProperty('class', 'sidebar_btns_quit')
+        self.quit_btn.setIcon(QIcon(':/icon/quit_icon.png'))
+        self.quit_btn.setIconSize(QSize(24, 24))
+        self.quit_bind = QShortcut(QKeySequence('Ctrl+Q'), self)
+
         self.progressbar = QProgressBar(self.centralwidget)
-        self.progressbar.setGeometry(QRect(20, 10, 441, 20))
+        self.progressbar.setGeometry(QRect(70, 10, 441, 20))
         self.progressbar.setStyleSheet(open('style.css').read())
 
         self.label_info = QLabel(self.centralwidget)
-        self.label_info.setGeometry(QRect(20, 35, 441, 15))
+        self.label_info.setGeometry(QRect(70, 35, 441, 15))
 
         self.verticalLayoutWidget = QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QRect(20, 55, 121, 271))
+        self.verticalLayoutWidget.setGeometry(QRect(70, 55, 121, 271))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.checkBox = QCheckBox(self.verticalLayoutWidget)
@@ -44,7 +82,7 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout.addWidget(self.checkBox_9)
 
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QRect(170, 55, 131, 271))
+        self.verticalLayoutWidget_2.setGeometry(QRect(220, 55, 131, 271))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.checkBox_10 = QCheckBox(self.verticalLayoutWidget_2)
@@ -67,7 +105,7 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_2.addWidget(self.checkBox_18)
 
         self.verticalLayoutWidget_3 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_3.setGeometry(QRect(330, 55, 131, 271))
+        self.verticalLayoutWidget_3.setGeometry(QRect(380, 55, 131, 271))
         self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.checkBox_19 = QCheckBox(self.verticalLayoutWidget_3)
@@ -90,52 +128,45 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_3.addWidget(self.checkBox_27)
 
         self.label_note = QLabel(self.centralwidget)
-        self.label_note.setGeometry(QRect(20, 330, 350, 16))
+        self.label_note.setGeometry(QRect(70, 330, 350, 16))
         self.label_space = QLabel(self.centralwidget)
-        self.label_space.setGeometry(QRect(20, 350, 350, 16))
+        self.label_space.setGeometry(QRect(70, 350, 350, 16))
         self.label_size = QLabel(self.centralwidget)
-        self.label_size.setGeometry(QRect(155, 350, 350, 16))
+        self.label_size.setGeometry(QRect(205, 350, 350, 16))
 
         self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 380, 220, 31))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(70, 380, 220, 31))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.button_select_all = QPushButton(self.horizontalLayoutWidget_2)
+        self.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
+        self.button_select_all.setIconSize(QSize(18, 18))
+        self.button_select_all.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout_2.addWidget(self.button_select_all)
         self.button_select_all.setStyleSheet(open('style.css').read())
         self.button_select_all.setMinimumSize(100, 30)
         self.button_select_all.setProperty('class', 'Aqua')
         self.button_deselect_all = QPushButton(self.horizontalLayoutWidget_2)
+        self.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
+        self.button_deselect_all.setIconSize(QSize(18, 18))
+        self.button_deselect_all.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout_2.addWidget(self.button_deselect_all)
         self.button_deselect_all.setStyleSheet(open('style.css').read())
         self.button_deselect_all.setMinimumSize(100, 30)
         self.button_deselect_all.setProperty('class', 'Aqua')
 
         self.horizontalLayoutWidget = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QRect(354, 380, 107, 31))
+        self.horizontalLayoutWidget.setGeometry(QRect(404, 380, 107, 31))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.button_uninstall = QPushButton(self.horizontalLayoutWidget)
+        self.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
+        self.button_uninstall.setIconSize(QSize(18, 18))
+        self.button_uninstall.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout.addWidget(self.button_uninstall)
         self.button_uninstall.setStyleSheet(open('style.css').read())
         self.button_uninstall.setMinimumSize(100, 30)
         self.button_uninstall.setProperty('class', 'Grapefruit')
-
-        self.menubar = QMenuBar(self)
-        self.menubar.setGeometry(QRect(0, 0, 481, 21))
-        self.menuHelp = QMenu(self.menubar)
-        self.setMenuBar(self.menubar)
-        self.actionRefresh = QAction(self)
-        self.actionHomepage = QAction(self)
-        self.actionAbout = QAction(self)
-        self.actionQuit = QAction(self)
-        self.menuHelp.addAction(self.actionRefresh)
-        self.menuHelp.addAction(self.actionHomepage)
-        self.menuHelp.addAction(self.actionAbout)
-        self.menuHelp.addSeparator()
-        self.menuHelp.addAction(self.actionQuit)
-        self.menubar.addAction(self.menuHelp.menuAction())
-        self.menubar.setStyleSheet(open('style.css').read())
 
         self.setCentralWidget(self.centralwidget)
         self.retranslateUi()
@@ -145,17 +176,6 @@ class Ui_MainWindow(QMainWindow):
         _translate = QCoreApplication.translate
 
         self.setWindowTitle(_translate("MainWindow", "PyDebloatX"))
-
-        self.menuHelp.setTitle(_translate("MainWindow", "&Help"))
-        self.actionRefresh.setText(_translate("MainWindow", "&Refresh"))
-        self.actionRefresh.setShortcut(_translate("MainWindow", "Ctrl+R"))
-        self.actionHomepage.setText(_translate("MainWindow", "&Github"))
-        self.actionHomepage.setShortcut(_translate("MainWindow", "Ctrl+G"))
-        self.actionAbout.setText(_translate("MainWindow", "&About"))
-        self.actionAbout.setShortcut(_translate("MainWindow", "Ctrl+A"))
-        self.actionQuit.setText(_translate("MainWindow", "&Quit"))
-        self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
-
         self.label_info.setText(_translate("MainWindow", "Refreshing list of installed apps..."))
 
         self.checkBox.setText(_translate("MainWindow", "3D Builder"))

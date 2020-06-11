@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 
 
 class Ui_AboutWindow(QMainWindow):
     def __init__(self):
         super(Ui_AboutWindow, self).__init__()
-        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.CustomizeWindowHint)
         self.setWindowIcon(QIcon('icon.ico'))
-        self.setFixedSize(240, 150)
+        self.setFixedSize(241, 190)
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
@@ -37,7 +37,7 @@ class Ui_AboutWindow(QMainWindow):
         self.label_version.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout.addWidget(self.label_version, 0, Qt.AlignHCenter)
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 100, 221, 41))
+        self.verticalLayoutWidget_2.setGeometry(QRect(10, 100, 221, 81))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.label_copyright = QLabel(self.verticalLayoutWidget_2)
@@ -52,6 +52,11 @@ class Ui_AboutWindow(QMainWindow):
         self.label_author.setFont(font)
         self.label_author.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout_2.addWidget(self.label_author, 0, Qt.AlignHCenter)
+        self.button_quit_about = QPushButton(self.verticalLayoutWidget_2)
+        self.verticalLayout_2.addWidget(self.button_quit_about)
+        self.button_quit_about.setStyleSheet(open('style.css').read())
+        self.button_quit_about.setMinimumSize(100, 30)
+        self.button_quit_about.setProperty('class', 'Aqua')
         self.setCentralWidget(self.centralwidget)
 
         self.retranslateUi()
@@ -64,3 +69,4 @@ class Ui_AboutWindow(QMainWindow):
         self.label_version.setText(_translate("MainWindow", ""))
         self.label_copyright.setText(_translate("MainWindow", "Copyright © 2020 by"))
         self.label_author.setText(_translate("MainWindow", "Anton Grouchtchak."))
+        self.button_quit_about.setText(_translate("MainWindow", "OK"))

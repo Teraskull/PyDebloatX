@@ -5,6 +5,7 @@ from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 import webbrowser
 import subprocess
+import img_res
 import sys
 
 
@@ -41,15 +42,20 @@ class Logic():
             ui.checkBox_22: 16.62, ui.checkBox_23: 12.40, ui.checkBox_24: 30.59,
             ui.checkBox_25: 35.02, ui.checkBox_26: 119.06, ui.checkBox_27: 64.59,
         }
-        ui.progressbar.hide()
+        ui.progressbar.setValue(0)
         ui.progressbar.setMaximum(len(self.checkbox_dict))
-        ui.actionRefresh.triggered.connect(self.app_refresh)
-        ui.actionHomepage.triggered.connect(self.app_homepage)
-        ui.actionAbout.triggered.connect(self.app_about)
-        ui.actionQuit.triggered.connect(self.app_quit)
         ui.button_uninstall.clicked.connect(self.uninstall)
         ui.button_select_all.clicked.connect(self.select_all)
         ui.button_deselect_all.clicked.connect(self.deselect_all)
+        ui.refresh_btn.clicked.connect(self.app_refresh)
+        ui.refresh_bind.activated.connect(self.app_refresh)
+        ui.homepage_btn.clicked.connect(self.app_homepage)
+        ui.homepage_bind.activated.connect(self.app_homepage)
+        ui.about_btn.clicked.connect(self.app_about)
+        ui.about_bind.activated.connect(self.app_about)
+        ui.quit_btn.clicked.connect(self.app_quit)
+        ui.quit_bind.activated.connect(self.app_quit)
+        about.button_quit_about.clicked.connect(self.about_close)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
             i.setStyleSheet(open('style.css').read())
@@ -70,7 +76,9 @@ class Logic():
             i.setEnabled(False)
             i.setChecked(False)
         ui.progressbar.show()
-        ui.actionRefresh.setDisabled(True)
+        ui.refresh_btn.setDisabled(True)
+        ui.refresh_bind.setEnabled(False)
+        ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
         ui.button_select_all.setDisabled(True)
         ui.button_deselect_all.setDisabled(True)
         ui.button_uninstall.setDisabled(True)
@@ -84,7 +92,9 @@ class Logic():
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
         ui.label_info.setText('Select the default Windows 10 apps to uninstall (Hover over items to view description):')
-        ui.actionRefresh.setDisabled(False)
+        ui.refresh_btn.setDisabled(False)
+        ui.refresh_bind.setEnabled(True)
+        ui.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.enable_buttons()
 
     def enable_installed(self, i):
@@ -106,16 +116,22 @@ class Logic():
                 ui.label_size.setText(f'{self.total_size:.2f} MB')
         if any(i.isChecked() for i in self.installed_apps):
             ui.button_uninstall.setDisabled(False)
+            ui.button_uninstall.setIcon(QIcon(':/icon/trash_icon.png'))
             ui.button_deselect_all.setDisabled(False)
+            ui.button_deselect_all.setIcon(QIcon(':/icon/cancel_icon.png'))
         else:
-            ui.button_deselect_all.setDisabled(True)
             ui.button_uninstall.setDisabled(True)
+            ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
+            ui.button_deselect_all.setDisabled(True)
+            ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
             ui.label_size.setText('0 MB')
 
         if all(i.isChecked() for i in self.installed_apps):
             ui.button_select_all.setDisabled(True)
+            ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
         else:
             ui.button_select_all.setDisabled(False)
+            ui.button_select_all.setIcon(QIcon(':/icon/check_icon.png'))
 
     @staticmethod
     def app_homepage():
@@ -125,6 +141,10 @@ class Logic():
     def app_about():
         about.setWindowModality(Qt.ApplicationModal)
         about.show()
+
+    @staticmethod
+    def about_close():
+        about.close()
 
     @staticmethod
     def app_quit():
