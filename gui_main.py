@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QAction, QMenuBar, QMenu, QHBoxLayout, QProgressBar
+from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, QProgressBar
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PyQt5.QtGui import QIcon, QKeySequence
 
@@ -12,16 +12,15 @@ class Ui_MainWindow(QMainWindow):
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
-        self.centralwidget.setStyleSheet(open('style.css').read())
+        with open("style.css", 'r') as file:
+            self.centralwidget.setStyleSheet(file.read())
         self.sidebar = QFrame(self)
         self.sidebar.setFrameShape(QFrame.StyledPanel)
         self.sidebar.setGeometry(0, 0, 50, 430)
-        self.sidebar.setStyleSheet(open('style.css').read())
         self.sidebar.setProperty('class', 'sidebar')
 
         self.refresh_btn = QPushButton(self.sidebar)
         self.refresh_btn.setGeometry(QRect(0, 0, 51, 51))
-        self.refresh_btn.setStyleSheet(open('style.css').read())
         self.refresh_btn.setProperty('class', 'sidebar_btns')
         self.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.refresh_btn.setIconSize(QSize(24, 24))
@@ -29,7 +28,6 @@ class Ui_MainWindow(QMainWindow):
 
         self.homepage_btn = QPushButton(self.sidebar)
         self.homepage_btn.setGeometry(QRect(0, 51, 51, 51))
-        self.homepage_btn.setStyleSheet(open('style.css').read())
         self.homepage_btn.setProperty('class', 'sidebar_btns')
         self.homepage_btn.setIcon(QIcon(':/icon/github_icon.png'))
         self.homepage_btn.setIconSize(QSize(24, 24))
@@ -37,7 +35,6 @@ class Ui_MainWindow(QMainWindow):
 
         self.about_btn = QPushButton(self.sidebar)
         self.about_btn.setGeometry(QRect(0, 102, 51, 51))
-        self.about_btn.setStyleSheet(open('style.css').read())
         self.about_btn.setProperty('class', 'sidebar_btns')
         self.about_btn.setIcon(QIcon(':/icon/about_icon.png'))
         self.about_btn.setIconSize(QSize(24, 24))
@@ -45,7 +42,6 @@ class Ui_MainWindow(QMainWindow):
 
         self.quit_btn = QPushButton(self.sidebar)
         self.quit_btn.setGeometry(QRect(0, 380, 51, 51))
-        self.quit_btn.setStyleSheet(open('style.css').read())
         self.quit_btn.setProperty('class', 'sidebar_btns_quit')
         self.quit_btn.setIcon(QIcon(':/icon/quit_icon.png'))
         self.quit_btn.setIconSize(QSize(24, 24))
@@ -53,7 +49,6 @@ class Ui_MainWindow(QMainWindow):
 
         self.progressbar = QProgressBar(self.centralwidget)
         self.progressbar.setGeometry(QRect(70, 10, 441, 20))
-        self.progressbar.setStyleSheet(open('style.css').read())
 
         self.label_info = QLabel(self.centralwidget)
         self.label_info.setGeometry(QRect(70, 35, 441, 15))
@@ -143,7 +138,6 @@ class Ui_MainWindow(QMainWindow):
         self.button_select_all.setIconSize(QSize(18, 18))
         self.button_select_all.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout_2.addWidget(self.button_select_all)
-        self.button_select_all.setStyleSheet(open('style.css').read())
         self.button_select_all.setMinimumSize(100, 30)
         self.button_select_all.setProperty('class', 'Aqua')
         self.button_deselect_all = QPushButton(self.horizontalLayoutWidget_2)
@@ -151,7 +145,6 @@ class Ui_MainWindow(QMainWindow):
         self.button_deselect_all.setIconSize(QSize(18, 18))
         self.button_deselect_all.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout_2.addWidget(self.button_deselect_all)
-        self.button_deselect_all.setStyleSheet(open('style.css').read())
         self.button_deselect_all.setMinimumSize(100, 30)
         self.button_deselect_all.setProperty('class', 'Aqua')
 
@@ -164,9 +157,19 @@ class Ui_MainWindow(QMainWindow):
         self.button_uninstall.setIconSize(QSize(18, 18))
         self.button_uninstall.setLayoutDirection(Qt.RightToLeft)
         self.horizontalLayout.addWidget(self.button_uninstall)
-        self.button_uninstall.setStyleSheet(open('style.css').read())
         self.button_uninstall.setMinimumSize(100, 30)
         self.button_uninstall.setProperty('class', 'Grapefruit')
+
+        with open("style.css", 'r') as file:
+            self.sidebar.setStyleSheet(file.read())
+            self.refresh_btn.setStyleSheet(file.read())
+            self.homepage_btn.setStyleSheet(file.read())
+            self.about_btn.setStyleSheet(file.read())
+            self.quit_btn.setStyleSheet(file.read())
+            self.progressbar.setStyleSheet(file.read())
+            self.button_select_all.setStyleSheet(file.read())
+            self.button_deselect_all.setStyleSheet(file.read())
+            self.button_uninstall.setStyleSheet(file.read())
 
         self.setCentralWidget(self.centralwidget)
         self.retranslateUi()

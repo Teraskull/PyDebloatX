@@ -58,7 +58,8 @@ class Logic():
         about.button_quit_about.clicked.connect(self.about_close)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
-            i.setStyleSheet(open('style.css').read())
+            with open("style.css", 'r') as file:
+                i.setStyleSheet(file.read())
 
         self.workerThread = QThread()
         self.thread_list = []
@@ -157,7 +158,8 @@ class Logic():
         msg_quit.setWindowIcon(QIcon('icon.ico'))
         msg_quit.setWindowTitle("PyDebloatX")
         msg_quit.setIconPixmap(pixmap)
-        msg_quit.setStyleSheet(open('style.css').read())
+        with open("style.css", 'r') as file:
+            msg_quit.setStyleSheet(file.read())
         msg_quit_result = msg_quit.exec_()
         if msg_quit_result == QMessageBox.Yes:
             app.quit()
@@ -189,7 +191,8 @@ class Logic():
         msg_confirm.setWindowIcon(QIcon('icon.ico'))
         msg_confirm.setWindowTitle("PyDebloatX")
         msg_confirm.setIconPixmap(pixmap)
-        msg_confirm.setStyleSheet(open('style.css').read())
+        with open("style.css", 'r') as file:
+            msg_confirm.setStyleSheet(file.read())
         msg_confirm_result = msg_confirm.exec_()
 
         if msg_confirm_result == QMessageBox.Yes:
@@ -207,8 +210,9 @@ class Logic():
             msg_proceed.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
             msg_proceed.setWindowTitle("PyDebloatX")
             msg_proceed.setIconPixmap(pixmap)
-            msg_proceed.setStyleSheet(open('style.css').read())
-            msg_proceed_result = msg_proceed.exec_()
+            with open("style.css", 'r') as file:
+                msg_proceed.setStyleSheet(file.read())
+            msg_proceed.exec_()
 
 
 class CheckApps(QThread):

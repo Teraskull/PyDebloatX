@@ -13,7 +13,8 @@ class Ui_AboutWindow(QMainWindow):
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
-        self.centralwidget.setStyleSheet(open('style.css').read())
+        with open("style.css", 'r') as file:
+            self.centralwidget.setStyleSheet(file.read())
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QRect(10, 10, 221, 81))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
@@ -54,11 +55,13 @@ class Ui_AboutWindow(QMainWindow):
         self.verticalLayout_2.addWidget(self.label_author, 0, Qt.AlignHCenter)
         self.button_quit_about = QPushButton(self.verticalLayoutWidget_2)
         self.verticalLayout_2.addWidget(self.button_quit_about)
-        self.button_quit_about.setStyleSheet(open('style.css').read())
         self.button_quit_about.setMinimumSize(100, 30)
         self.button_quit_about.setProperty('class', 'Aqua')
-        self.setCentralWidget(self.centralwidget)
 
+        with open("style.css", 'r') as file:
+            self.button_quit_about.setStyleSheet(file.read())
+
+        self.setCentralWidget(self.centralwidget)
         self.retranslateUi()
         QMetaObject.connectSlotsByName(self)
 

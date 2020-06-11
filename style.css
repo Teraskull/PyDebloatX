@@ -1,6 +1,6 @@
 QPushButton {
     color: #fff;
-    border: 0px solid rgba(255, 255, 255, 0);
+    border: 0 solid rgba(255, 255, 255, 0);
     font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
@@ -15,7 +15,7 @@ QFrame[class="sidebar"] {
 
 QPushButton[class="sidebar_btns"] {
     color: #fff;
-    border: 0px solid rgba(255, 255, 255, 0);
+    border: 0 solid rgba(255, 255, 255, 0);
     border-radius: 0;
     background-color: #3bafda;
 }
@@ -41,7 +41,7 @@ QPushButton:disabled[class="sidebar_btns"] {
 
 QPushButton[class="sidebar_btns_quit"] {
     color: #fff;
-    border: 0px solid rgba(255, 255, 255, 0);
+    border: 0 solid rgba(255, 255, 255, 0);
     border-radius: 0;
     background-color: #da4453;
 }
@@ -123,11 +123,8 @@ QProgressBar {
     background-color: #fff;
 }
 
-QProgressBar::chunk{
-    border-radius: 3px;
-}
-
 QProgressBar::chunk {
+    border-radius: 3px;
     background-color: #3bafda;
 }
 
@@ -166,7 +163,7 @@ QMessageBox{
 
 QMessageBox QPushButton {
     color: #fff;
-    border: 0px solid rgba(255, 255, 255, 0);
+    border: 0 solid rgba(255, 255, 255, 0);
     font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
