@@ -1,0 +1,193 @@
+QPushButton {
+    color: #fff;
+    border: 0 solid rgba(255, 255, 255, 0);
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+
+/*Sidebar*/
+QFrame[class="sidebar"] {
+    background-color: #3bafda;
+    border: 0;
+}
+
+QPushButton[class="sidebar_btns"] {
+    color: #fff;
+    border: 0 solid rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: #3bafda;
+}
+
+QPushButton:hover[class="sidebar_btns"] {
+    background-color: #4fc1e9;
+}
+
+QPushButton:pressed[class="sidebar_btns"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #4fc1e9,
+    stop: 0.8 #3bafda);
+}
+
+QPushButton:disabled[class="sidebar_btns"] {
+    color: #bdc3c7;
+    background-color:#165c76;
+}
+
+QPushButton[class="sidebar_btns_quit"] {
+    color: #fff;
+    border: 0 solid rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: #da4453;
+}
+
+QPushButton:hover[class="sidebar_btns_quit"] {
+    background-color: #ed5565;
+}
+
+QPushButton:pressed[class="sidebar_btns_quit"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #ed5565,
+    stop: 0.8 #da4453);
+}
+
+QPushButton:disabled[class="sidebar_btns_quit"] {
+    color: #bdc3c7;
+    background-color:#7c1923;
+}
+
+
+/*Aqua buttons*/
+QPushButton[class="Aqua"] {
+    background-color: #3bafda;
+}
+
+QPushButton:hover[class="Aqua"] {
+    background-color: #4fc1e9;
+}
+
+QPushButton:pressed[class="Aqua"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #4fc1e9,
+    stop: 0.8 #3bafda);
+}
+
+QPushButton:disabled[class="Aqua"] {
+    color: #bdc3c7;
+    background-color:#165c76;
+}
+
+
+/*Grapefruit buttons*/
+QPushButton[class="Grapefruit"] {
+    background-color: #da4453;
+}
+
+QPushButton:hover[class="Grapefruit"] {
+    background-color: #ed5565;
+}
+
+QPushButton:pressed[class="Grapefruit"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #ed5565,
+    stop: 0.8 #da4453);
+}
+
+QPushButton:disabled[class="Grapefruit"] {
+    color: #bdc3c7;
+    background-color:#7c1923;
+}
+
+
+/*QProgressBar*/
+QProgressBar {
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+}
+
+QProgressBar::chunk {
+    border-radius: 3px;
+    background-color: #3bafda;
+}
+
+
+/*QCheckBox*/
+QCheckBox::indicator:unchecked {
+    width: 11px;
+    height: 11px;
+    border: 1px solid #3bafda;
+    background-color: #fff;
+}
+
+QCheckBox::indicator:unchecked:hover {
+    border: 1px solid #4fc1e9;
+}
+
+QCheckBox::indicator:checked {
+    image: url(':/icon/checkbox_checked.png');
+    width: 13px;
+    height: 13px;
+}
+
+QCheckBox::indicator:disabled {
+    border: 1px solid #a8b0b5;
+}
+
+QCheckBox:disabled {
+    color: #a8b0b5;
+}
+
+
+/*QMessageBox*/
+QMessageBox{
+    background-color: #fff;
+}
+
+QMessageBox QPushButton {
+    color: #fff;
+    border: 0 solid rgba(255, 255, 255, 0);
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #37bc9b;
+    width: 70px;
+    height: 30px;
+}
+
+QMessageBox QPushButton[class="button_yes"] {
+    background-color: #37bc9b;
+}
+
+QMessageBox QPushButton[class="button_no"] {
+    background-color: #da4453;
+}
+
+QMessageBox QPushButton:hover[class="button_yes"] {
+    background-color: #48cfad;
+}
+
+QMessageBox QPushButton:hover[class="button_no"] {
+    background-color: #ed5565;
+}
+
+QWidget {
+    background-color: #fff;
+}

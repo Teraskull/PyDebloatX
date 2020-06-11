@@ -26,11 +26,11 @@
 
 <div align="center">
 
-![Main window screenshot](images/app_main.png)
+![Main window screenshot](screenshots/app_main.png)
 
-![Loading screenshot](images/app_loading.png)
+![Loading screenshot](screenshots/app_loading.png)
 
-![Confirmation screenshot](images/app_confirm.png)
+![Confirmation screenshot](screenshots/app_confirm.png)
 
 </div>
 
@@ -44,10 +44,7 @@
 
 ## App limitations:
 
-* [FIXED] ~~It takes a few seconds to list all currently installed apps.~~
-* [FIXED] ~~When uninstalling apps, PowerShell windows will open.~~
-* You can only **uninstall** apps with this GUI, hence the name.
-* You cannot uninstall other apps, for example Cortana, with this GUI, because PowerShell does not support it.
+* You cannot uninstall other apps, for example Cortana or Edge. This GUI was designed to be simple and safe, so that you cannot break anything using it.
 * App disk space is approximate and taken from Microsoft Store, there is no other way to get real-time app size.
 
 ## Dependencies:

@@ -1,14 +1,15 @@
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import QCursor, QPixmap, QIcon
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
-from PyQt5.QtGui import QCursor
 import webbrowser
 import subprocess
+import img_res
 import sys
 
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"
 
 
 class Logic():
@@ -41,16 +42,24 @@ class Logic():
             ui.checkBox_22: 16.62, ui.checkBox_23: 12.40, ui.checkBox_24: 30.59,
             ui.checkBox_25: 35.02, ui.checkBox_26: 119.06, ui.checkBox_27: 64.59,
         }
+        ui.progressbar.setValue(0)
         ui.progressbar.setMaximum(len(self.checkbox_dict))
-        ui.actionRefresh.triggered.connect(self.app_refresh)
-        ui.actionHomepage.triggered.connect(self.app_homepage)
-        ui.actionAbout.triggered.connect(self.app_about)
-        ui.actionQuit.triggered.connect(self.app_quit)
         ui.button_uninstall.clicked.connect(self.uninstall)
         ui.button_select_all.clicked.connect(self.select_all)
         ui.button_deselect_all.clicked.connect(self.deselect_all)
+        ui.refresh_btn.clicked.connect(self.app_refresh)
+        ui.refresh_bind.activated.connect(self.app_refresh)
+        ui.homepage_btn.clicked.connect(self.app_homepage)
+        ui.homepage_bind.activated.connect(self.app_homepage)
+        ui.about_btn.clicked.connect(self.app_about)
+        ui.about_bind.activated.connect(self.app_about)
+        ui.quit_btn.clicked.connect(self.app_quit)
+        ui.quit_bind.activated.connect(self.app_quit)
+        about.button_quit_about.clicked.connect(self.about_close)
         for i in self.checkbox_dict:
             i.clicked.connect(self.enable_buttons)
+            with open("style.css", 'r') as file:
+                i.setStyleSheet(file.read())
 
         self.workerThread = QThread()
         self.thread_list = []
@@ -68,7 +77,9 @@ class Logic():
             i.setEnabled(False)
             i.setChecked(False)
         ui.progressbar.show()
-        ui.actionRefresh.setDisabled(True)
+        ui.refresh_btn.setDisabled(True)
+        ui.refresh_bind.setEnabled(False)
+        ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
         ui.button_select_all.setDisabled(True)
         ui.button_deselect_all.setDisabled(True)
         ui.button_uninstall.setDisabled(True)
@@ -82,7 +93,9 @@ class Logic():
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
         ui.label_info.setText('Select the default Windows 10 apps to uninstall (Hover over items to view description):')
-        ui.actionRefresh.setDisabled(False)
+        ui.refresh_btn.setDisabled(False)
+        ui.refresh_bind.setEnabled(True)
+        ui.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.enable_buttons()
 
     def enable_installed(self, i):
@@ -104,16 +117,22 @@ class Logic():
                 ui.label_size.setText(f'{self.total_size:.2f} MB')
         if any(i.isChecked() for i in self.installed_apps):
             ui.button_uninstall.setDisabled(False)
+            ui.button_uninstall.setIcon(QIcon(':/icon/trash_icon.png'))
             ui.button_deselect_all.setDisabled(False)
+            ui.button_deselect_all.setIcon(QIcon(':/icon/cancel_icon.png'))
         else:
-            ui.button_deselect_all.setDisabled(True)
             ui.button_uninstall.setDisabled(True)
+            ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
+            ui.button_deselect_all.setDisabled(True)
+            ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
             ui.label_size.setText('0 MB')
 
         if all(i.isChecked() for i in self.installed_apps):
             ui.button_select_all.setDisabled(True)
+            ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
         else:
             ui.button_select_all.setDisabled(False)
+            ui.button_select_all.setIcon(QIcon(':/icon/check_icon.png'))
 
     @staticmethod
     def app_homepage():
@@ -125,9 +144,24 @@ class Logic():
         about.show()
 
     @staticmethod
+    def about_close():
+        about.close()
+
+    @staticmethod
     def app_quit():
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', "Quit PyDebloatX?", QMessageBox.Yes | QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
+        pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
+        msg_quit = QMessageBox()
+        msg_quit.setText("Quit PyDebloatX?")
+        msg_quit.addButton(QMessageBox.Yes).setProperty('class', 'button_yes')
+        msg_quit.addButton(QMessageBox.No).setProperty('class', 'button_no')
+        msg_quit.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+        msg_quit.setWindowIcon(QIcon('icon.ico'))
+        msg_quit.setWindowTitle("PyDebloatX")
+        msg_quit.setIconPixmap(pixmap)
+        with open("style.css", 'r') as file:
+            msg_quit.setStyleSheet(file.read())
+        msg_quit_result = msg_quit.exec_()
+        if msg_quit_result == QMessageBox.Yes:
             app.quit()
 
     def select_all(self):
@@ -147,15 +181,38 @@ class Logic():
         for i in self.installed_apps:
             if i.isChecked():
                 j += 1
-        buttonReply = QMessageBox.question(ui, 'PyDebloatX', f"Uninstall {j} app{'s' if j > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.", QMessageBox.Yes | QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
-            for i in self.installed_apps:
+        pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
+
+        msg_confirm = QMessageBox()
+        msg_confirm.setText(f"Uninstall {j} app{'s' if j > 1 else ''}?\n\n{self.total_size:.2f} MB of of disk space will be available.")
+        msg_confirm.addButton(QMessageBox.Yes).setProperty('class', 'button_yes')
+        msg_confirm.addButton(QMessageBox.No).setProperty('class', 'button_no')
+        msg_confirm.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+        msg_confirm.setWindowIcon(QIcon('icon.ico'))
+        msg_confirm.setWindowTitle("PyDebloatX")
+        msg_confirm.setIconPixmap(pixmap)
+        with open("style.css", 'r') as file:
+            msg_confirm.setStyleSheet(file.read())
+        msg_confirm_result = msg_confirm.exec_()
+
+        if msg_confirm_result == QMessageBox.Yes:
+            for i in self.checkbox_dict:
                 if i.isChecked():
                     subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
                     i.setChecked(False)
                     i.setEnabled(False)
+                    self.installed_apps.remove(i)
             self.deselect_all()
-            QMessageBox.information(ui, 'PyDebloatX', f"Uninstalling {j} app{'s' if j > 1 else ''}.", QMessageBox.Ok)
+
+            msg_proceed = QMessageBox()
+            msg_proceed.setText(f"Uninstalling {j} app{'s' if j > 1 else ''}.")
+            msg_proceed.addButton(QMessageBox.Ok).setProperty('class', 'button_yes')
+            msg_proceed.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
+            msg_proceed.setWindowTitle("PyDebloatX")
+            msg_proceed.setIconPixmap(pixmap)
+            with open("style.css", 'r') as file:
+                msg_proceed.setStyleSheet(file.read())
+            msg_proceed.exec_()
 
 
 class CheckApps(QThread):
