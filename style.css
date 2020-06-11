@@ -7,6 +7,65 @@ QPushButton {
 }
 
 
+/*Sidebar*/
+QFrame[class="sidebar"] {
+    background-color: #3bafda;
+    border: 0;
+}
+
+QPushButton[class="sidebar_btns"] {
+    color: #fff;
+    border: 0px solid rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: #3bafda;
+}
+
+QPushButton:hover[class="sidebar_btns"] {
+    background-color: #4fc1e9;
+}
+
+QPushButton:pressed[class="sidebar_btns"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #4fc1e9,
+    stop: 0.8 #3bafda);
+}
+
+QPushButton:disabled[class="sidebar_btns"] {
+    color: #bdc3c7;
+    background-color:#165c76;
+}
+
+QPushButton[class="sidebar_btns_quit"] {
+    color: #fff;
+    border: 0px solid rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: #da4453;
+}
+
+QPushButton:hover[class="sidebar_btns_quit"] {
+    background-color: #ed5565;
+}
+
+QPushButton:pressed[class="sidebar_btns_quit"] {
+    background: qradialgradient(cx:0.5,
+    cy: 0.5,
+    fx: 0.5,
+    fy: 0.5,
+    radius: 1.5,
+    stop: 0.2 #ed5565,
+    stop: 0.8 #da4453);
+}
+
+QPushButton:disabled[class="sidebar_btns_quit"] {
+    color: #bdc3c7;
+    background-color:#7c1923;
+}
+
+
 /*Aqua buttons*/
 QPushButton[class="Aqua"] {
     background-color: #3bafda;
@@ -86,7 +145,7 @@ QCheckBox::indicator:unchecked:hover {
 }
 
 QCheckBox::indicator:checked {
-    image: url('widget_styles/checkbox_checked.png');
+    image: url(':/icon/checkbox_checked.png');
     width: 13px;
     height: 13px;
 }
@@ -134,24 +193,4 @@ QMessageBox QPushButton:hover[class="button_no"] {
 
 QWidget {
     background-color: #fff;
-}
-
-QMenuBar, QMenuBar::item {
-    color: #000;
-    background-color: #fff;
-}
-
-QMenuBar::item:selected {
-    color: #fff;
-    background-color: #4fc1e9;
-}
-
-QMenu {
-    color: #fff;
-    background-color: #3bafda;
-}
-
-QMenu::item:selected {
-    color: #fff;
-    background-color: #4fc1e9;
 }
