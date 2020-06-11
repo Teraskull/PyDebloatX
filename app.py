@@ -195,7 +195,7 @@ class Logic():
         if msg_confirm_result == QMessageBox.Yes:
             for i in self.checkbox_dict:
                 if i.isChecked():
-                    # subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
+                    subprocess.Popen(["powershell", f"(Get-AppxPackage {self.checkbox_dict[i]} | Remove-AppxPackage)"], shell=True)
                     i.setChecked(False)
                     i.setEnabled(False)
                     self.installed_apps.remove(i)
