@@ -79,10 +79,13 @@ class Logic():
         ui.progressbar.show()
         ui.refresh_btn.setDisabled(True)
         ui.refresh_bind.setEnabled(False)
-        ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
         ui.button_select_all.setDisabled(True)
         ui.button_deselect_all.setDisabled(True)
         ui.button_uninstall.setDisabled(True)
+        ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
+        ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
+        ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
+        ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         ui.label_info.setText('Refreshing list of installed apps...')
         for new_thread in self.thread_list:
@@ -117,13 +120,13 @@ class Logic():
                 ui.label_size.setText(f'{self.total_size:.2f} MB')
         if any(i.isChecked() for i in self.installed_apps):
             ui.button_uninstall.setDisabled(False)
-            ui.button_uninstall.setIcon(QIcon(':/icon/trash_icon.png'))
             ui.button_deselect_all.setDisabled(False)
+            ui.button_uninstall.setIcon(QIcon(':/icon/trash_icon.png'))
             ui.button_deselect_all.setIcon(QIcon(':/icon/cancel_icon.png'))
         else:
             ui.button_uninstall.setDisabled(True)
-            ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
             ui.button_deselect_all.setDisabled(True)
+            ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
             ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
             ui.label_size.setText('0 MB')
 
