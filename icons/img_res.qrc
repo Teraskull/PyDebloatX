@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>checkbox_checked.png</file>
+    <file>Radiobox_unchecked.png</file>
+    <file>Radiobox_checked.png</file>
+    <file>Radiobox_unchecked_hover.png</file>
+    <file>no_refresh_icon.png</file>
+    <file>refresh_icon.png</file>
+    <file>no_cancel_icon.png</file>
+    <file>cancel_icon.png</file>
+    <file>no_check_icon.png</file>
+    <file>check_icon.png</file>
+    <file>no_trash_icon.png</file>
+    <file>trash_icon.png</file>
+    <file>github_icon.png</file>
+    <file>about_icon.png</file>
+    <file>quit_icon.png</file>
+  </qresource>
+</RCC>
