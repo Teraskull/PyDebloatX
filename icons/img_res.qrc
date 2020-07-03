@@ -13,6 +13,7 @@
     <file>no_trash_icon.png</file>
     <file>trash_icon.png</file>
     <file>github_icon.png</file>
+    <file>store_icon.png</file>
     <file>about_icon.png</file>
     <file>quit_icon.png</file>
   </qresource>
