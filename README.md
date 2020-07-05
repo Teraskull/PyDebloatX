@@ -38,6 +38,7 @@
 ## Shortcuts:
 
 * <kbd>CTRL</kbd> <kbd>R</kbd> - refresh the list of installed apps.
+* <kbd>CTRL</kbd> <kbd>S</kbd> - view links to apps in Microsoft Store.
 * <kbd>CTRL</kbd> <kbd>G</kbd> - visit the Github page.
 * <kbd>CTRL</kbd> <kbd>A</kbd> - view the "About" window.
 * <kbd>CTRL</kbd> <kbd>Q</kbd> - quit the app.
