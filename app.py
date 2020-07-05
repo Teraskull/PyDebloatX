@@ -110,6 +110,7 @@ class Logic():
                 i.setChecked(False)
             for i in self.installed_apps:
                 i.setEnabled(True)
+            self.enable_buttons()
             ui.button_select_all.show()
             ui.button_deselect_all.show()
             ui.button_uninstall.show()
