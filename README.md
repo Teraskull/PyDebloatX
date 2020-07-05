@@ -28,9 +28,7 @@
 
 ![Main window screenshot](screenshots/app_main.png)
 
-![Loading screenshot](screenshots/app_loading.png)
-
-![Confirmation screenshot](screenshots/app_confirm.png)
+![Links screenshot](screenshots/app_links.png)
 
 </div>
 
