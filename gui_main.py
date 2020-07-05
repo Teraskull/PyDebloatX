@@ -26,15 +26,22 @@ class Ui_MainWindow(QMainWindow):
         self.refresh_btn.setIconSize(QSize(24, 24))
         self.refresh_bind = QShortcut(QKeySequence('Ctrl+R'), self)
 
+        self.store_btn = QPushButton(self.sidebar)
+        self.store_btn.setGeometry(QRect(0, 51, 51, 51))
+        self.store_btn.setProperty('class', 'sidebar_btns')
+        self.store_btn.setIcon(QIcon(':/icon/store_icon.png'))
+        self.store_btn.setIconSize(QSize(24, 24))
+        self.store_bind = QShortcut(QKeySequence('Ctrl+S'), self)
+
         self.homepage_btn = QPushButton(self.sidebar)
-        self.homepage_btn.setGeometry(QRect(0, 51, 51, 51))
+        self.homepage_btn.setGeometry(QRect(0, 102, 51, 51))
         self.homepage_btn.setProperty('class', 'sidebar_btns')
         self.homepage_btn.setIcon(QIcon(':/icon/github_icon.png'))
         self.homepage_btn.setIconSize(QSize(24, 24))
         self.homepage_bind = QShortcut(QKeySequence('Ctrl+G'), self)
 
         self.about_btn = QPushButton(self.sidebar)
-        self.about_btn.setGeometry(QRect(0, 102, 51, 51))
+        self.about_btn.setGeometry(QRect(0, 153, 51, 51))
         self.about_btn.setProperty('class', 'sidebar_btns')
         self.about_btn.setIcon(QIcon(':/icon/about_icon.png'))
         self.about_btn.setIconSize(QSize(24, 24))
@@ -47,11 +54,14 @@ class Ui_MainWindow(QMainWindow):
         self.quit_btn.setIconSize(QSize(24, 24))
         self.quit_bind = QShortcut(QKeySequence('Ctrl+Q'), self)
 
-        self.progressbar = QProgressBar(self.centralwidget)
-        self.progressbar.setGeometry(QRect(70, 10, 441, 20))
+        self.label_refresh = QLabel(self.centralwidget)
+        self.label_refresh.setGeometry(QRect(70, 10, 441, 15))
 
         self.label_info = QLabel(self.centralwidget)
-        self.label_info.setGeometry(QRect(70, 35, 441, 15))
+        self.label_info.setGeometry(QRect(70, 15, 441, 30))
+
+        self.progressbar = QProgressBar(self.centralwidget)
+        self.progressbar.setGeometry(QRect(70, 35, 441, 20))
 
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QRect(70, 55, 121, 271))
