@@ -28,9 +28,7 @@
 
 ![Main window screenshot](screenshots/app_main.png)
 
-![Loading screenshot](screenshots/app_loading.png)
-
-![Confirmation screenshot](screenshots/app_confirm.png)
+![Links screenshot](screenshots/app_links.png)
 
 </div>
 
@@ -38,6 +36,7 @@
 ## Shortcuts:
 
 * <kbd>CTRL</kbd> <kbd>R</kbd> - refresh the list of installed apps.
+* <kbd>CTRL</kbd> <kbd>S</kbd> - view links to apps in Microsoft Store.
 * <kbd>CTRL</kbd> <kbd>G</kbd> - visit the Github page.
 * <kbd>CTRL</kbd> <kbd>A</kbd> - view the "About" window.
 * <kbd>CTRL</kbd> <kbd>Q</kbd> - quit the app.

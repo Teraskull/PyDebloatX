@@ -6,7 +6,7 @@ from PyQt5.QtGui import QIcon, QFont, QPixmap
 
 class Ui_AboutWindow(QMainWindow):
     def __init__(self):
-        super(Ui_AboutWindow, self).__init__()
+        super().__init__()
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.CustomizeWindowHint)
         self.setWindowIcon(QIcon('icon.ico'))
         self.setFixedSize(241, 190)
