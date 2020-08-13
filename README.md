@@ -22,6 +22,9 @@
   <a style="text-decoration:none">
     <img src="https://img.shields.io/badge/OS-Windows%2010-blue?style=flat-square&color=00B16A" alt="OS" />
   </a>
+  <a style="text-decoration:none" href="https://saythanks.io/to/goldtom1423@gmail.com">
+    <img src="https://img.shields.io/badge/say-thanks-ff69b4.svg?color=00B16A&style=flat-square" alt="Say Thanks" />
+  </a>
 </p>
 
 <div align="center">
