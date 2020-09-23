@@ -5,3 +5,6 @@ __pycache__/
 *.ui
 *.log
 .env
+
+.vscode/
+icons/
