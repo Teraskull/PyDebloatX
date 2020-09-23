@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="10%" align="center" src="icon.ico">
+  <img width="10%" align="center" src="pydebloatx/icon.ico">
 </p>
 <h1 align="center">
   PyDebloatX
@@ -53,14 +53,23 @@
 ## Dependencies:
 
 * PyQt5
-    ```pip install pyqt5```
+```bash
+$ pip install pyqt5
+```
 
 ## Usage:
 
-* ```git clone https://github.com/Teraskull/PyDebloatX```
-* ```cd PyDebloatX```
-* ```pip install -r requirements.txt```
-* ```python app.py``` or ```py app.py```
+```bash
+$ git clone https://github.com/Teraskull/PyDebloatX
+
+$ cd PyDebloatX
+
+$ pip install -r requirements.txt
+
+$ cd pydebloatx
+
+$ python app.py
+```
 
 ## License:
 
