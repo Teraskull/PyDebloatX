@@ -97,6 +97,7 @@ class Logic():
         self.app_refresh()
 
     def store_menu(self):
+        widgets = [ui.button_select_all, ui.button_deselect_all, ui.button_uninstall, ui.label_note, ui.label_space, ui.label_size]
         if self.is_link_menu:
             self.is_link_menu = False
             ui.label_info.setText(self.main_title)
@@ -107,12 +108,8 @@ class Logic():
             for i in self.installed_apps:
                 i.setEnabled(True)
             self.enable_buttons()
-            ui.button_select_all.show()
-            ui.button_deselect_all.show()
-            ui.button_uninstall.show()
-            ui.label_note.show()
-            ui.label_space.show()
-            ui.label_size.show()
+            for widget in widgets:
+                widget.show()
         else:
             self.is_link_menu = True
             ui.label_info.setText(self.store_title)
@@ -120,12 +117,8 @@ class Logic():
             for i in self.apps_dict:
                 i.setEnabled(True)
                 i.setChecked(True)
-            ui.button_select_all.hide()
-            ui.button_deselect_all.hide()
-            ui.button_uninstall.hide()
-            ui.label_note.hide()
-            ui.label_space.hide()
-            ui.label_size.hide()
+            for widget in widgets:
+                widget.hide()
 
     def app_refresh(self):
         if self.is_link_menu:
@@ -138,13 +131,8 @@ class Logic():
         ui.label_refresh.show()
         ui.label_info.hide()
         ui.progressbar.show()
-        ui.refresh_btn.setDisabled(True)
-        ui.refresh_bind.setEnabled(False)
-        ui.store_btn.setDisabled(True)
-        ui.store_bind.setEnabled(False)
-        ui.button_select_all.setDisabled(True)
-        ui.button_deselect_all.setDisabled(True)
-        ui.button_uninstall.setDisabled(True)
+        for widget in [ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall]:
+            widget.setEnabled(False)
         ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
         ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
         ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
@@ -161,10 +149,8 @@ class Logic():
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
         ui.label_info.setText(self.main_title)
-        ui.refresh_btn.setDisabled(False)
-        ui.refresh_bind.setEnabled(True)
-        ui.store_btn.setDisabled(False)
-        ui.store_bind.setEnabled(True)
+        for widget in [ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind]:
+            widget.setEnabled(True)
         ui.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.enable_buttons()
 
