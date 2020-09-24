@@ -54,22 +54,26 @@
 
 * PyQt5
 ```bash
-$ pip install pyqt5
+> pip install pyqt5
 ```
 
 ## Usage:
 
 ```bash
-$ git clone https://github.com/Teraskull/PyDebloatX
+> git clone https://github.com/Teraskull/PyDebloatX
 
-$ cd PyDebloatX
+> cd PyDebloatX
 
-$ pip install -r requirements.txt
+> pip install -r requirements.txt
 
-$ cd pydebloatx
+> cd pydebloatx
 
-$ python app.py
+> python app.py
 ```
+
+## Building:
+
+Run `setup.bat` to build the executable.
 
 ## License:
 
