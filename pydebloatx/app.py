@@ -228,8 +228,7 @@ class Logic():
         return choice
 
     def app_homepage(self):
-        choice = self.message_box(self.github_dialog, 127, 54, 2)
-        if choice == QMessageBox.Yes:
+        if self.message_box(self.github_dialog, 127, 54, 2) == QMessageBox.Yes:
             webbrowser.open_new('https://github.com/Teraskull/PyDebloatX')
 
     @staticmethod
@@ -239,8 +238,7 @@ class Logic():
         about.show()
 
     def app_quit(self):
-        choice = self.message_box(self.quit_dialog, 83, 54, 2)
-        if choice == QMessageBox.Yes:
+        if self.message_box(self.quit_dialog, 83, 54, 2) == QMessageBox.Yes:
             app.quit()
 
     def select_all(self):
@@ -261,9 +259,8 @@ class Logic():
             if i.isChecked():
                 j += 1
         msg_uninstall = f"{self.uninstall_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
-        choice = self.message_box(msg_uninstall, 145, 62, 2)
 
-        if choice == QMessageBox.Yes:
+        if self.message_box(msg_uninstall, 145, 62, 2) == QMessageBox.Yes:
             for i in self.apps_dict:
                 if i.isChecked():
                     subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[i]["name"]} | Remove-AppxPackage)'], shell=True)
@@ -273,7 +270,7 @@ class Logic():
             self.deselect_all()
 
             msg_proceed = f"{self.uninstalling_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}.\n\n{self.warning_text}"
-            choice = self.message_box(msg_proceed, 181, 54)
+            self.message_box(msg_proceed, 181, 54)
 
 
 class CheckApps(QThread):
