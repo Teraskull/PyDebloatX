@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtGui import QCursor, QPixmap, QIcon
 from gui_about import Ui_AboutWindow
@@ -196,20 +196,17 @@ class Logic():
                     i.setChecked(True)
                     webbrowser.open_new(f'ms-windows-store://pdp{self.apps_dict[i]["link"]}')
 
-    def message_box(self, message: str, posX: int, posY: int, buttons: int = 1) -> int:
+    def message_box(self, message: str, buttons: int = 1) -> int:
         """
         Message box with "Yes/No" or "OK" buttons. Defaults to "OK".\n
             Parameters:\n
                 message (str): Message shown inside the message box.
-                posX (int): Position on the X axis.
-                posY (int): Position on the Y axis.
                 buttons (int): Amount of buttons, 1 - "OK" button, 2 - "Yes/No" buttons.
             Returns:\n
                 choice (int): ID of the clicked button.
         """
         pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
         msg_box = QMessageBox()
-        msg_box.move(ui.geometry().center() - QPoint(posX, posY))
         msg_box.setText(message)
         if buttons == 2:
             msg_yes = msg_box.addButton(QMessageBox.Yes)
@@ -224,11 +221,12 @@ class Logic():
         msg_box.setIconPixmap(pixmap)
         with open("style.css", 'r') as file:
             msg_box.setStyleSheet(file.read())
+        msg_box.move(ui.frameGeometry().center() - QRect(QPoint(), msg_box.sizeHint()).center())
         choice = msg_box.exec_()
         return choice
 
     def app_homepage(self):
-        if self.message_box(self.github_dialog, 127, 54, 2) == QMessageBox.Yes:
+        if self.message_box(self.github_dialog, 2) == QMessageBox.Yes:
             webbrowser.open_new('https://github.com/Teraskull/PyDebloatX')
 
     @staticmethod
@@ -238,7 +236,7 @@ class Logic():
         about.show()
 
     def app_quit(self):
-        if self.message_box(self.quit_dialog, 83, 54, 2) == QMessageBox.Yes:
+        if self.message_box(self.quit_dialog, 2) == QMessageBox.Yes:
             app.quit()
 
     def select_all(self):
@@ -260,7 +258,7 @@ class Logic():
                 j += 1
         msg_uninstall = f"{self.uninstall_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
 
-        if self.message_box(msg_uninstall, 145, 62, 2) == QMessageBox.Yes:
+        if self.message_box(msg_uninstall, 2) == QMessageBox.Yes:
             for i in self.apps_dict:
                 if i.isChecked():
                     subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[i]["name"]} | Remove-AppxPackage)'], shell=True)
@@ -270,7 +268,7 @@ class Logic():
             self.deselect_all()
 
             msg_proceed = f"{self.uninstalling_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}.\n\n{self.warning_text}"
-            self.message_box(msg_proceed, 181, 54)
+            self.message_box(msg_proceed)
 
 
 class CheckApps(QThread):
