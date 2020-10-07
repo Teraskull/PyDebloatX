@@ -28,11 +28,13 @@ class Logic():
         self.dialog_ok = 'OK'
         self.uninstall_text = 'Uninstall'
         self.uninstalling_text = 'Uninstalling'
-        self.warning_text = 'Do not close this window until all apps are uninstalled.'
+        self.left_text = 'left'
+        self.success_text = 'All selected apps were successfully uninstalled.'
         self.app_singular = 'app'
         self.app_genitive_singular = 'apps'
         self.app_genitive_plural = 'apps'
         self.size_available_text = 'MB of of disk space will be available.'
+        self.main_widgets = (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall)
 
         self.apps_dict = {
             ui.checkBox: {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 35.02},
@@ -97,7 +99,7 @@ class Logic():
         self.app_refresh()
 
     def store_menu(self):
-        widgets = [ui.button_select_all, ui.button_deselect_all, ui.button_uninstall, ui.label_note, ui.label_space, ui.label_size]
+        widgets = (ui.button_select_all, ui.button_deselect_all, ui.button_uninstall, ui.label_note, ui.label_space, ui.label_size)
         if self.is_link_menu:
             self.is_link_menu = False
             ui.label_info.setText(self.main_title)
@@ -107,6 +109,8 @@ class Logic():
                 i.setChecked(False)
             for i in self.installed_apps:
                 i.setEnabled(True)
+            for i in self.selected_apps:
+                i.setChecked(True)
             self.enable_buttons()
             for widget in widgets:
                 widget.show()
@@ -131,7 +135,7 @@ class Logic():
         ui.label_refresh.show()
         ui.label_info.hide()
         ui.progressbar.show()
-        for widget in [ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall]:
+        for widget in self.main_widgets:
             widget.setEnabled(False)
         ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
         ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
@@ -149,7 +153,7 @@ class Logic():
         ui.progressbar.setValue(0)
         QApplication.setOverrideCursor(QCursor())
         ui.label_info.setText(self.main_title)
-        for widget in [ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind]:
+        for widget in (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind):
             widget.setEnabled(True)
         ui.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.enable_buttons()
@@ -165,11 +169,24 @@ class Logic():
         if self.progress >= len(self.apps_dict):
             self.thread_finished()
 
+    def uninstall_progress(self, i):
+        self.progress += 1
+        ui.progressbar.setValue(self.progress)
+        self.installed_apps.remove(i)
+        apps_left = len(self.selected_apps) - self.progress + 1
+        ui.label_refresh.setText(f"{self.uninstalling_text} {i.text()}, {apps_left} {self.app_genitive_plural if apps_left > 1 else self.app_singular} {self.left_text}...")
+        ui.label_refresh.show()
+        if self.progress >= len(self.selected_apps):
+            self.thread_finished()
+            self.message_box(self.success_text)
+
     def enable_buttons(self):
         if not self.is_link_menu:
             self.total_size = 0
+            self.selected_apps = []
             for i in self.installed_apps:
                 if i.isChecked():
+                    self.selected_apps.append(i)
                     self.total_size += self.apps_dict[i]["size"]
                     ui.label_size.setText(f'{self.total_size:.2f} {self.size_text}')
             if any(i.isChecked() for i in self.installed_apps):
@@ -252,23 +269,27 @@ class Logic():
         self.enable_buttons()
 
     def uninstall(self):
-        j = 0
-        for i in self.installed_apps:
-            if i.isChecked():
-                j += 1
-        msg_uninstall = f"{self.uninstall_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
+        apps = len(self.selected_apps)
+        msg_uninstall = f"{self.uninstall_text} {apps} {self.app_genitive_plural if apps > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
 
         if self.message_box(msg_uninstall, 2) == QMessageBox.Yes:
-            for i in self.apps_dict:
-                if i.isChecked():
-                    subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[i]["name"]} | Remove-AppxPackage)'], shell=True)
-                    i.setChecked(False)
-                    i.setEnabled(False)
-                    self.installed_apps.remove(i)
-            self.deselect_all()
+            for widget in self.main_widgets:
+                widget.setEnabled(False)
+            ui.label_info.hide()
+            self.progress = 0
+            ui.progressbar.setMaximum(apps)
+            ui.progressbar.show()
 
-            msg_proceed = f"{self.uninstalling_text} {j} {self.app_genitive_plural if j > 1 else self.app_singular}.\n\n{self.warning_text}"
-            self.message_box(msg_proceed)
+            self.newWorkerThread = QThread()
+            self.new_thread_list = []
+            for item, i in enumerate(self.selected_apps):
+                i.setEnabled(False)
+                i.setChecked(False)
+                self.new_thread_list.append(UninstallApps(self.apps_dict, i))
+                self.new_thread_list[item].moveToThread(self.newWorkerThread)
+                self.new_thread_list[item].progress_signal.connect(self.uninstall_progress)
+            for new_thread in self.new_thread_list:
+                new_thread.start()
 
 
 class CheckApps(QThread):
@@ -285,6 +306,24 @@ class CheckApps(QThread):
         if x.communicate()[0].decode().strip() == "True":
             self.app_signal.emit(self.i)
         self.progress_signal.emit()
+
+
+class UninstallApps(QThread):
+    progress_signal = pyqtSignal(object)
+
+    def __init__(self, apps_dict, i):
+        super().__init__()
+        self.apps_dict = apps_dict
+        self.i = i
+
+    def run(self):
+        x = subprocess.Popen(
+            ["powershell", f'try {{Get-AppxPackage {self.apps_dict[self.i]["name"]} -OutVariable app | Remove-AppPackage -ea stop;[bool]$app}} catch {{$false}}'],
+            stdout=subprocess.PIPE,
+            shell=True
+        )
+        x.communicate()[0]
+        self.progress_signal.emit(self.i)
 
 
 if __name__ == '__main__':
