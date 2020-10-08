@@ -46,26 +46,29 @@ class Logic():
             ui.checkBox_7: {"name": "*Microsoft.GetHelp*", "link": "/?PFN=Microsoft.Gethelp_8wekyb3d8bbwe", "size": 11.89},
             ui.checkBox_8: {"name": "*Microsoft.ZuneMusic*", "link": "/?PFN=Microsoft.ZuneMusic_8wekyb3d8bbwe", "size": 50.34},
             ui.checkBox_9: {"name": "*Microsoft.WindowsMaps*", "link": "/?PFN=Microsoft.WindowsMaps_8wekyb3d8bbwe", "size": 39.80},
-
             ui.checkBox_10: {"name": "*Microsoft.Messaging*", "link": "/?PFN=Microsoft.Messaging_8wekyb3d8bbwe", "size": 30.08},
-            ui.checkBox_11: {"name": "*Microsoft.BingFinance*", "link": "?productId=9WZDNCRFHV4V", "size": 32.82},
-            ui.checkBox_12: {"name": "*Microsoft.ZuneVideo*", "link": "/?PFN=Microsoft.ZuneVideo_8wekyb3d8bbwe", "size": 51.80},
-            ui.checkBox_13: {"name": "*Microsoft.BingNews*", "link": "?productId=9WZDNCRFHVFW", "size": 35.29},
-            ui.checkBox_14: {"name": "*Microsoft.MicrosoftOfficeHub*", "link": "/?PFN=Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe", "size": 30.21},
-            ui.checkBox_15: {"name": "*Microsoft.Office.OneNote*", "link": "/?PFN=Microsoft.Office.OneNote_8wekyb3d8bbwe", "size": 156.01},
-            ui.checkBox_16: {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 65.79},
-            ui.checkBox_17: {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 31.97},
-            ui.checkBox_18: {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 346.04},
 
-            ui.checkBox_19: {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 237.25},
-            ui.checkBox_20: {"name": "*Microsoft.MicrosoftSolitaireCollection*", "link": "/?PFN=Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe", "size": 134.37},
-            ui.checkBox_21: {"name": "*Microsoft.BingSports*", "link": "?productId=9WZDNCRFHVH4", "size": 30.92},
-            ui.checkBox_22: {"name": "*Microsoft.Getstarted*", "link": "/?PFN=Microsoft.Getstarted_8wekyb3d8bbwe", "size": 19.53},
-            ui.checkBox_23: {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 12.40},
-            ui.checkBox_24: {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 32.32},
-            ui.checkBox_25: {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 35.02},
-            ui.checkBox_26: {"name": "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", "link": "/?PFN=Microsoft.XboxApp_8wekyb3d8bbwe", "size": 55.91},
-            ui.checkBox_27: {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 280.27}
+            ui.checkBox_11: {"name": "*Microsoft.MixedReality.Portal*", "link": "?productId=9NG1H8B3ZC7M", "size": 18.23},
+            ui.checkBox_12: {"name": "*Microsoft.OneConnect*", "link": "?productId=9NBLGGH5PNB1", "size": 11.77},
+            ui.checkBox_13: {"name": "*Microsoft.BingFinance*", "link": "?productId=9WZDNCRFHV4V", "size": 32.82},
+            ui.checkBox_14: {"name": "*Microsoft.ZuneVideo*", "link": "/?PFN=Microsoft.ZuneVideo_8wekyb3d8bbwe", "size": 51.80},
+            ui.checkBox_15: {"name": "*Microsoft.BingNews*", "link": "?productId=9WZDNCRFHVFW", "size": 35.29},
+            ui.checkBox_16: {"name": "*Microsoft.MicrosoftOfficeHub*", "link": "/?PFN=Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe", "size": 30.21},
+            ui.checkBox_17: {"name": "*Microsoft.Office.OneNote*", "link": "/?PFN=Microsoft.Office.OneNote_8wekyb3d8bbwe", "size": 156.01},
+            ui.checkBox_18: {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 65.79},
+            ui.checkBox_19: {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 31.97},
+            ui.checkBox_20: {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 346.04},
+
+            ui.checkBox_21: {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 237.25},
+            ui.checkBox_22: {"name": "*Microsoft.MicrosoftSolitaireCollection*", "link": "/?PFN=Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe", "size": 134.37},
+            ui.checkBox_23: {"name": "*Microsoft.BingSports*", "link": "?productId=9WZDNCRFHVH4", "size": 30.92},
+            ui.checkBox_24: {"name": "*Microsoft.MicrosoftStickyNotes*", "link": "?productId=9NBLGGH4QGHW", "size": 39.82},
+            ui.checkBox_25: {"name": "*Microsoft.Getstarted*", "link": "/?PFN=Microsoft.Getstarted_8wekyb3d8bbwe", "size": 19.53},
+            ui.checkBox_26: {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 12.40},
+            ui.checkBox_27: {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 32.32},
+            ui.checkBox_28: {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 35.02},
+            ui.checkBox_29: {"name": "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", "link": "/?PFN=Microsoft.XboxApp_8wekyb3d8bbwe", "size": 55.91},
+            ui.checkBox_30: {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 280.27}
         }
 
         ui.progressbar.setValue(0)
