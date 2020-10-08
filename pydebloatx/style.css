@@ -7,9 +7,16 @@ QPushButton {
 }
 
 
+/*Apps Widget*/
+QWidget[class="appswidget"] {
+    border: 0;
+    border-left: 4 solid #f1f1f1;
+}
+
+
 /*Sidebar*/
 QFrame[class="sidebar"] {
-    background-color: #3bafda;
+    background-color: #fff;
     border: 0;
 }
 
@@ -17,102 +24,120 @@ QPushButton[class="sidebar_btns"] {
     color: #fff;
     border: 0 solid rgba(255, 255, 255, 0);
     border-radius: 0;
-    background-color: #3bafda;
+    background-color: #fff;
 }
 
 QPushButton:hover[class="sidebar_btns"] {
-    background-color: #4fc1e9;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #f1f1f1,
+    stop: 1 #FCFCFC);
 }
 
 QPushButton:pressed[class="sidebar_btns"] {
-    background: qradialgradient(cx:0.5,
-    cy: 0.5,
-    fx: 0.5,
-    fy: 0.5,
-    radius: 1.5,
-    stop: 0.2 #4fc1e9,
-    stop: 0.8 #3bafda);
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #d8d8d8,
+    stop: 1 #FCFCFC);
 }
 
 QPushButton:disabled[class="sidebar_btns"] {
     color: #bdc3c7;
-    background-color:#165c76;
 }
 
 QPushButton[class="sidebar_btns_quit"] {
     color: #fff;
     border: 0 solid rgba(255, 255, 255, 0);
     border-radius: 0;
-    background-color: #da4453;
+    background-color: #fff;
 }
 
 QPushButton:hover[class="sidebar_btns_quit"] {
-    background-color: #ed5565;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #ffd1d1,
+    stop: 1 #ffeaea);
 }
 
 QPushButton:pressed[class="sidebar_btns_quit"] {
-    background: qradialgradient(cx:0.5,
-    cy: 0.5,
-    fx: 0.5,
-    fy: 0.5,
-    radius: 1.5,
-    stop: 0.2 #ed5565,
-    stop: 0.8 #da4453);
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #ffb8b7,
+    stop: 1 #ffeaea);
 }
 
 QPushButton:disabled[class="sidebar_btns_quit"] {
     color: #bdc3c7;
-    background-color:#7c1923;
 }
 
 
 /*Aqua buttons*/
 QPushButton[class="Aqua"] {
-    background-color: #3bafda;
+    color: #000;
+    background-color: #fff;
+    border: 2 solid #33BEF0;
 }
 
 QPushButton:hover[class="Aqua"] {
-    background-color: #4fc1e9;
+    color: #fff;
+    border: 0;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #0A85D9,
+    stop: 1 #33BEF0);
 }
 
 QPushButton:pressed[class="Aqua"] {
-    background: qradialgradient(cx:0.5,
-    cy: 0.5,
-    fx: 0.5,
-    fy: 0.5,
-    radius: 1.5,
-    stop: 0.2 #4fc1e9,
-    stop: 0.8 #3bafda);
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #0B59A2,
+    stop: 1 #047ED6);
 }
 
 QPushButton:disabled[class="Aqua"] {
     color: #bdc3c7;
-    background-color:#165c76;
+    background-color: #f1f1f1;
+    border: 2 solid #bdc3c7;
 }
 
 
 /*Grapefruit buttons*/
 QPushButton[class="Grapefruit"] {
-    background-color: #da4453;
+    color: #000;
+    background-color: #fff;
+    border: 2 solid #F44F5A;
 }
 
 QPushButton:hover[class="Grapefruit"] {
-    background-color: #ed5565;
+    color: #fff;
+    border: 0;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #E52030,
+    stop: 0.5 #EE3D4A,
+    stop: 1 #F44F5A);
 }
 
 QPushButton:pressed[class="Grapefruit"] {
-    background: qradialgradient(cx:0.5,
-    cy: 0.5,
-    fx: 0.5,
-    fy: 0.5,
-    radius: 1.5,
-    stop: 0.2 #ed5565,
-    stop: 0.8 #da4453);
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #A8142E,
+    stop: 0.5 #BA1632,
+    stop: 1 #C21734);
 }
 
 QPushButton:disabled[class="Grapefruit"] {
     color: #bdc3c7;
-    background-color:#7c1923;
+    background-color: #f1f1f1;
+    border: 2 solid #bdc3c7;
 }
 
 
@@ -125,7 +150,12 @@ QProgressBar {
 
 QProgressBar::chunk {
     border-radius: 3px;
-    background-color: #3bafda;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #fff,
+    stop: 0.5 #33BEF0,
+    stop: 1 #0A85D9);
 }
 
 
@@ -133,12 +163,12 @@ QProgressBar::chunk {
 QCheckBox::indicator:unchecked {
     width: 11px;
     height: 11px;
-    border: 1px solid #3bafda;
+    border: 1px solid #0A85D9;
     background-color: #fff;
 }
 
 QCheckBox::indicator:unchecked:hover {
-    border: 1px solid #4fc1e9;
+    border: 1px solid #33BEF0;
 }
 
 QCheckBox::indicator:checked {
@@ -148,7 +178,7 @@ QCheckBox::indicator:checked {
 }
 
 QCheckBox::indicator:disabled {
-    border: 1px solid #a8b0b5;
+    border: 1px solid #f1f1f1;
 }
 
 QCheckBox:disabled {
@@ -162,30 +192,57 @@ QMessageBox{
 }
 
 QMessageBox QPushButton {
-    color: #fff;
-    border: 0 solid rgba(255, 255, 255, 0);
     font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
-    background-color: #37bc9b;
+    color: #000;
+    background-color: #fff;
+    border: 2 solid #21AD64;
     width: 70px;
     height: 30px;
 }
 
+QMessageBox QPushButton:hover {
+    color: #fff;
+    border: 0;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #088242,
+    stop: 1 #21AD64);
+}
+
 QMessageBox QPushButton[class="button_yes"] {
-    background-color: #37bc9b;
+    color: #000;
+    background-color: #fff;
+    border: 2 solid #21AD64;
 }
 
 QMessageBox QPushButton[class="button_no"] {
-    background-color: #da4453;
+    color: #000;
+    background-color: #fff;
+    border: 2 solid #F44F5A;
 }
 
 QMessageBox QPushButton:hover[class="button_yes"] {
-    background-color: #48cfad;
+    color: #fff;
+    border: 0;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #088242,
+    stop: 1 #21AD64);
 }
 
 QMessageBox QPushButton:hover[class="button_no"] {
-    background-color: #ed5565;
+    color: #fff;
+    border: 0;
+    background: QLinearGradient(
+    x1: 0, y1: 0,
+    x2: 1, y2: 0,
+    stop: 0 #E52030,
+    stop: 0.5 #EE3D4A,
+    stop: 1 #F44F5A);
 }
 
 QWidget {
