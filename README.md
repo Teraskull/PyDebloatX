@@ -31,6 +31,8 @@
 
 ![Main window screenshot](screenshots/app_main.png)
 
+![Uninstalling screenshot](screenshots/app_uninstall.png)
+
 ![Links screenshot](screenshots/app_links.png)
 
 </div>
@@ -48,7 +50,6 @@
 
 * You cannot uninstall other apps, for example Cortana or Edge. This GUI was designed to be simple and safe, so that you cannot break anything using it.
 * App disk space is approximate and taken from Microsoft Store, there is no other way to get real-time app size.
-* Currently there is no possibility to track the uninstalling progress in the GUI.
 
 ## Dependencies:
 
