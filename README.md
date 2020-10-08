@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="10%" align="center" src="icon.ico">
+  <img width="10%" align="center" src="pydebloatx/icon.ico">
 </p>
 <h1 align="center">
   PyDebloatX
@@ -31,6 +31,8 @@
 
 ![Main window screenshot](screenshots/app_main.png)
 
+![Uninstalling screenshot](screenshots/app_uninstall.png)
+
 ![Links screenshot](screenshots/app_links.png)
 
 </div>
@@ -48,19 +50,31 @@
 
 * You cannot uninstall other apps, for example Cortana or Edge. This GUI was designed to be simple and safe, so that you cannot break anything using it.
 * App disk space is approximate and taken from Microsoft Store, there is no other way to get real-time app size.
-* Currently there is no possibility to track the uninstalling progress in the GUI.
 
 ## Dependencies:
 
 * PyQt5
-    ```pip install pyqt5```
+```bash
+> pip install pyqt5
+```
 
 ## Usage:
 
-* ```git clone https://github.com/Teraskull/PyDebloatX```
-* ```cd PyDebloatX```
-* ```pip install -r requirements.txt```
-* ```python app.py``` or ```py app.py```
+```bash
+> git clone https://github.com/Teraskull/PyDebloatX
+
+> cd PyDebloatX
+
+> pip install -r requirements.txt
+
+> cd pydebloatx
+
+> python app.py
+```
+
+## Building:
+
+Run `setup.bat` to build the executable.
 
 ## License:
 
