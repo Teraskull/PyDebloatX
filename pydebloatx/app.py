@@ -9,7 +9,7 @@ import img_res  # skipcq: PYL-W0611
 import sys
 
 
-__version__ = "1.6.0"
+__version__ = "1.7.0"
 
 
 class Logic():
