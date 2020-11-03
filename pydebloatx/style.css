@@ -247,4 +247,5 @@ QMessageBox QPushButton:hover[class="button_no"] {
 
 QWidget {
     background-color: #fff;
+    outline: 0;
 }
