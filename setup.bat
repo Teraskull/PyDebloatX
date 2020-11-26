@@ -1,9 +1,29 @@
 @echo off
 cls
 
+:pip
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [1] Updating PyInstaller...
+echo [1] Updating Pip...
+echo.
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pip install -U pip
+goto :reqs
+
+:reqs
+echo.
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo [2] Installing packages from requirements.txt...
+echo.
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pip install -r requirements.txt
+if ERRORLEVEL 1 goto piperror
+goto :update
+
+:update
+echo.
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo [3] Installing/Updating PyInstaller...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pip install -U pyinstaller
@@ -16,7 +36,7 @@ color 7
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [2] Creating executable...
+echo [4] Creating executable...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pyinstaller --noconfirm --onedir --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;."  "pydebloatx/app.py"
@@ -25,54 +45,15 @@ if ERRORLEVEL 1 goto errorbuild
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [3] Removing unused files...
+echo [5] Removing build files...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 rmdir /s /q "./build/"
 del app.spec
 
 cd dist/app
-
-del _asyncio.pyd
-del _bz2.pyd
-del _ctypes.pyd
-del _decimal.pyd
-del _elementtree.pyd
-del _hashlib.pyd
-del _lzma.pyd
-del _multiprocessing.pyd
-del _overlapped.pyd
-del _queue.pyd
-del _ssl.pyd
-del _testcapi.pyd
-del _tkinter.pyd
-del pyexpat.pyd
-del unicodedata.pyd
-
-del d3dcompiler_47.dll
-del libcrypto-1_1.dll
-del libEGL.dll
-del libffi-7.dll
-del libGLESv2.dll
-del libssl-1_1.dll
-del MSVCP140.dll
 del opengl32sw.dll
-del Qt5DBus.dll
-del Qt5Network.dll
-del Qt5Qml.dll
-del Qt5QmlModels.dll
-del Qt5Quick.dll
-del Qt5Svg.dll
-del Qt5WebSockets.dll
-del tcl86t.dll
-del tk86t.dll
-del VCRUNTIME140.dll
-del VCRUNTIME140_1.dll
-
-rmdir /s /q "./lib2to3/"
-rmdir /s /q "./tcl/tzdata/"
-rmdir /s /q "./tcl\encoding/"
-rmdir /s /q "./PyQt5/Qt/translations/"
 
 echo.
 echo Done.
