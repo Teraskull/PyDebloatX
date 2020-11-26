@@ -6,6 +6,11 @@ __pycache__/
 *.log
 .env
 app.spec
+version.txt
+setup_dev.bat
+setup_sign.bat
+*.nsi
+*.pfx
 
 .vscode/
 icons/
