@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from PyQt5.QtGui import QCursor, QPixmap, QIcon
+from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 import webbrowser
@@ -331,6 +331,7 @@ class UninstallApps(QThread):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setFont(QFont("Tahoma"))
     about = Ui_AboutWindow()
     about.setupUi()
     ui = Ui_MainWindow()
