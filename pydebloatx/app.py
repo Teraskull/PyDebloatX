@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from PyQt5.QtGui import QCursor, QPixmap, QIcon
+from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 import webbrowser
@@ -73,6 +73,7 @@ class Logic():
 
         ui.progressbar.setValue(0)
         ui.progressbar.setMaximum(len(self.apps_dict))
+        ui.progressbar.setFont(ui.font)
         ui.button_uninstall.clicked.connect(self.uninstall)
         ui.button_select_all.clicked.connect(self.select_all)
         ui.button_deselect_all.clicked.connect(self.deselect_all)
@@ -88,6 +89,7 @@ class Logic():
         ui.quit_bind.activated.connect(self.app_quit)
         about.button_quit_about.clicked.connect(about.close)
         for i in self.apps_dict:
+            i.setFont(ui.font)
             i.clicked.connect(self.enable_buttons)
             with open("style.css", 'r') as file:
                 i.setStyleSheet(file.read())
@@ -227,6 +229,7 @@ class Logic():
         """
         pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
         msg_box = QMessageBox()
+        msg_box.setFont(ui.font)
         msg_box.setText(message)
         if buttons == 2:
             msg_yes = msg_box.addButton(QMessageBox.Yes)
@@ -331,6 +334,7 @@ class UninstallApps(QThread):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setFont(QFont("Tahoma"))
     about = Ui_AboutWindow()
     about.setupUi()
     ui = Ui_MainWindow()

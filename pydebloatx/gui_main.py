@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, QProgressBar
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
-from PyQt5.QtGui import QIcon, QKeySequence
+from PyQt5.QtGui import QIcon, QKeySequence, QFont
 
 
 class Ui_MainWindow(QMainWindow):
@@ -57,10 +57,16 @@ class Ui_MainWindow(QMainWindow):
         self.quit_btn.setIconSize(QSize(24, 24))
         self.quit_bind = QShortcut(QKeySequence('Ctrl+Q'), self)
 
+        self.font = QFont()
+        self.font.setPointSize(8)
+        self.font.setStyleStrategy(QFont.PreferAntialias)
+
         self.label_refresh = QLabel(self.appswidget)
+        self.label_refresh.setFont(self.font)
         self.label_refresh.setGeometry(QRect(20, 10, 441, 15))
 
         self.label_info = QLabel(self.appswidget)
+        self.label_info.setFont(self.font)
         self.label_info.setGeometry(QRect(20, 15, 441, 30))
 
         self.progressbar = QProgressBar(self.appswidget)
@@ -142,10 +148,13 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_3.addWidget(self.checkBox_30)
 
         self.label_note = QLabel(self.appswidget)
+        self.label_note.setFont(self.font)
         self.label_note.setGeometry(QRect(20, 350, 350, 16))
         self.label_space = QLabel(self.appswidget)
+        self.label_space.setFont(self.font)
         self.label_space.setGeometry(QRect(20, 370, 350, 16))
         self.label_size = QLabel(self.appswidget)
+        self.label_size.setFont(self.font)
         self.label_size.setGeometry(QRect(155, 370, 200, 16))
 
         self.horizontalLayoutWidget_2 = QWidget(self.appswidget)
