@@ -308,7 +308,9 @@ class CheckApps(QThread):
         self.i = i
 
     def run(self):
-        x = subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[self.i]["name"]}) -and $?'], stdout=subprocess.PIPE, shell=True)
+        si = subprocess.STARTUPINFO()
+        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        x = subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[self.i]["name"]}) -and $?'], stdout=subprocess.PIPE, shell=False, startupinfo=si)
         if x.communicate()[0].decode().strip() == "True":
             self.app_signal.emit(self.i)
         self.progress_signal.emit()
@@ -323,10 +325,12 @@ class UninstallApps(QThread):
         self.i = i
 
     def run(self):
+        si = subprocess.STARTUPINFO()
+        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         x = subprocess.Popen(
             ["powershell", f'try {{Get-AppxPackage {self.apps_dict[self.i]["name"]} -OutVariable app | Remove-AppPackage -ea stop;[bool]$app}} catch {{$false}}'],
             stdout=subprocess.PIPE,
-            shell=True
+            shell=False, startupinfo=si
         )
         x.communicate()[0]
         self.progress_signal.emit(self.i)
