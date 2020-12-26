@@ -305,7 +305,7 @@ class CheckApps(QThread):
     def run(self):
         si = subprocess.STARTUPINFO()
         si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        x = subprocess.Popen(["powershell", f'Get-AppxPackage | Select Name'], stdout=subprocess.PIPE, shell=False, startupinfo=si)
+        x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name"], stdout=subprocess.PIPE, shell=False, startupinfo=si)
         names_list = x.communicate()[0].decode().split()
 
         for i in self.apps_dict:
