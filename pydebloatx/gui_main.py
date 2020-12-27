@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, QProgressBar
+from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, \
+    QHBoxLayout, QProgressBar, QToolTip
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PyQt5.QtGui import QIcon, QKeySequence, QFont
 
@@ -251,6 +252,7 @@ class Ui_MainWindow(QMainWindow):
 
         self.button_uninstall.setText(_translate("MainWindow", "Uninstall"))
 
+        QToolTip.setFont(self.font)
         self.checkBox.setToolTip('View, create, and personalize 3D objects.')
         self.checkBox_2.setToolTip('View 3D models and animations in real-time.')
         self.checkBox_3.setToolTip('A combination of alarm clock, world clock, timer, and stopwatch.')

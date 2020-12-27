@@ -67,7 +67,7 @@ class Logic():
             ui.checkBox_26: {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 12.40},
             ui.checkBox_27: {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 32.32},
             ui.checkBox_28: {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 35.02},
-            ui.checkBox_29: {"name": "*xbox* | Where-Object {$_.name -notmatch 'xboxgamecallableui'}", "link": "/?PFN=Microsoft.XboxApp_8wekyb3d8bbwe", "size": 55.91},
+            ui.checkBox_29: {"name": "*Xbox*", "link": "/?PFN=Microsoft.XboxApp_8wekyb3d8bbwe", "size": 55.91},
             ui.checkBox_30: {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 280.27}
         }
 
@@ -94,13 +94,6 @@ class Logic():
             with open("style.css", 'r') as file:
                 i.setStyleSheet(file.read())
 
-        self.workerThread = QThread()
-        self.thread_list = []
-        for item, i in enumerate(self.apps_dict):
-            self.thread_list.append(CheckApps(self.apps_dict, i))
-            self.thread_list[item].moveToThread(self.workerThread)
-            self.thread_list[item].app_signal.connect(self.enable_installed)
-            self.thread_list[item].progress_signal.connect(self.update_progress)
         self.app_refresh()
 
     def store_menu(self):
@@ -148,8 +141,11 @@ class Logic():
         ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         ui.label_refresh.setText(self.refresh_title)
-        for new_thread in self.thread_list:
-            new_thread.start()
+
+        self.check_thread = CheckApps(self.apps_dict)
+        self.check_thread.app_signal.connect(self.enable_installed)
+        self.check_thread.progress_signal.connect(self.update_progress)
+        self.check_thread.start()
 
     def thread_finished(self):
         ui.progressbar.hide()
@@ -302,16 +298,35 @@ class CheckApps(QThread):
     progress_signal = pyqtSignal()
     app_signal = pyqtSignal(object)
 
-    def __init__(self, apps_dict, i):
+    def __init__(self, apps_dict):
         super().__init__()
         self.apps_dict = apps_dict
-        self.i = i
 
     def run(self):
-        x = subprocess.Popen(["powershell", f'(Get-AppxPackage {self.apps_dict[self.i]["name"]}) -and $?'], stdout=subprocess.PIPE, shell=True)
-        if x.communicate()[0].decode().strip() == "True":
-            self.app_signal.emit(self.i)
-        self.progress_signal.emit()
+        si = subprocess.STARTUPINFO()
+        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name"], stdout=subprocess.PIPE, shell=False, startupinfo=si)
+        names_list = x.communicate()[0].decode().split()
+
+        for i in self.apps_dict:
+            temp_name = self.apps_dict[i]["name"].strip("*")
+            flag = False
+            if temp_name != "Xbox":
+                for item in names_list:
+                    if item.find(temp_name, 0, len(item)) != -1:
+                        flag = True
+                        break
+            else:
+                for item in names_list:
+                    if item.find(temp_name, 0, len(item)) != -1:
+                        if item.find("XboxGameCallableUI", 0, len(item)) == -1:
+                            flag = True
+                            break
+
+            if flag:
+                self.app_signal.emit(i)
+
+            self.progress_signal.emit()
 
 
 class UninstallApps(QThread):
@@ -323,10 +338,15 @@ class UninstallApps(QThread):
         self.i = i
 
     def run(self):
+        package_name = self.apps_dict[self.i]["name"]
+        if "Xbox" in package_name:
+            package_name = "*Xbox* | Where-Object {$_.name -notmatch 'XboxGameCallableUI'}"
+        si = subprocess.STARTUPINFO()
+        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         x = subprocess.Popen(
-            ["powershell", f'try {{Get-AppxPackage {self.apps_dict[self.i]["name"]} -OutVariable app | Remove-AppPackage -ea stop;[bool]$app}} catch {{$false}}'],
+            ["powershell", f'try {{Get-AppxPackage {package_name} -OutVariable app | Remove-AppPackage -ea stop;[bool]$app}} catch {{$false}}'],
             stdout=subprocess.PIPE,
-            shell=True
+            shell=False, startupinfo=si
         )
         x.communicate()[0]
         self.progress_signal.emit(self.i)
