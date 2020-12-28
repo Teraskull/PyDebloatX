@@ -174,8 +174,9 @@ class Logic():
         self.progress += 1
         ui.progressbar.setValue(self.progress)
         self.installed_apps.remove(i)
+        app_name = i.text().replace(' && ', ' & ')
         apps_left = len(self.selected_apps) - self.progress + 1
-        ui.label_refresh.setText(f"{self.uninstalling_text} {i.text()}, {apps_left} {self.app_genitive_plural if apps_left > 1 else self.app_singular} {self.left_text}...")
+        ui.label_refresh.setText(f"{self.uninstalling_text} {app_name}, {apps_left} {self.app_genitive_plural if apps_left > 1 else self.app_singular} {self.left_text}...")
         ui.label_refresh.show()
         if self.progress >= len(self.selected_apps):
             self.thread_finished()
