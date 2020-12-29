@@ -17,7 +17,6 @@ echo [2] Installing packages from requirements.txt...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pip install -r requirements.txt
-if ERRORLEVEL 1 goto piperror
 goto :update
 
 :update
@@ -62,7 +61,7 @@ color a
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [+] Executable built successfully and is located in pydebloatx/dist/app.
+echo [+] Executable built successfully and is located in dist/app.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo.
