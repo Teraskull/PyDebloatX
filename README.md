@@ -49,7 +49,6 @@
 ## App limitations:
 
 * You cannot uninstall other apps, for example Cortana or Edge. This GUI was designed to be simple and safe, so that you cannot break anything using it.
-* App disk space is approximate and taken from Microsoft Store, there is no other way to get real-time app size.
 
 ## Dependencies:
 
