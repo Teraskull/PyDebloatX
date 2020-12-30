@@ -45,7 +45,7 @@ class Logic():
         self.app_singular = 'app'
         self.app_genitive_singular = 'apps'
         self.app_genitive_plural = 'apps'
-        self.size_available_text = 'MB of of disk space will be available.'
+        self.size_available_text = 'MB of space will be freed.'
         self.main_widgets = (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall)
 
         self.apps_dict = {
