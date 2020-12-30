@@ -1,3 +1,7 @@
+import json
+import os
+from os.path import getsize, join
+
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
@@ -10,6 +14,13 @@ import sys
 
 
 __version__ = "1.9.0"
+
+
+def get_dir_size(dir_path):
+    dir_size = 0
+    for root, dirs, files in os.walk(dir_path):
+        dir_size += sum([getsize(join(root, name)) for name in files])
+    return dir_size
 
 
 class Logic():
@@ -37,41 +48,41 @@ class Logic():
         self.main_widgets = (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall)
 
         self.apps_dict = {
-            ui.checkBox: {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 35.02},
-            ui.checkBox_2: {"name": "*Microsoft.Microsoft3DViewer*", "link": "/?PFN=Microsoft.Microsoft3DViewer_8wekyb3d8bbwe", "size": 121.46},
-            ui.checkBox_3: {"name": "*Microsoft.WindowsAlarms*", "link": "/?PFN=Microsoft.WindowsAlarms_8wekyb3d8bbwe", "size": 11.87},
-            ui.checkBox_4: {"name": "*Microsoft.WindowsCalculator*", "link": "/?PFN=Microsoft.WindowsCalculator_8wekyb3d8bbwe", "size": 14.27},
-            ui.checkBox_5: {"name": "*microsoft.windowscommunicationsapps*", "link": "/?PFN=Microsoft.windowscommunicationsapps_8wekyb3d8bbwe", "size": 230.90},
-            ui.checkBox_6: {"name": "*Microsoft.WindowsCamera*", "link": "/?PFN=Microsoft.WindowsCamera_8wekyb3d8bbwe", "size": 49.05},
-            ui.checkBox_7: {"name": "*Microsoft.GetHelp*", "link": "/?PFN=Microsoft.Gethelp_8wekyb3d8bbwe", "size": 17.74},
-            ui.checkBox_8: {"name": "*Microsoft.ZuneMusic*", "link": "/?PFN=Microsoft.ZuneMusic_8wekyb3d8bbwe", "size": 50.34},
-            ui.checkBox_9: {"name": "*Microsoft.WindowsMaps*", "link": "/?PFN=Microsoft.WindowsMaps_8wekyb3d8bbwe", "size": 39.88},
-            ui.checkBox_10: {"name": "*Microsoft.Messaging*", "link": "/?PFN=Microsoft.Messaging_8wekyb3d8bbwe", "size": 30.08},
-            ui.checkBox_11: {"name": "*Microsoft.MixedReality.Portal*", "link": "/?PFN=Microsoft.MixedReality.Portal_8wekyb3d8bbwe", "size": 18.45},
+            ui.checkBox: {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_2: {"name": "*Microsoft.Microsoft3DViewer*", "link": "/?PFN=Microsoft.Microsoft3DViewer_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_3: {"name": "*Microsoft.WindowsAlarms*", "link": "/?PFN=Microsoft.WindowsAlarms_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_4: {"name": "*Microsoft.WindowsCalculator*", "link": "/?PFN=Microsoft.WindowsCalculator_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_5: {"name": "*microsoft.windowscommunicationsapps*", "link": "/?PFN=Microsoft.windowscommunicationsapps_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_6: {"name": "*Microsoft.WindowsCamera*", "link": "/?PFN=Microsoft.WindowsCamera_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_7: {"name": "*Microsoft.GetHelp*", "link": "/?PFN=Microsoft.Gethelp_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_8: {"name": "*Microsoft.ZuneMusic*", "link": "/?PFN=Microsoft.ZuneMusic_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_9: {"name": "*Microsoft.WindowsMaps*", "link": "/?PFN=Microsoft.WindowsMaps_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_10: {"name": "*Microsoft.Messaging*", "link": "/?PFN=Microsoft.Messaging_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_11: {"name": "*Microsoft.MixedReality.Portal*", "link": "/?PFN=Microsoft.MixedReality.Portal_8wekyb3d8bbwe", "size": 0},
 
-            ui.checkBox_12: {"name": "*Microsoft.OneConnect*", "link": "?productId=9NBLGGH5PNB1", "size": 11.79},
-            ui.checkBox_13: {"name": "*Microsoft.BingFinance*", "link": "?productId=9WZDNCRFHV4V", "size": 32.82},
-            ui.checkBox_14: {"name": "*Microsoft.ZuneVideo*", "link": "/?PFN=Microsoft.ZuneVideo_8wekyb3d8bbwe", "size": 51.80},
-            ui.checkBox_15: {"name": "*Microsoft.BingNews*", "link": "/?PFN=Microsoft.BingNews_8wekyb3d8bbwe", "size": 35.29},
-            ui.checkBox_16: {"name": "*Microsoft.MicrosoftOfficeHub*", "link": "/?PFN=Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe", "size": 30.21},
-            ui.checkBox_17: {"name": "*Microsoft.Office.OneNote*", "link": "/?PFN=Microsoft.Office.OneNote_8wekyb3d8bbwe", "size": 156.01},
-            ui.checkBox_18: {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 65.79},
-            ui.checkBox_19: {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 31.97},
-            ui.checkBox_20: {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 346.04},
-            ui.checkBox_21: {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 234.87},
-            ui.checkBox_22: {"name": "*Microsoft.ScreenSketch*", "link": "/?PFN=Microsoft.ScreenSketch_8wekyb3d8bbwe", "size": 9.07},
+            ui.checkBox_12: {"name": "*Microsoft.OneConnect*", "link": "?productId=9NBLGGH5PNB1", "size": 0},
+            ui.checkBox_13: {"name": "*Microsoft.BingFinance*", "link": "?productId=9WZDNCRFHV4V", "size": 0},
+            ui.checkBox_14: {"name": "*Microsoft.ZuneVideo*", "link": "/?PFN=Microsoft.ZuneVideo_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_15: {"name": "*Microsoft.BingNews*", "link": "/?PFN=Microsoft.BingNews_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_16: {"name": "*Microsoft.MicrosoftOfficeHub*", "link": "/?PFN=Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_17: {"name": "*Microsoft.Office.OneNote*", "link": "/?PFN=Microsoft.Office.OneNote_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_18: {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_19: {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_20: {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_21: {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 0},
+            ui.checkBox_22: {"name": "*Microsoft.ScreenSketch*", "link": "/?PFN=Microsoft.ScreenSketch_8wekyb3d8bbwe", "size": 0},
 
-            ui.checkBox_23: {"name": "*Microsoft.MicrosoftSolitaireCollection*", "link": "/?PFN=Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe", "size": 134.37},
-            ui.checkBox_24: {"name": "*Microsoft.BingSports*", "link": "?productId=9WZDNCRFHVH4", "size": 30.92},
-            ui.checkBox_25: {"name": "*SpotifyAB.SpotifyMusic*", "link": "/?PFN=SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "size": 212.59},
-            ui.checkBox_26: {"name": "*Microsoft.MicrosoftStickyNotes*", "link": "/?PFN=Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe", "size": 39.82},
-            ui.checkBox_27: {"name": "*Microsoft.Getstarted*", "link": "/?PFN=Microsoft.Getstarted_8wekyb3d8bbwe", "size": 19.61},
-            ui.checkBox_28: {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 12.40},
-            ui.checkBox_29: {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 32.32},
-            ui.checkBox_30: {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 35.02},
-            ui.checkBox_31: {"name": "*Microsoft.GamingApp*", "link": "/?PFN=Microsoft.GamingApp_8wekyb3d8bbwe", "size": 58.43},
-            ui.checkBox_32: {"name": "*Xbox*", "link": "/?PFN=Microsoft.XboxGameOverlay_8wekyb3d8bbwe", "size": 43.32},
-            ui.checkBox_33: {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 281.00}
+            ui.checkBox_23: {"name": "*Microsoft.MicrosoftSolitaireCollection*", "link": "/?PFN=Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_24: {"name": "*Microsoft.BingSports*", "link": "?productId=9WZDNCRFHVH4", "size": 0},
+            ui.checkBox_25: {"name": "*SpotifyAB.SpotifyMusic*", "link": "/?PFN=SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "size": 0},
+            ui.checkBox_26: {"name": "*Microsoft.MicrosoftStickyNotes*", "link": "/?PFN=Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_27: {"name": "*Microsoft.Getstarted*", "link": "/?PFN=Microsoft.Getstarted_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_28: {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_29: {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_30: {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_31: {"name": "*Microsoft.GamingApp*", "link": "/?PFN=Microsoft.GamingApp_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_32: {"name": "*Xbox*", "link": "/?PFN=Microsoft.XboxGameOverlay_8wekyb3d8bbwe", "size": 0},
+            ui.checkBox_33: {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 0}
         }
 
         ui.progressbar.setValue(0)
@@ -309,23 +320,28 @@ class CheckApps(QThread):
     def run(self):
         si = subprocess.STARTUPINFO()
         si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name"], stdout=subprocess.PIPE, shell=False, startupinfo=si)
-        names_list = x.communicate()[0].decode().split()
+        x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name, InstallLocation | ConvertTo-JSON"], stdout=subprocess.PIPE, shell=False, startupinfo=si)
+        names_str = x.communicate()[0].decode()
+        names_list = json.loads(names_str)
 
         for i in self.apps_dict:
             temp_name = self.apps_dict[i]["name"].strip("*")
+            self.apps_dict[i]["size"] = 0
             flag = False
             if temp_name != "Xbox":
                 for item in names_list:
-                    if item.find(temp_name, 0, len(item)) != -1:
+                    name = item["Name"]
+                    if name.find(temp_name, 0, len(name)) != -1:
                         flag = True
+                        self.apps_dict[i]["size"] += get_dir_size(item["InstallLocation"]) / 1024 / 1024
                         break
             else:
                 for item in names_list:
-                    if item.find(temp_name, 0, len(item)) != -1:
-                        if item.find("XboxGameCallableUI", 0, len(item)) == -1:
+                    name = item["Name"]
+                    if name.find(temp_name, 0, len(name)) != -1:
+                        if name.find("XboxGameCallableUI", 0, len(name)) == -1:
                             flag = True
-                            break
+                            self.apps_dict[i]["size"] += get_dir_size(item["InstallLocation"]) / 1024 / 1024
 
             if flag:
                 self.app_signal.emit(i)
