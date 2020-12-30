@@ -17,6 +17,7 @@ __version__ = "1.9.0"
 
 
 def get_dir_size(dir_path):
+    """Get directory size of installed apps."""
     dir_size = 0
     for root, _, files in os.walk(dir_path):
         dir_size += sum([getsize(join(root, name)) for name in files])
@@ -111,6 +112,7 @@ class Logic():
         self.app_refresh()
 
     def store_menu(self):
+        """Toggle between Main view and Store view."""
         widgets = (ui.horizontalLayoutWidget, ui.horizontalLayoutWidget_2, ui.label_note, ui.label_space, ui.label_size)
         if self.is_link_menu:
             self.is_link_menu = False
@@ -137,6 +139,7 @@ class Logic():
                 widget.hide()
 
     def app_refresh(self):
+        """Create threads to refresh list of installed apps."""
         if self.is_link_menu:
             self.store_menu()
         self.installed_apps = []
@@ -162,6 +165,7 @@ class Logic():
         self.check_thread.start()
 
     def thread_finished(self):
+        """Set up Main view after finishing a task."""
         ui.progressbar.hide()
         ui.label_refresh.hide()
         ui.label_info.show()
@@ -174,17 +178,20 @@ class Logic():
         self.enable_buttons()
 
     def enable_installed(self, i):
+        """Enable checkboxes while refreshing list of installed apps."""
         i.setEnabled(True)
         self.installed_apps.append(i)
         self.enable_buttons()
 
     def update_progress(self):
+        """Update progress bar while refreshing list of installed apps."""
         self.progress += 1
         ui.progressbar.setValue(self.progress)
         if self.progress >= len(self.apps_dict):
             self.thread_finished()
 
     def uninstall_progress(self, i):
+        """Update progress bar and label while uninstalling selected apps."""
         self.progress += 1
         ui.progressbar.setValue(self.progress)
         self.installed_apps.remove(i)
@@ -197,6 +204,7 @@ class Logic():
             self.message_box(self.success_text)
 
     def enable_buttons(self):
+        """Enable buttons or open Microsoft Store when clicking checkboxes."""
         if not self.is_link_menu:
             self.total_size = 0
             self.selected_apps = []
@@ -265,27 +273,32 @@ class Logic():
 
     @staticmethod
     def app_about():
+        """Show 'About' window."""
         about.setWindowModality(Qt.ApplicationModal)
         about.move(ui.geometry().center() - about.rect().center())
         about.show()
 
     def app_quit(self):
+        """Quit app after confirmation."""
         if self.message_box(self.quit_dialog, 2) == QMessageBox.Yes:
             app.quit()
 
     def select_all(self):
+        """Select all checkboxes for installed apps."""
         for i in self.installed_apps:
             if not i.isChecked():
                 i.setChecked(True)
         self.enable_buttons()
 
     def deselect_all(self):
+        """Deselect all checkboxes for installed apps."""
         for i in self.installed_apps:
             if i.isChecked():
                 i.setChecked(False)
         self.enable_buttons()
 
     def uninstall(self):
+        """Create threads to uninstall selected apps after confirmation."""
         apps = len(self.selected_apps)
         msg_uninstall = f"{self.uninstall_text} {apps} {self.app_genitive_plural if apps > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
 
@@ -310,6 +323,7 @@ class Logic():
 
 
 class CheckApps(QThread):
+    """Refresh list of installed apps."""
     progress_signal = pyqtSignal()
     app_signal = pyqtSignal(object)
 
@@ -350,6 +364,7 @@ class CheckApps(QThread):
 
 
 class UninstallApps(QThread):
+    """Uninstall selected apps."""
     progress_signal = pyqtSignal(object)
 
     def __init__(self, apps_dict, i):
