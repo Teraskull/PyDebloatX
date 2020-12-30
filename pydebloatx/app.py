@@ -111,7 +111,7 @@ class Logic():
         self.app_refresh()
 
     def store_menu(self):
-        widgets = (ui.button_select_all, ui.button_deselect_all, ui.button_uninstall, ui.label_note, ui.label_space, ui.label_size)
+        widgets = (ui.horizontalLayoutWidget, ui.horizontalLayoutWidget_2, ui.label_note, ui.label_space, ui.label_size)
         if self.is_link_menu:
             self.is_link_menu = False
             ui.label_info.setText(self.main_title)
