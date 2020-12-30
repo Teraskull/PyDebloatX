@@ -46,9 +46,11 @@
 * <kbd>CTRL</kbd> <kbd>A</kbd> - view the "About" window.
 * <kbd>CTRL</kbd> <kbd>Q</kbd> - quit the app.
 
-## App limitations:
+## Features:
 
-* You cannot uninstall other apps, for example Cortana or Edge. This GUI was designed to be simple and safe, so that you cannot break anything using it.
+* Intuitive design allows to easily navigate through the GUI and uninstall apps with a few clicks.
+* It is not possible to break the OS using this tool. All listed apps can be reinstalled with Microsoft Store using the "Store" sidebar tab. Apps like Edge or Cortana are deeply integrated with Windows 10, so they cannot be easily uninstalled without creating any issues.
+* The GUI does not require elevated administrator privileges to run. It also does not save registry entries.
 
 ## Dependencies:
 
