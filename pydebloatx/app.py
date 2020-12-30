@@ -18,7 +18,7 @@ __version__ = "1.9.0"
 
 def get_dir_size(dir_path):
     dir_size = 0
-    for root, dirs, files in os.walk(dir_path):
+    for root, _, files in os.walk(dir_path):
         dir_size += sum([getsize(join(root, name)) for name in files])
     return dir_size
 
