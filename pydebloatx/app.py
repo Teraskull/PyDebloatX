@@ -389,6 +389,7 @@ class UninstallApps(QThread):
 
 
 if __name__ == '__main__':
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app = QApplication(sys.argv)
     app.setFont(QFont("Tahoma"))
     about = Ui_AboutWindow()
