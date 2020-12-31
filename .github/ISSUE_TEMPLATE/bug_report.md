@@ -23,8 +23,11 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - Windows 10 Edition: [e.g. Windows 10 Home]
- - Version [e.g. 1.3.0]
+ - Windows 10 Edition: [e.g. Windows 10 Home 2004 21277.1000]
+ - Windows 10 Display Language: [e.g. English (United States)]
+ - PyDebloatX Version [e.g. 1.9.0]
+ - Python version [e.g. 3.8.7]
+ - Screen resolution [e.g. 1920x1080]
 
 **Additional context**
 Add any other context about the problem here.
