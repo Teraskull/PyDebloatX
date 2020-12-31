@@ -49,9 +49,9 @@ echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 rmdir /s /q "./build/"
-del pydebloatx.spec
+del PyDebloatX.spec
 
-cd dist/pydebloatx
+cd dist/PyDebloatX
 del opengl32sw.dll
 
 echo.
@@ -61,7 +61,7 @@ color a
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [+] Executable built successfully and is located in dist/app.
+echo [+] Executable built successfully and is located in dist/PyDebloatX.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo.
@@ -81,7 +81,7 @@ goto build
 
 :errorbuild
 color c
-del pydebloatx.spec
+del PyDebloatX.spec
 rmdir /s /q "./build/"
 rmdir /s /q "./dist/"
 echo.
