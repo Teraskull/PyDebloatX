@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget
     QHBoxLayout, QProgressBar, QToolTip
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PyQt5.QtGui import QIcon, QKeySequence, QFont
-import os, sys
+import os
+import sys
 
 # Determines resource path if app is built or run natively
 def resource_path(relative_path):
