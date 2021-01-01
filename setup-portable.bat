@@ -38,7 +38,7 @@ echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo [4] Creating executable...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pyinstaller --noconfirm --onedir --name "PyDebloatX" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." "pydebloatx/app.py"
+pyinstaller --noconfirm --onefile --name "PyDebloatX" --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." "pydebloatx/app.py"
 if ERRORLEVEL 1 goto errorbuild
 
 echo.
@@ -52,7 +52,6 @@ rmdir /s /q "./build/"
 del PyDebloatX.spec
 
 cd dist/PyDebloatX
-del opengl32sw.dll
 
 echo.
 echo Done.
@@ -61,7 +60,7 @@ color a
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [+] Executable built successfully and is located in dist/PyDebloatX
+echo [+] Executable built successfully and is located in dist/PyDebloatX.exe
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo.
