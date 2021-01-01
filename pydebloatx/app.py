@@ -18,7 +18,7 @@ __version__ = "1.9.0"
 # Determines resource path if app is built or run natively
 def resource_path(relative_path):
     if hasattr(sys, 'frozen'):
-        return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
     return os.path.join(os.path.abspath('.'), relative_path)
 
 def get_dir_size(dir_path):
