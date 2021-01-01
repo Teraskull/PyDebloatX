@@ -1,5 +1,6 @@
 import json
-import os, sys
+import os
+import sys
 from os.path import getsize, join
 
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
