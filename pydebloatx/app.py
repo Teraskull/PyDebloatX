@@ -3,7 +3,7 @@ import os
 import sys
 from os.path import getsize, join
 
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from gui_about import Ui_AboutWindow
@@ -397,6 +397,10 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app = QApplication(sys.argv)
     app.setFont(QFont("Tahoma"))
+    locale = QLocale()
+    trans = QTranslator()
+    if trans.load(locale, "", "", "Language", ".qm"):
+        app.installTranslator(trans)
     about = Ui_AboutWindow()
     about.setupUi()
     ui = Ui_MainWindow()
