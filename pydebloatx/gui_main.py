@@ -3,18 +3,20 @@ from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget
     QHBoxLayout, QProgressBar, QToolTip
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PyQt5.QtGui import QIcon, QKeySequence, QFont
-import os
 import sys
+import os
 
-# Determines resource path if app is built or run natively
+
 def resource_path(relative_path):
+    """Determine resource path if app is built or run natively."""
     if hasattr(sys, 'frozen'):
-        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+        return os.path.join(sys._MEIPASS, relative_path)  # skipcq: PYL-W0212
     return os.path.join(os.path.abspath('.'), relative_path)
+
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self):
-        super(Ui_MainWindow, self).__init__()
+        super().__init__()
         self.setWindowIcon(QIcon(resource_path('icon.ico')))
         self.setFixedSize(531, 470)
 

@@ -1,25 +1,26 @@
-import json
-import os
-import sys
-from os.path import getsize, join
-
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator
-from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
+from PyQt5.QtWidgets import QApplication, QMessageBox
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
+from os.path import getsize, join
 import webbrowser
 import subprocess
 import img_res  # skipcq: PYL-W0611
+import json
+import sys
+import os
 
 
 __version__ = "1.9.0"
 
-# Determines resource path if app is built or run natively
+
 def resource_path(relative_path):
+    """Determine resource path if app is built or run natively."""
     if hasattr(sys, 'frozen'):
-        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+        return os.path.join(sys._MEIPASS, relative_path)  # skipcq: PYL-W0212
     return os.path.join(os.path.abspath('.'), relative_path)
+
 
 def get_dir_size(dir_path):
     """Get directory size of installed apps."""
