@@ -2,13 +2,14 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui import QIcon, QFont, QPixmap
-import os
 import sys
+import os
 
-# Determines resource path if app is built or run natively
+
 def resource_path(relative_path):
+    """Determine resource path if app is built or run natively."""
     if hasattr(sys, 'frozen'):
-        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+        return os.path.join(sys._MEIPASS, relative_path)  # skipcq: PYL-W0212
     return os.path.join(os.path.abspath('.'), relative_path)
 
 
