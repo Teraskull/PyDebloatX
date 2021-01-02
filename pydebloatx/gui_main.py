@@ -3,17 +3,24 @@ from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget
     QHBoxLayout, QProgressBar, QToolTip
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PyQt5.QtGui import QIcon, QKeySequence, QFont
+import os
+import sys
 
+# Determines resource path if app is built or run natively
+def resource_path(relative_path):
+    if hasattr(sys, 'frozen'):
+        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+    return os.path.join(os.path.abspath('.'), relative_path)
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super(Ui_MainWindow, self).__init__()
-        self.setWindowIcon(QIcon('icon.ico'))
+        self.setWindowIcon(QIcon(resource_path('icon.ico')))
         self.setFixedSize(531, 470)
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
-        with open("style.css", 'r') as file:
+        with open(resource_path('style.css'), 'r') as file:
             self.centralwidget.setStyleSheet(file.read())
         self.appswidget = QWidget(self.centralwidget)
         self.appswidget.setGeometry(50, 0, 481, 470)
@@ -177,7 +184,7 @@ class Ui_MainWindow(QMainWindow):
         self.button_uninstall.setMinimumSize(100, 30)
         self.button_uninstall.setProperty('class', 'Grapefruit')
 
-        with open("style.css", 'r') as file:
+        with open(resource_path('style.css'), 'r') as file:
             widgets = (self.sidebar, self.refresh_btn, self.homepage_btn, self.about_btn, self.quit_btn,
                        self.progressbar, self.button_select_all, self.button_deselect_all, self.button_uninstall
                        )
