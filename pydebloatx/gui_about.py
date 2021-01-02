@@ -2,25 +2,33 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui import QIcon, QFont, QPixmap
+import os
+import sys
+
+# Determines resource path if app is built or run natively
+def resource_path(relative_path):
+    if hasattr(sys, 'frozen'):
+        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+    return os.path.join(os.path.abspath('.'), relative_path)
 
 
 class Ui_AboutWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.CustomizeWindowHint)
-        self.setWindowIcon(QIcon('icon.ico'))
+        self.setWindowIcon(QIcon(resource_path('icon.ico')))
         self.setFixedSize(241, 190)
 
     def setupUi(self):
         self.centralwidget = QWidget(self)
-        with open("style.css", 'r') as file:
+        with open(resource_path('style.css'), 'r') as file:
             self.centralwidget.setStyleSheet(file.read())
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QRect(10, 10, 221, 81))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.label_logo = QLabel(self.verticalLayoutWidget)
-        self.pixmap = QPixmap('icon.ico')
+        self.pixmap = QPixmap(resource_path('icon.ico'))
         self.pixmap = self.pixmap.scaledToWidth(30, Qt.SmoothTransformation)
         self.label_logo.setPixmap(self.pixmap)
         self.verticalLayout.addWidget(self.label_logo, 0, Qt.AlignHCenter)
@@ -58,7 +66,7 @@ class Ui_AboutWindow(QMainWindow):
         self.button_quit_about.setMinimumSize(100, 30)
         self.button_quit_about.setProperty('class', 'Aqua')
 
-        with open("style.css", 'r') as file:
+        with open(resource_path('style.css'), 'r') as file:
             self.button_quit_about.setStyleSheet(file.read())
 
         self.setCentralWidget(self.centralwidget)

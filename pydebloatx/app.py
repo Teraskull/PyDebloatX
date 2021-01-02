@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from os.path import getsize, join
 
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect
@@ -10,11 +11,15 @@ from gui_main import Ui_MainWindow
 import webbrowser
 import subprocess
 import img_res  # skipcq: PYL-W0611
-import sys
 
 
 __version__ = "1.9.0"
 
+# Determines resource path if app is built or run natively
+def resource_path(relative_path):
+    if hasattr(sys, 'frozen'):
+        return os.path.join(sys._MEIPASS, relative_path) # skipcq: PYL-W0212
+    return os.path.join(os.path.abspath('.'), relative_path)
 
 def get_dir_size(dir_path):
     """Get directory size of installed apps."""
@@ -106,7 +111,7 @@ class Logic():
         for i in self.apps_dict:
             i.setFont(ui.font)
             i.clicked.connect(self.enable_buttons)
-            with open("style.css", 'r') as file:
+            with open(resource_path('style.css'), 'r') as file:
                 i.setStyleSheet(file.read())
 
         self.app_refresh()
@@ -246,7 +251,7 @@ class Logic():
             Returns:\n
                 choice (int): ID of the clicked button.
         """
-        pixmap = QPixmap('icon.ico').scaledToWidth(35, Qt.SmoothTransformation)
+        pixmap = QPixmap(resource_path('icon.ico')).scaledToWidth(35, Qt.SmoothTransformation)
         msg_box = QMessageBox()
         msg_box.setFont(ui.font)
         msg_box.setText(message)
@@ -258,10 +263,10 @@ class Logic():
             msg_yes.setProperty('class', 'button_yes')
             msg_no.setProperty('class', 'button_no')
         msg_box.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
-        msg_box.setWindowIcon(QIcon('icon.ico'))
+        msg_box.setWindowIcon(QIcon(resource_path('icon.ico')))
         msg_box.setWindowTitle("PyDebloatX")
         msg_box.setIconPixmap(pixmap)
-        with open("style.css", 'r') as file:
+        with open(resource_path('style.css'), 'r') as file:
             msg_box.setStyleSheet(file.read())
         msg_box.move(ui.frameGeometry().center() - QRect(QPoint(), msg_box.sizeHint()).center())
         choice = msg_box.exec_()
