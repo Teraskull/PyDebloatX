@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator, QCoreApplication
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from gui_about import Ui_AboutWindow
@@ -13,6 +13,8 @@ import os
 
 
 __version__ = "1.9.0"
+
+_translate = QCoreApplication.translate
 
 
 def resource_path(relative_path):
@@ -32,26 +34,19 @@ def get_dir_size(dir_path):
 
 class Logic():
     def __init__(self):
-        about.label_version.setText(f"Version {__version__}")
+        about.label_version.setText(_translate("Label", "Version") + f" {__version__}")
         self.total_size = 0
         self.is_link_menu = False
-        self.main_title = 'Select the default Windows 10 apps to uninstall:\n(Hover over app names to view description)'
-        self.store_title = 'Click on an app name to view it in Microsoft Store.'
-        self.refresh_title = 'Refreshing list of installed apps...'
-        self.size_text = 'MB'
-        self.github_dialog = 'Visit the PyDebloatX GitHub page?'
-        self.quit_dialog = 'Quit PyDebloatX?'
-        self.dialog_yes = 'Yes'
-        self.dialog_no = 'No'
-        self.dialog_ok = 'OK'
-        self.uninstall_text = 'Uninstall'
-        self.uninstalling_text = 'Uninstalling'
-        self.left_text = 'left'
-        self.success_text = 'All selected apps were successfully uninstalled.'
-        self.app_singular = 'app'
-        self.app_genitive_singular = 'apps'
-        self.app_genitive_plural = 'apps'
-        self.size_available_text = 'MB of space will be freed.'
+        self.main_title = _translate('Label', 'Select the default Windows 10 apps to uninstall:\n(Hover over app names to view description)')
+        self.store_title = _translate('Label', 'Click on an app name to view it in Microsoft Store.')
+        self.refresh_title = _translate('Label', 'Refreshing list of installed apps...')
+        self.size_text = _translate('Label', 'MB')
+        self.github_dialog = _translate('MessageBox', 'Visit the PyDebloatX GitHub page?')
+        self.quit_dialog = _translate('MessageBox', 'Quit PyDebloatX?')
+        self.dialog_yes = _translate('Button', 'Yes')
+        self.dialog_no = _translate('Button', 'No')
+        self.dialog_ok = _translate('Button', 'OK')
+        self.success_text = _translate('MessageBox', 'All selected apps were successfully uninstalled.')
         self.main_widgets = (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall)
 
         self.apps_dict = {
@@ -203,7 +198,7 @@ class Logic():
         self.installed_apps.remove(i)
         app_name = i.text().replace(' && ', ' & ')
         apps_left = len(self.selected_apps) - self.progress + 1
-        ui.label_refresh.setText(f"{self.uninstalling_text} {app_name}, {apps_left} {self.app_genitive_plural if apps_left > 1 else self.app_singular} {self.left_text}...")
+        ui.label_refresh.setText(_translate('Label', 'Uninstalling {0}, %n app(s) left...', '', apps_left).format(app_name))
         ui.label_refresh.show()
         if self.progress >= len(self.selected_apps):
             self.thread_finished()
@@ -219,6 +214,7 @@ class Logic():
                     self.selected_apps.append(i)
                     self.total_size += self.apps_dict[i]["size"]
                     ui.label_size.setText(f'{self.total_size:.2f} {self.size_text}')
+                    ui.horizontalLayoutWidget_3.adjustSize()
             if any(i.isChecked() for i in self.installed_apps):
                 ui.button_uninstall.setDisabled(False)
                 ui.button_deselect_all.setDisabled(False)
@@ -274,6 +270,7 @@ class Logic():
         return choice
 
     def app_homepage(self):
+        """Open GitHub app homepage after confirmation."""
         if self.message_box(self.github_dialog, 2) == QMessageBox.Yes:
             webbrowser.open_new('https://github.com/Teraskull/PyDebloatX')
 
@@ -306,7 +303,9 @@ class Logic():
     def uninstall(self):
         """Create threads to uninstall selected apps after confirmation."""
         apps = len(self.selected_apps)
-        msg_uninstall = f"{self.uninstall_text} {apps} {self.app_genitive_plural if apps > 1 else self.app_singular}?\n\n{self.total_size:.2f} {self.size_available_text}"
+        confirm_uninstall = _translate('MessageBox', 'Uninstall %n app(s)?', '', apps)
+        space_freed_text = _translate('MessageBox', 'MB of space will be freed.')
+        msg_uninstall = f"{confirm_uninstall}\n\n{self.total_size:.2f} {space_freed_text}"
 
         if self.message_box(msg_uninstall, 2) == QMessageBox.Yes:
             for widget in self.main_widgets:

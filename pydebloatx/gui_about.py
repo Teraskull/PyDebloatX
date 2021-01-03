@@ -76,9 +76,9 @@ class Ui_AboutWindow(QMainWindow):
 
     def retranslateUi(self):
         _translate = QCoreApplication.translate
-        self.setWindowTitle(_translate("MainWindow", "About"))
-        self.label_name.setText(_translate("MainWindow", "PyDebloatX"))
-        self.label_version.setText(_translate("MainWindow", ""))
-        self.label_copyright.setText(_translate("MainWindow", "Copyright © 2020 by"))
-        self.label_author.setText(_translate("MainWindow", "Anton Grouchtchak."))
-        self.button_quit_about.setText(_translate("MainWindow", "OK"))
+        self.setWindowTitle(_translate("AboutWindow", "About"))
+        self.label_name.setText(_translate("AboutWindow", "PyDebloatX"))
+        self.label_version.setText(_translate("AboutWindow", ""))
+        self.label_copyright.setText(_translate("AboutWindow", "Copyright") + " © 2020")
+        self.label_author.setText(_translate("AboutWindow", "Anton Grouchtchak."))
+        self.button_quit_about.setText(_translate("AboutWindow", "OK"))
