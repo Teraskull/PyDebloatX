@@ -341,7 +341,7 @@ class CheckApps(QThread):
         si = subprocess.STARTUPINFO()
         si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name, InstallLocation | ConvertTo-JSON"],
-                             stdout=subprocess.PIPE, shell=False, startupinfo=si, universal_newlines=True)
+                             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False, startupinfo=si, text=True)
         names_str = x.communicate()[0]
         names_list = json.loads(names_str)
 
@@ -387,8 +387,7 @@ class UninstallApps(QThread):
         si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         x = subprocess.Popen(
             ["powershell", f'try {{Get-AppxPackage {package_name} -OutVariable app | Remove-AppPackage -ea stop;[bool]$app}} catch {{$false}}'],
-            stdout=subprocess.PIPE,
-            shell=False, startupinfo=si
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False, startupinfo=si
         )
         x.communicate()[0]
         self.progress_signal.emit(self.i)
