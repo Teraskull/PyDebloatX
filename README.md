@@ -55,27 +55,49 @@
 ## Dependencies:
 
 * PyQt5
-```bash
-> pip install pyqt5
+```batch
+pip install pyqt5
 ```
 
 ## Usage:
 
-```bash
-> git clone https://github.com/Teraskull/PyDebloatX
+```batch
+git clone https://github.com/Teraskull/PyDebloatX
 
-> cd PyDebloatX
+cd PyDebloatX
 
-> pip install -r requirements.txt
+pip install -r requirements.txt
 
-> cd pydebloatx
+cd pydebloatx
 
-> python app.py
+python app.py
 ```
 
 ## Building:
 
 Run `setup.bat` to build the executable.
+
+Run `setup-portable.bat` to build a one-file portable executable.
+
+
+## Translating:
+
+Run the following command to create the translation file.
+```batch
+pylupdate5 gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
+```
+
+Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For example, `en_US`.
+
+List of available locale codes is available [here](http://www.lingoes.net/en/translator/langcode.htm).
+
+To compile `.ts` into `.qm`, use `linguist.exe`, which can be found under the following location:
+
+```
+%LocalAppData%\Programs\Python\Python38\Lib\site-packages\qt5_applications\Qt\bin\linguist.exe
+```
+
+
 
 ## License:
 
