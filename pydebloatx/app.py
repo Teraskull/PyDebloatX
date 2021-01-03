@@ -400,7 +400,7 @@ if __name__ == '__main__':
     app.setFont(QFont("Tahoma"))
     locale = QLocale()
     trans = QTranslator()
-    if trans.load(locale, "", "", "Language", ".qm"):
+    if trans.load(locale, "", "", resource_path("Language"), ".qm"):
         app.installTranslator(trans)
     about = Ui_AboutWindow()
     about.setupUi()
