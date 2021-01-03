@@ -4,6 +4,7 @@ QPushButton {
     font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
+    padding: 0 10px;
 }
 
 
@@ -198,7 +199,7 @@ QMessageBox QPushButton {
     color: #000;
     background-color: #fff;
     border: 2 solid #21AD64;
-    width: 70px;
+    min-width: 50px;
     height: 30px;
 }
 
