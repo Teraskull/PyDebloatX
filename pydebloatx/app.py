@@ -340,7 +340,7 @@ class CheckApps(QThread):
     def run(self):
         si = subprocess.STARTUPINFO()
         si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        x = subprocess.Popen(["powershell", "Get-AppxPackage | Select Name, InstallLocation | ConvertTo-JSON"],
+        x = subprocess.Popen(["powershell", "Get-AppxPackage -PackageTypeFilter Main | Select Name, InstallLocation | ConvertTo-JSON"],
                              stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False, startupinfo=si, text=True)
         names_str = x.communicate()[0]
         names_list = json.loads(names_str)
