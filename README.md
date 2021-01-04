@@ -42,7 +42,7 @@
 
 * <kbd>CTRL</kbd> <kbd>R</kbd> - refresh the list of installed apps.
 * <kbd>CTRL</kbd> <kbd>S</kbd> - view links to apps in Microsoft Store.
-* <kbd>CTRL</kbd> <kbd>G</kbd> - visit the Github page.
+* <kbd>CTRL</kbd> <kbd>G</kbd> - visit the GitHub page.
 * <kbd>CTRL</kbd> <kbd>A</kbd> - view the "About" window.
 * <kbd>CTRL</kbd> <kbd>Q</kbd> - quit the app.
 
@@ -91,10 +91,18 @@ Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For ex
 
 List of available locale codes is available [here](http://www.lingoes.net/en/translator/langcode.htm).
 
-To compile `.ts` into `.qm`, use `linguist.exe`, which can be found under the following location:
+To compile `.ts` into `.qm`, use `linguist.exe`.
+
+```batch
+pip install qt5-applications
+```
+
+```batch
+pip show qt5-applications | findstr "Location:"
+```
 
 ```
-%LocalAppData%\Programs\Python\Python38\Lib\site-packages\qt5_applications\Qt\bin\linguist.exe
+Splice the output path above with "\qt5_applications\Qt\bin\linguist.exe"
 ```
 
 
