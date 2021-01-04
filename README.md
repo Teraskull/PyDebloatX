@@ -101,8 +101,10 @@ pip install qt5-applications
 pip show qt5-applications | findstr "Location:"
 ```
 
-```
-Splice the output path above with "\qt5_applications\Qt\bin\linguist.exe"
+Splice the output path above with:
+
+```batch
+"\qt5_applications\Qt\bin\linguist.exe"
 ```
 
 
