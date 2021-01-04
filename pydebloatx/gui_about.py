@@ -79,6 +79,6 @@ class Ui_AboutWindow(QMainWindow):
         self.setWindowTitle(_translate("AboutWindow", "About"))
         self.label_name.setText(_translate("AboutWindow", "PyDebloatX"))
         self.label_version.setText(_translate("AboutWindow", ""))
-        self.label_copyright.setText(_translate("AboutWindow", "Copyright") + " © 2020")
+        self.label_copyright.setText(_translate("AboutWindow", "Copyright") + " © 2020-2021")
         self.label_author.setText(_translate("AboutWindow", "Anton Grouchtchak."))
         self.button_quit_about.setText(_translate("AboutWindow", "OK"))
