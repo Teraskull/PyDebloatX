@@ -43,7 +43,7 @@ set /P Location=<"%temp%\set_var.tmp"
 set dll_path=%Location:~10,-13%site-packages\PyQt5\Qt\bin\
 ren %dll_path%opengl32sw.dll opengl32sw_bak.dll
 
-pyinstaller --noconfirm --onefile --name "PyDebloatX" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*;Language" "pydebloatx/app.py"
+pyinstaller --noconfirm --onefile --name "PyDebloatX_portable" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*;Language" "pydebloatx/app.py"
 if ERRORLEVEL 1 goto errorbuild
 
 echo.
@@ -54,7 +54,7 @@ echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 rmdir /s /q "./build/"
-del PyDebloatX.spec
+del PyDebloatX_portable.spec
 
 del "%temp%\set_var.tmp"
 ren %dll_path%opengl32sw_bak.dll opengl32sw.dll
@@ -66,7 +66,7 @@ color a
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo [+] Executable built successfully and is located in dist/PyDebloatX.exe
+echo [+] Executable built successfully and is located in dist/PyDebloatX_portable.exe
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo.
@@ -86,7 +86,7 @@ goto build
 
 :errorbuild
 color c
-del PyDebloatX.spec
+del PyDebloatX_portable.spec
 rmdir /s /q "./build/"
 rmdir /s /q "./dist/"
 
