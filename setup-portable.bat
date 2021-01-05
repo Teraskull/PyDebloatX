@@ -38,6 +38,11 @@ echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo [4] Creating executable...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pip show pyqt5 | findstr "Location:" > "%temp%\set_var.tmp"
+set /P Location=<"%temp%\set_var.tmp"
+set dll_path=%Location:~10,-13%site-packages\PyQt5\Qt\bin\
+ren %dll_path%opengl32sw.dll opengl32sw_bak.dll
+
 pyinstaller --noconfirm --onefile --name "PyDebloatX" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*;Language" "pydebloatx/app.py"
 if ERRORLEVEL 1 goto errorbuild
 
@@ -51,7 +56,8 @@ echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 rmdir /s /q "./build/"
 del PyDebloatX.spec
 
-cd dist/PyDebloatX
+del "%temp%\set_var.tmp"
+ren %dll_path%opengl32sw_bak.dll opengl32sw.dll
 
 echo.
 echo Done.
@@ -83,6 +89,9 @@ color c
 del PyDebloatX.spec
 rmdir /s /q "./build/"
 rmdir /s /q "./dist/"
+
+del "%temp%\set_var.tmp"
+ren %dll_path%opengl32sw_bak.dll opengl32sw.dll
 echo.
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
