@@ -16,7 +16,7 @@ def resource_path(relative_path):
 class Ui_AboutWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.CustomizeWindowHint)
+        self.setWindowFlags(Qt.CustomizeWindowHint)
         self.setWindowIcon(QIcon(resource_path('icon.ico')))
         self.setFixedSize(241, 190)
 
