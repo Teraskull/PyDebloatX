@@ -1,4 +1,5 @@
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator, QCoreApplication
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator, QCoreApplication, QThreadPool, \
+    QObject, QRunnable
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from gui_about import Ui_AboutWindow
@@ -315,16 +316,14 @@ class Logic():
             ui.progressbar.setMaximum(apps)
             ui.progressbar.show()
 
-            self.newWorkerThread = QThread()
             self.new_thread_list = []
             for item, i in enumerate(self.selected_apps):
                 i.setEnabled(False)
                 i.setChecked(False)
                 self.new_thread_list.append(UninstallApps(self.apps_dict, i))
-                self.new_thread_list[item].moveToThread(self.newWorkerThread)
-                self.new_thread_list[item].progress_signal.connect(self.uninstall_progress)
-            for new_thread in self.new_thread_list:
-                new_thread.start()
+                self.new_thread_list[item].signals.progress_signal.connect(self.uninstall_progress)
+            self.newPoolThread = RunThreadPool(self.new_thread_list)
+            self.newPoolThread.start()
 
 
 class CheckApps(QThread):
@@ -369,12 +368,28 @@ class CheckApps(QThread):
             self.progress_signal.emit()
 
 
-class UninstallApps(QThread):
-    """Uninstall selected apps."""
+class RunThreadPool(QThread):
+    def __init__(self, new_thread_list):
+        super().__init__()
+        self.new_thread_list = new_thread_list
+
+    def run(self):
+        pool = QThreadPool()
+        for new_thread in self.new_thread_list:
+            pool.start(new_thread)
+        pool.waitForDone()
+
+
+class UninstallSignals(QObject):
     progress_signal = pyqtSignal(object)
+
+
+class UninstallApps(QRunnable):
+    """Uninstall selected apps."""
 
     def __init__(self, apps_dict, i):
         super().__init__()
+        self.signals = UninstallSignals()
         self.apps_dict = apps_dict
         self.i = i
 
@@ -389,7 +404,7 @@ class UninstallApps(QThread):
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False, startupinfo=si
         )
         x.communicate()[0]
-        self.progress_signal.emit(self.i)
+        self.signals.progress_signal.emit(self.i)
 
 
 if __name__ == '__main__':
