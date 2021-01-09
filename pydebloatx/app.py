@@ -154,10 +154,6 @@ class Logic():
         ui.progressbar.show()
         for widget in self.main_widgets:
             widget.setEnabled(False)
-        ui.refresh_btn.setIcon(QIcon(':/icon/no_refresh_icon.png'))
-        ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
-        ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
-        ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
         QApplication.setOverrideCursor(QCursor(Qt.BusyCursor))
         ui.label_refresh.setText(self.refresh_title)
 
@@ -176,7 +172,6 @@ class Logic():
         ui.label_info.setText(self.main_title)
         for widget in (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind):
             widget.setEnabled(True)
-        ui.refresh_btn.setIcon(QIcon(':/icon/refresh_icon.png'))
         self.enable_buttons()
 
     def enable_installed(self, i):
@@ -219,21 +214,15 @@ class Logic():
             if any(i.isChecked() for i in self.installed_apps):
                 ui.button_uninstall.setDisabled(False)
                 ui.button_deselect_all.setDisabled(False)
-                ui.button_uninstall.setIcon(QIcon(':/icon/trash_icon.png'))
-                ui.button_deselect_all.setIcon(QIcon(':/icon/cancel_icon.png'))
             else:
                 ui.button_uninstall.setDisabled(True)
                 ui.button_deselect_all.setDisabled(True)
-                ui.button_uninstall.setIcon(QIcon(':/icon/no_trash_icon.png'))
-                ui.button_deselect_all.setIcon(QIcon(':/icon/no_cancel_icon.png'))
                 ui.label_size.setText(f'{self.total_size} {self.size_text}')
 
             if all(i.isChecked() for i in self.installed_apps):
                 ui.button_select_all.setDisabled(True)
-                ui.button_select_all.setIcon(QIcon(':/icon/no_check_icon.png'))
             else:
                 ui.button_select_all.setDisabled(False)
-                ui.button_select_all.setIcon(QIcon(':/icon/check_icon.png'))
         else:
             for i in self.apps_dict:
                 if not i.isChecked():
