@@ -108,8 +108,6 @@ class Logic():
         for i in self.apps_dict:
             i.setFont(ui.font)
             i.clicked.connect(self.enable_buttons)
-            with open(resource_path('style.css'), 'r') as file:
-                i.setStyleSheet(file.read())
 
         self.app_refresh()
 
@@ -250,8 +248,6 @@ class Logic():
             msg_yes.setProperty('class', 'button_yes')
             msg_no.setProperty('class', 'button_no')
         msg_box.setWindowFlags(Qt.Dialog | Qt.CustomizeWindowHint)
-        msg_box.setWindowIcon(QIcon(resource_path('icon.ico')))
-        msg_box.setWindowTitle("PyDebloatX")
         msg_box.setIconPixmap(pixmap)
         with open(resource_path('style.css'), 'r') as file:
             msg_box.setStyleSheet(file.read())
