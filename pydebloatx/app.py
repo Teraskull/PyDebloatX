@@ -358,6 +358,7 @@ class CheckApps(QThread):
 
 
 class RunThreadPool(QThread):
+    """Run thread pool for uninstalling selected apps."""
     def __init__(self, new_thread_list):
         super().__init__()
         self.new_thread_list = new_thread_list
@@ -370,12 +371,12 @@ class RunThreadPool(QThread):
 
 
 class UninstallSignals(QObject):
+    """PyQt signal emitting class for uninstalling apps."""
     progress_signal = pyqtSignal(object)
 
 
 class UninstallApps(QRunnable):
     """Uninstall selected apps."""
-
     def __init__(self, apps_dict, i):
         super().__init__()
         self.signals = UninstallSignals()
