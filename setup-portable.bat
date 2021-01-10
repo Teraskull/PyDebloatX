@@ -60,7 +60,7 @@ set /P Location=<"%temp%\set_var.tmp"
 set dll_path=%Location:~10,-13%site-packages\PyQt5\Qt\bin\
 ren %dll_path%opengl32sw.dll opengl32sw_bak.dll
 
-pyinstaller --noconfirm --onefile --name "PyDebloatX_portable" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*;Language" "pydebloatx/app.py"
+pyinstaller --noconfirm --onefile --name "PyDebloatX_portable" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*.qm;Language" "pydebloatx/app.py"
 if ERRORLEVEL 1 goto errorbuild
 goto clean
 
