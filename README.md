@@ -13,6 +13,9 @@
   <a style="text-decoration:none" href="https://github.com/Teraskull/PyDebloatX/releases">
     <img src="https://img.shields.io/github/v/release/Teraskull/PyDebloatX?label=Version&style=flat-square&color=00B16A" alt="Releases" />
   </a>
+  <a style="text-decoration:none" href="https://www.python.org/downloads/release/python-379/">
+    <img src="https://img.shields.io/badge/python-3.7+-blue.svg?color=00B16A&style=flat-square" alt="Python Version" />
+  </a>
   <a style="text-decoration:none" href="https://www.codefactor.io/repository/github/teraskull/pydebloatx">
     <img src="https://www.codefactor.io/repository/github/teraskull/pydebloatx/badge?style=flat-square" alt="CodeFactor" />
   </a>
@@ -21,9 +24,6 @@
   </a>
   <a style="text-decoration:none">
     <img src="https://img.shields.io/badge/OS-Windows%2010-blue?style=flat-square&color=00B16A" alt="OS" />
-  </a>
-  <a style="text-decoration:none" href="https://saythanks.io/to/goldtom1423@gmail.com">
-    <img src="https://img.shields.io/badge/say-thanks-ff69b4.svg?color=00B16A&style=flat-square" alt="Say Thanks" />
   </a>
 </p>
 
@@ -78,6 +78,8 @@ python app.py
 Run `setup.bat` to build the executable.
 
 Run `setup-portable.bat` to build a one-file portable executable.
+
+To build 32-bit binaries, install 32-bit Python (3.7+).
 
 
 ## Translating:
