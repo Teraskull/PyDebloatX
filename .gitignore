@@ -5,10 +5,9 @@ __pycache__/
 *.ui
 *.log
 .env
-app.spec
+*.spec
 version.txt
-setup_dev.bat
-setup_sign.bat
+*dev.bat
 *.nsi
 *.pfx
 
