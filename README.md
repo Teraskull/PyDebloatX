@@ -91,12 +91,12 @@ pylupdate5 gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
 
 Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For example, `en_US`.
 
-List of available locale codes is available [here](http://www.lingoes.net/en/translator/langcode.htm).
+List of locale codes is available [here](http://www.lingoes.net/en/translator/langcode.htm).
 
 To compile `.ts` into `.qm`, use `linguist.exe`.
 
 ```batch
-pip install qt5-applications
+pip install -U qt5-applications
 ```
 
 ```batch
