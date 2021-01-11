@@ -38,7 +38,17 @@
 </div>
 
 
-## Shortcuts:
+## Table of contents
+* [Shortcuts](#shortcuts)
+* [Features](#features)
+* [Dependencies](#dependencies)
+* [Building](#building)
+* [Translating](#translating)
+* [Supported Languages](#supported-languages)
+* [License](#license)
+
+
+## Shortcuts
 
 * <kbd>CTRL</kbd> <kbd>R</kbd> - refresh the list of installed apps.
 * <kbd>CTRL</kbd> <kbd>S</kbd> - view links to apps in Microsoft Store.
@@ -46,20 +56,20 @@
 * <kbd>CTRL</kbd> <kbd>A</kbd> - view the "About" window.
 * <kbd>CTRL</kbd> <kbd>Q</kbd> - quit the app.
 
-## Features:
+## Features
 
 * Intuitive design allows to easily navigate through the GUI and uninstall apps with a few clicks.
 * It is not possible to break the OS using this tool. All listed apps can be reinstalled with Microsoft Store using the "Store" sidebar tab. Apps like Edge or Cortana are deeply integrated with Windows 10, so they cannot be easily uninstalled without creating any issues.
 * The GUI does not require elevated administrator privileges to run. It also does not save registry entries.
 
-## Dependencies:
+## Dependencies
 
 * PyQt5
 ```batch
-pip install pyqt5
+pip install -U pyqt5
 ```
 
-## Usage:
+## Usage
 
 ```batch
 git clone https://github.com/Teraskull/PyDebloatX
@@ -73,7 +83,7 @@ cd pydebloatx
 python app.py
 ```
 
-## Building:
+## Building
 
 Run `setup.bat` to build the executable.
 
@@ -82,9 +92,9 @@ Run `setup-portable.bat` to build a one-file portable executable.
 To build 32-bit binaries, install 32-bit Python (3.7+).
 
 
-## Translating:
+## Translating
 
-Run the following command to create the translation file.
+Run the following command to create the translation file:
 ```batch
 pylupdate5 gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
 ```
@@ -93,7 +103,7 @@ Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For ex
 
 List of locale codes is available [here](http://www.lingoes.net/en/translator/langcode.htm).
 
-To compile `.ts` into `.qm`, use `linguist.exe`.
+To compile `.ts` into `.qm`, use `linguist.exe`:
 
 ```batch
 pip install -U qt5-applications
@@ -109,9 +119,16 @@ Splice the output path above with:
 "\qt5_applications\Qt\bin\linguist.exe"
 ```
 
+## Supported Languages
+|Language|Author credits|
+|---|---|
+|[Chinese](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/zh_CN.ts)|[space9bug](https://github.com/space9bug/)|
+|[English](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/en_US.ts)|[Teraskull](https://github.com/Teraskull/)|
+|[Russian](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/ru_RU.ts)|[Teraskull](https://github.com/Teraskull/)|
+|[Ukrainian](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/uk_UA.ts)|[Teraskull](https://github.com/Teraskull/)|
 
 
-## License:
+## License
 
 This software is available under the following licenses:
 
