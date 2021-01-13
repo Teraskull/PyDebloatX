@@ -91,6 +91,7 @@ class Logic():
         ui.progressbar.setValue(0)
         ui.progressbar.setMaximum(len(self.apps_dict))
         ui.progressbar.setFont(ui.font)
+        ui.layout_widget_labels.adjustSize()
         ui.button_uninstall.clicked.connect(self.uninstall)
         ui.button_select_all.clicked.connect(self.select_all)
         ui.button_deselect_all.clicked.connect(self.deselect_all)
@@ -113,7 +114,7 @@ class Logic():
 
     def store_menu(self):
         """Toggle between Main view and Store view."""
-        widgets = (ui.horizontalLayoutWidget, ui.horizontalLayoutWidget_2, ui.label_note, ui.label_space, ui.label_size)
+        widgets = (ui.layout_widget_buttons, ui.label_note, ui.label_space, ui.label_size)
         if self.is_link_menu:
             self.is_link_menu = False
             ui.label_info.setText(self.main_title)
@@ -208,7 +209,7 @@ class Logic():
                     self.selected_apps.append(i)
                     self.total_size += self.apps_dict[i]["size"]
                     ui.label_size.setText(f'{self.total_size:.2f} {self.size_text}')
-                    ui.horizontalLayoutWidget_3.adjustSize()
+                    ui.layout_widget_labels.adjustSize()
             if any(i.isChecked() for i in self.installed_apps):
                 ui.button_uninstall.setDisabled(False)
                 ui.button_deselect_all.setDisabled(False)
