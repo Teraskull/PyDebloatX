@@ -86,64 +86,16 @@ class Ui_MainWindow(QMainWindow):
         self.layout_widget_checkboxes.setGeometry(QRect(20, 55, 155, 311))
         self.layout_checkboxes = QVBoxLayout(self.layout_widget_checkboxes)
         self.layout_checkboxes.setContentsMargins(0, 0, 0, 0)
-        self.checkBox = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_2 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_3 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_4 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_5 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_6 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_7 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_8 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_9 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_10 = QCheckBox(self.layout_widget_checkboxes)
-        self.checkBox_11 = QCheckBox(self.layout_widget_checkboxes)
-        checkbox_column_1 = (self.checkBox, self.checkBox_2, self.checkBox_3, self.checkBox_4, self.checkBox_5, self.checkBox_6,
-                             self.checkBox_7, self.checkBox_8, self.checkBox_9, self.checkBox_10, self.checkBox_11
-                             )
-        for checkbox in checkbox_column_1:
-            self.layout_checkboxes.addWidget(checkbox)
 
         self.layout_widget_checkboxes_2 = QWidget(self.appswidget)
         self.layout_widget_checkboxes_2.setGeometry(QRect(175, 55, 155, 311))
         self.layout_checkboxes_2 = QVBoxLayout(self.layout_widget_checkboxes_2)
         self.layout_checkboxes_2.setContentsMargins(0, 0, 0, 0)
-        self.checkBox_12 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_13 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_14 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_15 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_16 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_17 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_18 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_19 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_20 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_21 = QCheckBox(self.layout_widget_checkboxes_2)
-        self.checkBox_22 = QCheckBox(self.layout_widget_checkboxes_2)
-        checkbox_column_2 = (self.checkBox_12, self.checkBox_13, self.checkBox_14, self.checkBox_15, self.checkBox_16, self.checkBox_17,
-                             self.checkBox_18, self.checkBox_19, self.checkBox_20, self.checkBox_21, self.checkBox_22
-                             )
-        for checkbox in checkbox_column_2:
-            self.layout_checkboxes_2.addWidget(checkbox)
 
         self.layout_widget_checkboxes_3 = QWidget(self.appswidget)
         self.layout_widget_checkboxes_3.setGeometry(QRect(330, 55, 155, 311))
         self.layout_checkboxes_3 = QVBoxLayout(self.layout_widget_checkboxes_3)
         self.layout_checkboxes_3.setContentsMargins(0, 0, 0, 0)
-        self.checkBox_23 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_24 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_25 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_26 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_27 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_28 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_29 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_30 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_31 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_32 = QCheckBox(self.layout_widget_checkboxes_3)
-        self.checkBox_33 = QCheckBox(self.layout_widget_checkboxes_3)
-        checkbox_column_3 = (self.checkBox_23, self.checkBox_24, self.checkBox_25, self.checkBox_26, self.checkBox_27, self.checkBox_28,
-                             self.checkBox_29, self.checkBox_30, self.checkBox_31, self.checkBox_32, self.checkBox_33
-                             )
-        for checkbox in checkbox_column_3:
-            self.layout_checkboxes_3.addWidget(checkbox)
 
         self.label_note = QLabel(self.appswidget)
         self.label_note.setFont(self.font)
@@ -193,45 +145,139 @@ class Ui_MainWindow(QMainWindow):
 
     def retranslateUi(self):
         _translate = QCoreApplication.translate
+        QToolTip.setFont(self.font)
 
         self.setWindowTitle(_translate("Title", "PyDebloatX"))
         self.label_info.setText(_translate("Label", ""))
 
-        self.checkBox.setText(_translate("AppName", "3D Builder"))
-        self.checkBox_2.setText(_translate("AppName", "3D Viewer"))
-        self.checkBox_3.setText(_translate("AppName", "Alarms and Clock"))
-        self.checkBox_4.setText(_translate("AppName", "Calculator"))
-        self.checkBox_5.setText(_translate("AppName", "Calendar and Mail"))
-        self.checkBox_6.setText(_translate("AppName", "Camera"))
-        self.checkBox_7.setText(_translate("AppName", "Get Help"))
-        self.checkBox_8.setText(_translate("AppName", "Groove Music"))
-        self.checkBox_9.setText(_translate("AppName", "Maps"))
-        self.checkBox_10.setText(_translate("AppName", "Messaging"))
-        self.checkBox_11.setText(_translate("AppName", "Mixed Reality Portal"))
+        self.app_name_list = (
+            _translate("AppName", "3D Builder"),
+            _translate("AppName", "3D Viewer"),
+            _translate("AppName", "Alarms and Clock"),
+            _translate("AppName", "Calculator"),
+            _translate("AppName", "Calendar and Mail"),
+            _translate("AppName", "Camera"),
+            _translate("AppName", "Get Help"),
+            _translate("AppName", "Groove Music"),
+            _translate("AppName", "Maps"),
+            _translate("AppName", "Messaging"),
+            _translate("AppName", "Mixed Reality Portal"),
 
-        self.checkBox_12.setText(_translate("AppName", "Mobile Plans"))
-        self.checkBox_13.setText(_translate("AppName", "Money"))
-        self.checkBox_14.setText(_translate("AppName", "Movies && TV"))
-        self.checkBox_15.setText(_translate("AppName", "News"))
-        self.checkBox_16.setText(_translate("AppName", "Office"))
-        self.checkBox_17.setText(_translate("AppName", "OneNote"))
-        self.checkBox_18.setText(_translate("AppName", "Paint 3D"))
-        self.checkBox_19.setText(_translate("AppName", "People"))
-        self.checkBox_20.setText(_translate("AppName", "Photos"))
-        self.checkBox_21.setText(_translate("AppName", "Skype"))
-        self.checkBox_22.setText(_translate("AppName", "Snip && Sketch"))
+            _translate("AppName", "Mobile Plans"),
+            _translate("AppName", "Money"),
+            _translate("AppName", "Movies && TV"),
+            _translate("AppName", "News"),
+            _translate("AppName", "Office"),
+            _translate("AppName", "OneNote"),
+            _translate("AppName", "Paint 3D"),
+            _translate("AppName", "People"),
+            _translate("AppName", "Photos"),
+            _translate("AppName", "Skype"),
+            _translate("AppName", "Snip && Sketch"),
 
-        self.checkBox_23.setText(_translate("AppName", "Solitaire"))
-        self.checkBox_24.setText(_translate("AppName", "Sports"))
-        self.checkBox_25.setText(_translate("AppName", "Spotify"))
-        self.checkBox_26.setText(_translate("AppName", "Sticky Notes"))
-        self.checkBox_27.setText(_translate("AppName", "Tips"))
-        self.checkBox_28.setText(_translate("AppName", "Voice Recorder"))
-        self.checkBox_29.setText(_translate("AppName", "Weather"))
-        self.checkBox_30.setText(_translate("AppName", "Windows Feedback"))
-        self.checkBox_31.setText(_translate("AppName", "Xbox"))
-        self.checkBox_32.setText(_translate("AppName", "Xbox Game Bar"))
-        self.checkBox_33.setText(_translate("AppName", "Your Phone"))
+            _translate("AppName", "Solitaire"),
+            _translate("AppName", "Sports"),
+            _translate("AppName", "Spotify"),
+            _translate("AppName", "Sticky Notes"),
+            _translate("AppName", "Tips"),
+            _translate("AppName", "Voice Recorder"),
+            _translate("AppName", "Weather"),
+            _translate("AppName", "Windows Feedback"),
+            _translate("AppName", "Xbox"),
+            _translate("AppName", "Xbox Game Bar"),
+            _translate("AppName", "Your Phone")
+        )
+        self.tooltip_list = (
+            _translate('ToolTip', 'View, create, and personalize 3D objects.'),
+            _translate('ToolTip', 'View 3D models and animations in real-time.'),
+            _translate('ToolTip', 'A combination of alarm clock, world clock, timer, and stopwatch.'),
+            _translate('ToolTip', 'A calculator that includes standard, scientific, and programmer modes, as well as a unit converter.'),
+            _translate('ToolTip', 'Stay up to date with email and schedule managing.'),
+            _translate('ToolTip', 'Point and shoot to take pictures on Windows 10.'),
+            _translate('ToolTip', 'Provide a way to ask a question and get recommended solutions or contact assisted support.'),
+            _translate('ToolTip', 'Listen to music on Windows, iOS, and Android devices.'),
+            _translate('ToolTip', 'Search for places to get directions, business info, and reviews.'),
+            _translate('ToolTip', 'Quick, reliable SMS, MMS and RCS messaging from your phone.'),
+            _translate('ToolTip', 'Discover Windows Mixed Reality and dive into more than 3,000 games and VR experiences from Steam VR and Microsoft Store.'),
+
+            _translate('ToolTip', 'Sign up for a data plan and connect with mobile operators in your area. You will need a supported SIM card.'),
+            _translate('ToolTip', 'Finance calculators, currency exchange rates and commodity prices from around the world.'),
+            _translate('ToolTip', 'All your movies and TV shows, all in one place, on all your devices.'),
+            _translate('ToolTip', 'Deliver breaking news and trusted, in-depth reporting from the world\'s best journalists.'),
+            _translate('ToolTip', 'Find all your Office apps and files in one place.'),
+            _translate('ToolTip', 'Digital notebook for capturing and organizing everything across your devices.'),
+            _translate('ToolTip', 'Make 2D masterpieces or 3D models that you can play with from all angles.'),
+            _translate('ToolTip', 'Connect with all your friends, family, colleagues, and acquaintances in one place.'),
+            _translate('ToolTip', 'View and edit your photos and videos, make movies, and create albums.'),
+            _translate('ToolTip', 'Instant message, voice or video call application.'),
+            _translate('ToolTip', 'Quickly annotate screenshots, photos and other images and save, paste or share with other apps.'),
+
+            _translate('ToolTip', 'Solitaire is one of the most played computer card games of all time.'),
+            _translate('ToolTip', 'Live scores and in-depth game experiences for more than 150 leagues.'),
+            _translate('ToolTip', 'Play your favorite songs and albums free on Windows 10 with Spotify.'),
+            _translate('ToolTip', 'Create notes, type, ink or add a picture, add text formatting, or stick them to the desktop.'),
+            _translate('ToolTip', 'Provide users with information and tips about operating system features.'),
+            _translate('ToolTip', 'Record sounds, lectures, interviews, and other events.'),
+            _translate('ToolTip', 'Latest weather conditions, accurate 10-day and hourly forecasts.'),
+            _translate('ToolTip', 'Provide feedback about Windows and apps by sharing suggestions or problems.'),
+            _translate('ToolTip', 'Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass.'),
+            _translate('ToolTip', 'Instant access to widgets for screen capture and sharing, and chatting with Xbox friends.'),
+            _translate('ToolTip', 'Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.')
+        )
+        self.app_data_list = (
+            {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Microsoft3DViewer*", "link": "/?PFN=Microsoft.Microsoft3DViewer_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsAlarms*", "link": "/?PFN=Microsoft.WindowsAlarms_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsCalculator*", "link": "/?PFN=Microsoft.WindowsCalculator_8wekyb3d8bbwe", "size": 0},
+            {"name": "*microsoft.windowscommunicationsapps*", "link": "/?PFN=Microsoft.windowscommunicationsapps_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsCamera*", "link": "/?PFN=Microsoft.WindowsCamera_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.GetHelp*", "link": "/?PFN=Microsoft.Gethelp_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.ZuneMusic*", "link": "/?PFN=Microsoft.ZuneMusic_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsMaps*", "link": "/?PFN=Microsoft.WindowsMaps_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Messaging*", "link": "/?PFN=Microsoft.Messaging_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.MixedReality.Portal*", "link": "/?PFN=Microsoft.MixedReality.Portal_8wekyb3d8bbwe", "size": 0},
+
+            {"name": "*Microsoft.OneConnect*", "link": "?productId=9NBLGGH5PNB1", "size": 0},
+            {"name": "*Microsoft.BingFinance*", "link": "?productId=9WZDNCRFHV4V", "size": 0},
+            {"name": "*Microsoft.ZuneVideo*", "link": "/?PFN=Microsoft.ZuneVideo_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.BingNews*", "link": "/?PFN=Microsoft.BingNews_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.MicrosoftOfficeHub*", "link": "/?PFN=Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Office.OneNote*", "link": "/?PFN=Microsoft.Office.OneNote_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 0},
+            {"name": "*Microsoft.ScreenSketch*", "link": "/?PFN=Microsoft.ScreenSketch_8wekyb3d8bbwe", "size": 0},
+
+            {"name": "*Microsoft.MicrosoftSolitaireCollection*", "link": "/?PFN=Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.BingSports*", "link": "?productId=9WZDNCRFHVH4", "size": 0},
+            {"name": "*SpotifyAB.SpotifyMusic*", "link": "/?PFN=SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "size": 0},
+            {"name": "*Microsoft.MicrosoftStickyNotes*", "link": "/?PFN=Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Getstarted*", "link": "/?PFN=Microsoft.Getstarted_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsSoundRecorder*", "link": "/?PFN=Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.BingWeather*", "link": "/?PFN=Microsoft.BingWeather_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.WindowsFeedbackHub*", "link": "/?PFN=Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.GamingApp*", "link": "/?PFN=Microsoft.GamingApp_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Xbox*", "link": "/?PFN=Microsoft.XboxGameOverlay_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 0}
+        )
+
+        self.checkbox_list = []
+        for i in range(0, 33):
+            self.checkbox_list.append(QCheckBox())
+            if i >= 22:
+                self.layout_checkboxes_3.addWidget(self.checkbox_list[i])
+            elif i >= 11:
+                self.layout_checkboxes_2.addWidget(self.checkbox_list[i])
+            else:
+                self.layout_checkboxes.addWidget(self.checkbox_list[i])
+
+        self.apps_dict = {}
+        for i, checkbox in enumerate(self.checkbox_list):
+            checkbox.setText(self.app_name_list[i])
+            checkbox.setToolTip(self.tooltip_list[i])
+            checkbox.setFont(self.font)
+            self.apps_dict[checkbox] = self.app_data_list[i]
 
         self.label_note.setText(_translate("Label", ""))
         self.label_space.setText(_translate("Label", "Total amount of disk space:"))
@@ -241,40 +287,3 @@ class Ui_MainWindow(QMainWindow):
         self.button_deselect_all.setText(_translate("Button", "Deselect All"))
 
         self.button_uninstall.setText(_translate("Button", "Uninstall"))
-
-        QToolTip.setFont(self.font)
-        self.checkBox.setToolTip(_translate('ToolTip', 'View, create, and personalize 3D objects.'))
-        self.checkBox_2.setToolTip(_translate('ToolTip', 'View 3D models and animations in real-time.'))
-        self.checkBox_3.setToolTip(_translate('ToolTip', 'A combination of alarm clock, world clock, timer, and stopwatch.'))
-        self.checkBox_4.setToolTip(_translate('ToolTip', 'A calculator that includes standard, scientific, and programmer modes, as well as a unit converter.'))
-        self.checkBox_5.setToolTip(_translate('ToolTip', 'Stay up to date with email and schedule managing.'))
-        self.checkBox_6.setToolTip(_translate('ToolTip', 'Point and shoot to take pictures on Windows 10.'))
-        self.checkBox_7.setToolTip(_translate('ToolTip', 'Provide a way to ask a question and get recommended solutions or contact assisted support.'))
-        self.checkBox_8.setToolTip(_translate('ToolTip', 'Listen to music on Windows, iOS, and Android devices.'))
-        self.checkBox_9.setToolTip(_translate('ToolTip', 'Search for places to get directions, business info, and reviews.'))
-        self.checkBox_10.setToolTip(_translate('ToolTip', 'Quick, reliable SMS, MMS and RCS messaging from your phone.'))
-        self.checkBox_11.setToolTip(_translate('ToolTip', 'Discover Windows Mixed Reality and dive into more than 3,000 games and VR experiences from Steam VR and Microsoft Store.'))
-
-        self.checkBox_12.setToolTip(_translate('ToolTip', 'Sign up for a data plan and connect with mobile operators in your area. You will need a supported SIM card.'))
-        self.checkBox_13.setToolTip(_translate('ToolTip', 'Finance calculators, currency exchange rates and commodity prices from around the world.'))
-        self.checkBox_14.setToolTip(_translate('ToolTip', 'All your movies and TV shows, all in one place, on all your devices.'))
-        self.checkBox_15.setToolTip(_translate('ToolTip', 'Deliver breaking news and trusted, in-depth reporting from the world\'s best journalists.'))
-        self.checkBox_16.setToolTip(_translate('ToolTip', 'Find all your Office apps and files in one place.'))
-        self.checkBox_17.setToolTip(_translate('ToolTip', 'Digital notebook for capturing and organizing everything across your devices.'))
-        self.checkBox_18.setToolTip(_translate('ToolTip', 'Make 2D masterpieces or 3D models that you can play with from all angles.'))
-        self.checkBox_19.setToolTip(_translate('ToolTip', 'Connect with all your friends, family, colleagues, and acquaintances in one place.'))
-        self.checkBox_20.setToolTip(_translate('ToolTip', 'View and edit your photos and videos, make movies, and create albums.'))
-        self.checkBox_21.setToolTip(_translate('ToolTip', 'Instant message, voice or video call application.'))
-        self.checkBox_22.setToolTip(_translate('ToolTip', 'Quickly annotate screenshots, photos and other images and save, paste or share with other apps.'))
-
-        self.checkBox_23.setToolTip(_translate('ToolTip', 'Solitaire is one of the most played computer card games of all time.'))
-        self.checkBox_24.setToolTip(_translate('ToolTip', 'Live scores and in-depth game experiences for more than 150 leagues.'))
-        self.checkBox_25.setToolTip(_translate('ToolTip', 'Play your favorite songs and albums free on Windows 10 with Spotify.'))
-        self.checkBox_26.setToolTip(_translate('ToolTip', 'Create notes, type, ink or add a picture, add text formatting, or stick them to the desktop.'))
-        self.checkBox_27.setToolTip(_translate('ToolTip', 'Provide users with information and tips about operating system features.'))
-        self.checkBox_28.setToolTip(_translate('ToolTip', 'Record sounds, lectures, interviews, and other events.'))
-        self.checkBox_29.setToolTip(_translate('ToolTip', 'Latest weather conditions, accurate 10-day and hourly forecasts.'))
-        self.checkBox_30.setToolTip(_translate('ToolTip', 'Provide feedback about Windows and apps by sharing suggestions or problems.'))
-        self.checkBox_31.setToolTip(_translate('ToolTip', 'Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass.'))
-        self.checkBox_32.setToolTip(_translate('ToolTip', 'Instant access to widgets for screen capture and sharing, and chatting with Xbox friends.'))
-        self.checkBox_33.setToolTip(_translate('ToolTip', 'Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.'))
