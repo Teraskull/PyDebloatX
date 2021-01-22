@@ -2,11 +2,14 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTrans
     QObject, QRunnable
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from PyQt5.QtWidgets import QApplication, QMessageBox
+from requests.exceptions import ConnectionError
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 from os.path import getsize, join
+from packaging import version
 import webbrowser
 import subprocess
+import requests
 import img_res  # skipcq: PYL-W0611
 import json
 import sys
@@ -68,11 +71,16 @@ class Logic():
         ui.about_bind.activated.connect(self.app_about)
         ui.quit_btn.clicked.connect(self.app_quit)
         ui.quit_bind.activated.connect(self.app_quit)
+        ui.update_btn.clicked.connect(self.check_updates)
         about.button_quit_about.clicked.connect(about.close)
         for checkbox in ui.checkbox_list:
             checkbox.clicked.connect(self.enable_buttons)
 
         self.app_refresh()
+        try:
+            self.check_updates()
+        except ConnectionError:
+            pass
 
     def store_menu(self):
         """Toggle between Main view and Store view."""
@@ -100,6 +108,16 @@ class Logic():
                 i.setChecked(True)
             for widget in widgets:
                 widget.hide()
+
+    def check_updates(self):
+        api_url = 'https://api.github.com/repos/Teraskull/PyDebloatX/releases/latest'
+        api_data = requests.get(api_url).json()
+        latest_version = api_data['tag_name']
+        if version.parse(latest_version) > version.parse(__version__):
+            ui.update_btn.show()
+            msg_update = _translate('MessageBox', 'PyDebloatX {0} is available.\n\nVisit download page?').format(latest_version)
+            if self.message_box(msg_update, 2) == QMessageBox.Yes:
+                webbrowser.open_new('https://github.com/Teraskull/PyDebloatX/releases')
 
     def app_refresh(self):
         """Create threads to refresh list of installed apps."""

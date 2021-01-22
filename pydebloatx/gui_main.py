@@ -60,6 +60,13 @@ class Ui_MainWindow(QMainWindow):
         self.about_btn.setIconSize(QSize(24, 24))
         self.about_bind = QShortcut(QKeySequence('Ctrl+A'), self)
 
+        self.update_btn = QPushButton(self.sidebar)
+        self.update_btn.setGeometry(QRect(0, 204, 51, 51))
+        self.update_btn.setProperty('class', 'sidebar_btns')
+        self.update_btn.setIcon(QIcon(':/icon/update_icon.png'))
+        self.update_btn.setIconSize(QSize(24, 24))
+        self.update_btn.hide()
+
         self.quit_btn = QPushButton(self.sidebar)
         self.quit_btn.setGeometry(QRect(0, 420, 51, 51))
         self.quit_btn.setProperty('class', 'sidebar_btns_quit')
