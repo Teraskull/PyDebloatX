@@ -39,13 +39,15 @@
 
 
 ## Table of contents
-* [Shortcuts](#shortcuts)
-* [Features](#features)
-* [Dependencies](#dependencies)
-* [Building](#building)
-* [Translating](#translating)
-* [Supported Languages](#supported-languages)
-* [License](#license)
+- [Table of contents](#table-of-contents)
+- [Shortcuts](#shortcuts)
+- [Features](#features)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Building](#building)
+- [Translating](#translating)
+- [Supported Languages](#supported-languages)
+- [License](#license)
 
 
 ## Shortcuts
@@ -64,10 +66,9 @@
 
 ## Dependencies
 
-* PyQt5
-```batch
-pip install -U pyqt5
-```
+* [PyQt5](https://pypi.org/project/PyQt5/)
+* [requests](https://pypi.org/project/requests/)
+* [packaging](https://pypi.org/project/packaging/)
 
 ## Usage
 
