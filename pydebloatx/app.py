@@ -2,7 +2,6 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTrans
     QObject, QRunnable
 from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from requests.exceptions import ConnectionError
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 from os.path import getsize, join
@@ -79,7 +78,7 @@ class Logic():
         self.app_refresh()
         try:
             self.check_updates()
-        except ConnectionError:
+        except requests.exceptions.ConnectionError:
             pass
 
     def store_menu(self):
@@ -323,10 +322,9 @@ class CheckApps(QThread):
             else:
                 for item in names_list:
                     name = item["Name"]
-                    if name.find(temp_name, 0, len(name)) != -1:
-                        if name.find("XboxGameCallableUI", 0, len(name)) == -1:
-                            flag = True
-                            self.apps_dict[i]["size"] += get_dir_size(item["InstallLocation"]) / 1024 / 1024
+                    if name.find(temp_name, 0, len(name)) != -1 and name.find("XboxGameCallableUI", 0, len(name)) == -1:
+                        flag = True
+                        self.apps_dict[i]["size"] += get_dir_size(item["InstallLocation"]) / 1024 / 1024
 
             if flag:
                 self.app_signal.emit(i)
