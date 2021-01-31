@@ -76,10 +76,7 @@ class Logic():
             checkbox.clicked.connect(self.enable_buttons)
 
         self.app_refresh()
-        try:
-            self.check_updates()
-        except requests.exceptions.ConnectionError:
-            pass
+        self.check_updates()
 
     def store_menu(self):
         """Toggle between Main view and Store view."""
@@ -109,9 +106,13 @@ class Logic():
                 widget.hide()
 
     def check_updates(self):
-        api_url = 'https://api.github.com/repos/Teraskull/PyDebloatX/releases/latest'
-        api_data = requests.get(api_url).json()
-        latest_version = api_data['tag_name']
+        """Check for updates."""
+        self.check_updates_thread = CheckUpdates()
+        self.check_updates_thread.version_signal.connect(self.show_updates)
+        self.check_updates_thread.start()
+
+    def show_updates(self, latest_version):
+        """Show updates."""
         if version.parse(latest_version) > version.parse(__version__):
             ui.update_btn.show()
             msg_update = _translate('MessageBox', 'PyDebloatX {0} is available.\n\nVisit download page?').format(latest_version)
@@ -289,6 +290,22 @@ class Logic():
                 self.new_thread_list[item].signals.progress_signal.connect(self.uninstall_progress)
             self.newPoolThread = RunThreadPool(self.new_thread_list)
             self.newPoolThread.start()
+
+
+class CheckUpdates(QThread):
+    """Check for updates and get the latest version number."""
+    version_signal = pyqtSignal(str)
+
+    def run(self):
+        try:
+            api_url = 'https://api.github.com/repos/Teraskull/PyDebloatX/releases/latest'
+            api_data = requests.get(api_url, timeout=(5, 0.7)).json()
+            # API rate limit exceeded (https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting)
+            if 'tag_name' in api_data:
+                latest_version = api_data['tag_name']
+                self.version_signal.emit(latest_version)
+        except requests.exceptions.RequestException:
+            pass
 
 
 class CheckApps(QThread):
