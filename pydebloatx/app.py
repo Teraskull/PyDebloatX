@@ -296,9 +296,6 @@ class CheckUpdates(QThread):
     """Check for updates and get the latest version number."""
     version_signal = pyqtSignal(str)
 
-    def __init__(self):
-        super().__init__()
-
     def run(self):
         try:
             api_url = 'https://api.github.com/repos/Teraskull/PyDebloatX/releases/latest'
