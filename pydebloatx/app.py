@@ -78,7 +78,7 @@ class Logic():
         self.app_refresh()
         try:
             self.check_updates()
-        except requests.exceptions.ConnectionError:
+        except requests.exceptions.RequestException:
             pass
 
     def store_menu(self):
@@ -110,7 +110,7 @@ class Logic():
 
     def check_updates(self):
         api_url = 'https://api.github.com/repos/Teraskull/PyDebloatX/releases/latest'
-        api_data = requests.get(api_url).json()
+        api_data = requests.get(api_url, timeout=(5, 0.7)).json()
         latest_version = api_data['tag_name']
         if version.parse(latest_version) > version.parse(__version__):
             ui.update_btn.show()
