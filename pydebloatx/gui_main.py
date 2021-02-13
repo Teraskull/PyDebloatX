@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import QFrame, QShortcut, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, \
-    QHBoxLayout, QProgressBar, QToolTip
-from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
-from PyQt5.QtGui import QIcon, QKeySequence, QFont
+from PySide6.QtWidgets import QFrame, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, \
+    QProgressBar, QToolTip
+from PySide6.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
+from PySide6.QtGui import QIcon, QKeySequence, QFont, QShortcut
 import sys
 import os
 
@@ -151,85 +151,84 @@ class Ui_MainWindow(QMainWindow):
         QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
-        _translate = QCoreApplication.translate
         QToolTip.setFont(self.font)
 
-        self.setWindowTitle(_translate("Title", "PyDebloatX"))
-        self.label_info.setText(_translate("Label", ""))
+        self.setWindowTitle(QCoreApplication.translate("Title", "PyDebloatX"))
+        self.label_info.setText(QCoreApplication.translate("Label", ""))
 
         self.app_name_list = (
-            _translate("AppName", "3D Builder"),
-            _translate("AppName", "3D Viewer"),
-            _translate("AppName", "Alarms and Clock"),
-            _translate("AppName", "Calculator"),
-            _translate("AppName", "Calendar and Mail"),
-            _translate("AppName", "Camera"),
-            _translate("AppName", "Feedback Hub"),
-            _translate("AppName", "Get Help"),
-            _translate("AppName", "Groove Music"),
-            _translate("AppName", "Maps"),
-            _translate("AppName", "Messaging"),
+            QCoreApplication.translate("AppName", "3D Builder"),
+            QCoreApplication.translate("AppName", "3D Viewer"),
+            QCoreApplication.translate("AppName", "Alarms and Clock"),
+            QCoreApplication.translate("AppName", "Calculator"),
+            QCoreApplication.translate("AppName", "Calendar and Mail"),
+            QCoreApplication.translate("AppName", "Camera"),
+            QCoreApplication.translate("AppName", "Feedback Hub"),
+            QCoreApplication.translate("AppName", "Get Help"),
+            QCoreApplication.translate("AppName", "Groove Music"),
+            QCoreApplication.translate("AppName", "Maps"),
+            QCoreApplication.translate("AppName", "Messaging"),
 
-            _translate("AppName", "Mixed Reality Portal"),
-            _translate("AppName", "Mobile Plans"),
-            _translate("AppName", "Money"),
-            _translate("AppName", "Movies && TV"),
-            _translate("AppName", "News"),
-            _translate("AppName", "Office"),
-            _translate("AppName", "OneNote"),
-            _translate("AppName", "Paint 3D"),
-            _translate("AppName", "People"),
-            _translate("AppName", "Photos"),
-            _translate("AppName", "Skype"),
+            QCoreApplication.translate("AppName", "Mixed Reality Portal"),
+            QCoreApplication.translate("AppName", "Mobile Plans"),
+            QCoreApplication.translate("AppName", "Money"),
+            QCoreApplication.translate("AppName", "Movies && TV"),
+            QCoreApplication.translate("AppName", "News"),
+            QCoreApplication.translate("AppName", "Office"),
+            QCoreApplication.translate("AppName", "OneNote"),
+            QCoreApplication.translate("AppName", "Paint 3D"),
+            QCoreApplication.translate("AppName", "People"),
+            QCoreApplication.translate("AppName", "Photos"),
+            QCoreApplication.translate("AppName", "Skype"),
 
-            _translate("AppName", "Snip && Sketch"),
-            _translate("AppName", "Solitaire"),
-            _translate("AppName", "Sports"),
-            _translate("AppName", "Spotify"),
-            _translate("AppName", "Sticky Notes"),
-            _translate("AppName", "Tips"),
-            _translate("AppName", "Voice Recorder"),
-            _translate("AppName", "Weather"),
-            _translate("AppName", "Xbox"),
-            _translate("AppName", "Xbox Game Bar"),
-            _translate("AppName", "Your Phone")
+            QCoreApplication.translate("AppName", "Snip && Sketch"),
+            QCoreApplication.translate("AppName", "Solitaire"),
+            QCoreApplication.translate("AppName", "Sports"),
+            QCoreApplication.translate("AppName", "Spotify"),
+            QCoreApplication.translate("AppName", "Sticky Notes"),
+            QCoreApplication.translate("AppName", "Tips"),
+            QCoreApplication.translate("AppName", "Voice Recorder"),
+            QCoreApplication.translate("AppName", "Weather"),
+            QCoreApplication.translate("AppName", "Xbox"),
+            QCoreApplication.translate("AppName", "Xbox Game Bar"),
+            QCoreApplication.translate("AppName", "Your Phone")
         )
         self.tooltip_list = (
-            _translate('ToolTip', 'View, create, and personalize 3D objects.'),
-            _translate('ToolTip', 'View 3D models and animations in real-time.'),
-            _translate('ToolTip', 'A combination of alarm clock, world clock, timer, and stopwatch.'),
-            _translate('ToolTip', 'A calculator that includes standard, scientific, and programmer modes, as well as a unit converter.'),
-            _translate('ToolTip', 'Stay up to date with email and schedule managing.'),
-            _translate('ToolTip', 'Point and shoot to take pictures on Windows 10.'),
-            _translate('ToolTip', 'Provide feedback about Windows and apps by sharing suggestions or problems.'),
-            _translate('ToolTip', 'Provide a way to ask a question and get recommended solutions or contact assisted support.'),
-            _translate('ToolTip', 'Listen to music on Windows, iOS, and Android devices.'),
-            _translate('ToolTip', 'Search for places to get directions, business info, and reviews.'),
-            _translate('ToolTip', 'Quick, reliable SMS, MMS and RCS messaging from your phone.'),
+            QCoreApplication.translate('ToolTip', 'View, create, and personalize 3D objects.'),
+            QCoreApplication.translate('ToolTip', 'View 3D models and animations in real-time.'),
+            QCoreApplication.translate('ToolTip', 'A combination of alarm clock, world clock, timer, and stopwatch.'),
+            QCoreApplication.translate('ToolTip', 'A calculator that includes standard, scientific, and programmer modes, as well as a unit converter.'),
+            QCoreApplication.translate('ToolTip', 'Stay up to date with email and schedule managing.'),
+            QCoreApplication.translate('ToolTip', 'Point and shoot to take pictures on Windows 10.'),
+            QCoreApplication.translate('ToolTip', 'Provide feedback about Windows and apps by sharing suggestions or problems.'),
+            QCoreApplication.translate('ToolTip', 'Provide a way to ask a question and get recommended solutions or contact assisted support.'),
+            QCoreApplication.translate('ToolTip', 'Listen to music on Windows, iOS, and Android devices.'),
+            QCoreApplication.translate('ToolTip', 'Search for places to get directions, business info, and reviews.'),
+            QCoreApplication.translate('ToolTip', 'Quick, reliable SMS, MMS and RCS messaging from your phone.'),
 
-            _translate('ToolTip', 'Discover Windows Mixed Reality and dive into more than 3,000 games and VR experiences from Steam VR and Microsoft Store.'),
-            _translate('ToolTip', 'Sign up for a data plan and connect with mobile operators in your area. You will need a supported SIM card.'),
-            _translate('ToolTip', 'Finance calculators, currency exchange rates and commodity prices from around the world.'),
-            _translate('ToolTip', 'All your movies and TV shows, all in one place, on all your devices.'),
-            _translate('ToolTip', 'Deliver breaking news and trusted, in-depth reporting from the world\'s best journalists.'),
-            _translate('ToolTip', 'Find all your Office apps and files in one place.'),
-            _translate('ToolTip', 'Digital notebook for capturing and organizing everything across your devices.'),
-            _translate('ToolTip', 'Make 2D masterpieces or 3D models that you can play with from all angles.'),
-            _translate('ToolTip', 'Connect with all your friends, family, colleagues, and acquaintances in one place.'),
-            _translate('ToolTip', 'View and edit your photos and videos, make movies, and create albums.'),
-            _translate('ToolTip', 'Instant message, voice or video call application.'),
+            QCoreApplication.translate('ToolTip', 'Discover Windows Mixed Reality and dive into more than 3,000 games and VR experiences from Steam VR and Microsoft Store.'),
+            QCoreApplication.translate('ToolTip', 'Sign up for a data plan and connect with mobile operators in your area. You will need a supported SIM card.'),
+            QCoreApplication.translate('ToolTip', 'Finance calculators, currency exchange rates and commodity prices from around the world.'),
+            QCoreApplication.translate('ToolTip', 'All your movies and TV shows, all in one place, on all your devices.'),
+            QCoreApplication.translate('ToolTip', 'Deliver breaking news and trusted, in-depth reporting from the world\'s best journalists.'),
+            QCoreApplication.translate('ToolTip', 'Find all your Office apps and files in one place.'),
+            QCoreApplication.translate('ToolTip', 'Digital notebook for capturing and organizing everything across your devices.'),
+            QCoreApplication.translate('ToolTip', 'Make 2D masterpieces or 3D models that you can play with from all angles.'),
+            QCoreApplication.translate('ToolTip', 'Connect with all your friends, family, colleagues, and acquaintances in one place.'),
+            QCoreApplication.translate('ToolTip', 'View and edit your photos and videos, make movies, and create albums.'),
+            QCoreApplication.translate('ToolTip', 'Instant message, voice or video call application.'),
 
-            _translate('ToolTip', 'Quickly annotate screenshots, photos and other images and save, paste or share with other apps.'),
-            _translate('ToolTip', 'Solitaire is one of the most played computer card games of all time.'),
-            _translate('ToolTip', 'Live scores and in-depth game experiences for more than 150 leagues.'),
-            _translate('ToolTip', 'Play your favorite songs and albums free on Windows 10 with Spotify.'),
-            _translate('ToolTip', 'Create notes, type, ink or add a picture, add text formatting, or stick them to the desktop.'),
-            _translate('ToolTip', 'Provide users with information and tips about operating system features.'),
-            _translate('ToolTip', 'Record sounds, lectures, interviews, and other events.'),
-            _translate('ToolTip', 'Latest weather conditions, accurate 10-day and hourly forecasts.'),
-            _translate('ToolTip', 'Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass.'),
-            _translate('ToolTip', 'Instant access to widgets for screen capture and sharing, and chatting with Xbox friends.'),
-            _translate('ToolTip', 'Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.')
+            QCoreApplication.translate('ToolTip', 'Quickly annotate screenshots, photos and other images and save, paste or share with other apps.'),
+            QCoreApplication.translate('ToolTip', 'Solitaire is one of the most played computer card games of all time.'),
+            QCoreApplication.translate('ToolTip', 'Live scores and in-depth game experiences for more than 150 leagues.'),
+            QCoreApplication.translate('ToolTip', 'Play your favorite songs and albums free on Windows 10 with Spotify.'),
+            QCoreApplication.translate('ToolTip', 'Create notes, type, ink or add a picture, add text formatting, or stick them to the desktop.'),
+            QCoreApplication.translate('ToolTip', 'Provide users with information and tips about operating system features.'),
+            QCoreApplication.translate('ToolTip', 'Record sounds, lectures, interviews, and other events.'),
+            QCoreApplication.translate('ToolTip', 'Latest weather conditions, accurate 10-day and hourly forecasts.'),
+            QCoreApplication.translate('ToolTip', 'Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass.'),
+            QCoreApplication.translate('ToolTip', 'Instant access to widgets for screen capture and sharing, and chatting with Xbox friends.'),
+            QCoreApplication.translate('ToolTip', 'Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.')
         )
         self.app_data_list = (
             {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 0},
@@ -286,11 +285,11 @@ class Ui_MainWindow(QMainWindow):
             checkbox.setFont(self.font)
             self.apps_dict[checkbox] = self.app_data_list[i]
 
-        self.label_note.setText(_translate("Label", ""))
-        self.label_space.setText(_translate("Label", "Total amount of disk space:"))
-        self.label_size.setText(_translate("Label", "0 MB"))
+        self.label_note.setText(QCoreApplication.translate("Label", ""))
+        self.label_space.setText(QCoreApplication.translate("Label", "Total amount of disk space:"))
+        self.label_size.setText(QCoreApplication.translate("Label", "0 MB"))
 
-        self.button_select_all.setText(_translate("Button", "Select All"))
-        self.button_deselect_all.setText(_translate("Button", "Deselect All"))
+        self.button_select_all.setText(QCoreApplication.translate("Button", "Select All"))
+        self.button_deselect_all.setText(QCoreApplication.translate("Button", "Deselect All"))
 
-        self.button_uninstall.setText(_translate("Button", "Uninstall"))
+        self.button_uninstall.setText(QCoreApplication.translate("Button", "Uninstall"))

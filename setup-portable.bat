@@ -55,9 +55,9 @@ echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo [5/%steps%] Creating executable...
 echo.
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pip show pyqt5 | findstr "Location:" > "%temp%\set_var.tmp"
+pip show PySide6 | findstr "Location:" > "%temp%\set_var.tmp"
 set /P Location=<"%temp%\set_var.tmp"
-set dll_path=%Location:~10,-13%site-packages\PyQt5\Qt\bin\
+set dll_path=%Location:~10,-13%site-packages\PySide6\
 ren %dll_path%opengl32sw.dll opengl32sw_bak.dll
 
 pyinstaller --noconfirm --onefile --name "PyDebloatX_portable" --windowed --icon "pydebloatx/icon.ico" --add-data "pydebloatx/icon.ico;." --add-data "pydebloatx/style.css;." --add-data "pydebloatx/Language/*.qm;Language" "pydebloatx/app.py"

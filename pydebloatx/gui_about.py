@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
-from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PySide6.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
+from PySide6.QtCore import Qt, QRect, QCoreApplication, QMetaObject
+from PySide6.QtGui import QIcon, QFont, QPixmap
 import sys
 import os
 
@@ -75,10 +75,9 @@ class Ui_AboutWindow(QMainWindow):
         QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
-        _translate = QCoreApplication.translate
-        self.setWindowTitle(_translate("AboutWindow", "About"))
-        self.label_title.setText(_translate("AboutWindow", "PyDebloatX"))
-        self.label_version.setText(_translate("AboutWindow", ""))
-        self.label_copyright.setText(_translate("AboutWindow", "Copyright") + " © 2020-2021")
-        self.label_author.setText(_translate("AboutWindow", "Anton Grouchtchak."))
-        self.button_quit_about.setText(_translate("AboutWindow", "OK"))
+        self.setWindowTitle(QCoreApplication.translate("AboutWindow", "About"))
+        self.label_title.setText(QCoreApplication.translate("AboutWindow", "PyDebloatX"))
+        self.label_version.setText(QCoreApplication.translate("AboutWindow", ""))
+        self.label_copyright.setText(QCoreApplication.translate("AboutWindow", "Copyright") + " © 2020-2021")
+        self.label_author.setText(QCoreApplication.translate("AboutWindow", "Anton Grouchtchak."))
+        self.button_quit_about.setText(QCoreApplication.translate("AboutWindow", "OK"))

@@ -1,7 +1,7 @@
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QPoint, QRect, QLocale, QTranslator, QCoreApplication, QThreadPool, \
+from PySide6.QtCore import Qt, QThread, Signal, QPoint, QRect, QLocale, QTranslator, QCoreApplication, QThreadPool, \
     QObject, QRunnable
-from PyQt5.QtGui import QCursor, QPixmap, QIcon, QFont
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PySide6.QtGui import QCursor, QPixmap, QIcon, QFont
+from PySide6.QtWidgets import QApplication, QMessageBox
 from gui_about import Ui_AboutWindow
 from gui_main import Ui_MainWindow
 from os.path import getsize, join
@@ -16,8 +16,6 @@ import os
 
 
 __version__ = "1.10.0"
-
-_translate = QCoreApplication.translate
 
 
 def resource_path(relative_path):
@@ -37,19 +35,19 @@ def get_dir_size(dir_path):
 
 class Logic():
     def __init__(self):
-        about.label_version.setText(_translate("Label", "Version") + f" {__version__}")
+        about.label_version.setText(QCoreApplication.translate("Label", "Version") + f" {__version__}")
         self.total_size = 0
         self.is_link_menu = False
-        self.main_title = _translate('Label', 'Select the default Windows 10 apps to uninstall:\n(Hover over app names to view description)')
-        self.store_title = _translate('Label', 'Click on an app name to view it in Microsoft Store.')
-        self.refresh_title = _translate('Label', 'Refreshing list of installed apps...')
-        self.size_text = _translate('Label', 'MB')
-        self.github_dialog = _translate('MessageBox', 'Visit the PyDebloatX GitHub page?')
-        self.quit_dialog = _translate('MessageBox', 'Quit PyDebloatX?')
-        self.dialog_yes = _translate('Button', 'Yes')
-        self.dialog_no = _translate('Button', 'No')
-        self.dialog_ok = _translate('Button', 'OK')
-        self.success_text = _translate('MessageBox', 'All selected apps were successfully uninstalled.')
+        self.main_title = QCoreApplication.translate('Label', 'Select the default Windows 10 apps to uninstall:\n(Hover over app names to view description)')
+        self.store_title = QCoreApplication.translate('Label', 'Click on an app name to view it in Microsoft Store.')
+        self.refresh_title = QCoreApplication.translate('Label', 'Refreshing list of installed apps...')
+        self.size_text = QCoreApplication.translate('Label', 'MB')
+        self.github_dialog = QCoreApplication.translate('MessageBox', 'Visit the PyDebloatX GitHub page?')
+        self.quit_dialog = QCoreApplication.translate('MessageBox', 'Quit PyDebloatX?')
+        self.dialog_yes = QCoreApplication.translate('Button', 'Yes')
+        self.dialog_no = QCoreApplication.translate('Button', 'No')
+        self.dialog_ok = QCoreApplication.translate('Button', 'OK')
+        self.success_text = QCoreApplication.translate('MessageBox', 'All selected apps were successfully uninstalled.')
         self.main_widgets = (ui.refresh_btn, ui.refresh_bind, ui.store_btn, ui.store_bind, ui.button_select_all, ui.button_deselect_all, ui.button_uninstall)
         self.apps_dict = ui.apps_dict
 
@@ -115,7 +113,7 @@ class Logic():
         """Show updates."""
         if version.parse(latest_version) > version.parse(__version__):
             ui.update_btn.show()
-            msg_update = _translate('MessageBox', 'PyDebloatX {0} is available.\n\nVisit download page?').format(latest_version)
+            msg_update = QCoreApplication.translate('MessageBox', 'PyDebloatX {0} is available.\n\nVisit download page?').format(latest_version)
             if self.message_box(msg_update, 2) == QMessageBox.Yes:
                 webbrowser.open_new('https://github.com/Teraskull/PyDebloatX/releases')
 
@@ -173,7 +171,7 @@ class Logic():
         self.installed_apps.remove(i)
         app_name = i.text().replace(' && ', ' & ')
         apps_left = len(self.selected_apps) - self.progress + 1
-        ui.label_refresh.setText(_translate('Label', 'Uninstalling {0}, %n app(s) left...', '', apps_left).format(app_name))
+        ui.label_refresh.setText(QCoreApplication.translate('Label', 'Uninstalling {0}, %n app(s) left...', '', apps_left).format(app_name))
         ui.label_refresh.show()
         if self.progress >= len(self.selected_apps):
             self.thread_finished()
@@ -270,8 +268,8 @@ class Logic():
     def uninstall(self):
         """Create threads to uninstall selected apps after confirmation."""
         apps = len(self.selected_apps)
-        confirm_uninstall = _translate('MessageBox', 'Uninstall %n app(s)?', '', apps)
-        space_freed_text = _translate('MessageBox', 'MB of space will be freed.')
+        confirm_uninstall = QCoreApplication.translate('MessageBox', 'Uninstall %n app(s)?', '', apps)
+        space_freed_text = QCoreApplication.translate('MessageBox', 'MB of space will be freed.')
         msg_uninstall = f"{confirm_uninstall}\n\n{self.total_size:.2f} {space_freed_text}"
 
         if self.message_box(msg_uninstall, 2) == QMessageBox.Yes:
@@ -294,7 +292,7 @@ class Logic():
 
 class CheckUpdates(QThread):
     """Check for updates and get the latest version number."""
-    version_signal = pyqtSignal(str)
+    version_signal = Signal(str)
 
     def run(self):
         try:
@@ -310,8 +308,8 @@ class CheckUpdates(QThread):
 
 class CheckApps(QThread):
     """Refresh list of installed apps."""
-    progress_signal = pyqtSignal()
-    app_signal = pyqtSignal(object)
+    progress_signal = Signal()
+    app_signal = Signal(object)
 
     def __init__(self, apps_dict):
         super().__init__()
@@ -364,7 +362,7 @@ class RunThreadPool(QThread):
 
 class UninstallSignals(QObject):
     """PyQt signal emitting class for uninstalling apps."""
-    progress_signal = pyqtSignal(object)
+    progress_signal = Signal(object)
 
 
 class UninstallApps(QRunnable):
