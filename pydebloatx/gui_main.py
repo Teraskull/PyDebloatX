@@ -88,10 +88,10 @@ class Ui_MainWindow(QMainWindow):
 
         self.label_info = QLabel(self.appswidget)
         self.label_info.setFont(self.font)
-        self.label_info.setGeometry(QRect(20, 15, 441, 30))
+        self.label_info.setGeometry(QRect(20, 10, 441, 30))
 
         self.progressbar = QProgressBar(self.appswidget)
-        self.progressbar.setGeometry(QRect(20, 35, 441, 20))
+        self.progressbar.setGeometry(QRect(20, 30, 441, 20))
 
         self.layout_widget_checkboxes = QWidget(self.appswidget)
         self.layout_widget_checkboxes.setGeometry(QRect(20, 55, 155, 311))
