@@ -66,7 +66,7 @@
 
 ## Dependencies
 
-* [PyQt5](https://pypi.org/project/PyQt5/)
+* [PySide6](https://pypi.org/project/PySide6/)
 * [requests](https://pypi.org/project/requests/)
 * [packaging](https://pypi.org/project/packaging/)
 
@@ -90,14 +90,12 @@ Run `setup.bat` to build the executable.
 
 Run `setup-portable.bat` to build a one-file portable executable.
 
-To build 32-bit binaries, install 32-bit Python (3.7+).
-
 
 ## Translating
 
 Run the following command to create the translation file:
 ```batch
-pylupdate5 gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
+pyside6-lupdate gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
 ```
 
 Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For example, `en_US`.
@@ -107,17 +105,13 @@ List of locale codes is available [here](http://www.lingoes.net/en/translator/la
 To compile `.ts` into `.qm`, use `linguist.exe`:
 
 ```batch
-pip install -U qt5-applications
-```
-
-```batch
-pip show qt5-applications | findstr "Location:"
+pip show PySide6 | findstr "Location:"
 ```
 
 Splice the output path above with:
 
 ```batch
-"\qt5_applications\Qt\bin\linguist.exe"
+"\PySide6\linguist.exe"
 ```
 
 ## Supported Languages
