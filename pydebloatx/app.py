@@ -15,7 +15,7 @@ import sys
 import os
 
 
-__version__ = "1.10.0"
+__version__ = "1.11.0"
 
 
 def resource_path(relative_path):
