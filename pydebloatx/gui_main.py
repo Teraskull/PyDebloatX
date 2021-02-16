@@ -210,7 +210,7 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("ToolTip", "Sign up for a data plan and connect with mobile operators in your area. You will need a supported SIM card."),
             QCoreApplication.translate("ToolTip", "Finance calculators, currency exchange rates and commodity prices from around the world."),
             QCoreApplication.translate("ToolTip", "All your movies and TV shows, all in one place, on all your devices."),
-            QCoreApplication.translate("ToolTip", "Deliver breaking news and trusted, in-depth reporting from the world\"s best journalists."),
+            QCoreApplication.translate("ToolTip", "Deliver breaking news and trusted, in-depth reporting from the world\'s best journalists."),
             QCoreApplication.translate("ToolTip", "Find all your Office apps and files in one place."),
             QCoreApplication.translate("ToolTip", "Digital notebook for capturing and organizing everything across your devices."),
             QCoreApplication.translate("ToolTip", "Make 2D masterpieces or 3D models that you can play with from all angles."),
