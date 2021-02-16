@@ -108,10 +108,6 @@ class Ui_MainWindow(QMainWindow):
         self.layout_checkboxes_3 = QVBoxLayout(self.layout_widget_checkboxes_3)
         self.layout_checkboxes_3.setContentsMargins(0, 0, 0, 0)
 
-        self.label_note = QLabel(self.appswidget)
-        self.label_note.setFont(self.font)
-        self.label_note.setGeometry(QRect(20, 370, 350, 16))
-
         self.layout_widget_labels = QWidget(self.appswidget)
         self.layout_widget_labels.setGeometry(QRect(20, 390, 350, 16))
         self.layout_labels = QHBoxLayout(self.layout_widget_labels)
@@ -294,7 +290,6 @@ class Ui_MainWindow(QMainWindow):
             checkbox.setFont(self.font)
             self.apps_dict[checkbox] = self.app_data_list[i]
 
-        self.label_note.setText(QCoreApplication.translate("Label", ""))
         self.label_space.setText(QCoreApplication.translate("Label", "Total amount of disk space:"))
         self.label_size.setText(QCoreApplication.translate("Label", "0 MB"))
 

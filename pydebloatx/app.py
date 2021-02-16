@@ -55,6 +55,11 @@ class Logic():
         ui.progressbar.setMaximum(len(self.apps_dict))
         ui.progressbar.setFont(ui.font)
         ui.layout_widget_labels.adjustSize()
+        for layout in (ui.layout_checkboxes, ui.layout_checkboxes_2, ui.layout_checkboxes_3):
+            layout.addStretch()
+            layout.setSpacing(14)
+        for layout_widget in (ui.layout_widget_checkboxes, ui.layout_widget_checkboxes_2, ui.layout_widget_checkboxes_3):
+            layout_widget.adjustSize()
         ui.button_uninstall.clicked.connect(self.uninstall)
         ui.button_select_all.clicked.connect(self.select_all)
         ui.button_deselect_all.clicked.connect(self.deselect_all)
@@ -78,7 +83,7 @@ class Logic():
 
     def store_menu(self):
         """Toggle between Main view and Store view."""
-        widgets = (ui.layout_widget_buttons, ui.label_note, ui.label_space, ui.label_size)
+        widgets = (ui.layout_widget_buttons, ui.label_space, ui.label_size)
         if self.is_link_menu:
             self.is_link_menu = False
             ui.label_info.setText(self.main_title)
