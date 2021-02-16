@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import platform
+
 from PySide6.QtWidgets import QFrame, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, \
     QProgressBar, QToolTip
 from PySide6.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PySide6.QtGui import QIcon, QKeySequence, QFont, QShortcut
 import sys
 import os
+
+from packaging import version
 
 
 def resource_path(relative_path):
@@ -268,12 +272,17 @@ class Ui_MainWindow(QMainWindow):
             {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 0}
         )
 
+        if version.parse(platform.version()) >= version.parse("10.0.19041"):
+            self.app_name_list += (QCoreApplication.translate("AppName", "Cortana"),)
+            self.tooltip_list += (QCoreApplication.translate('ToolTip', 'Personal intelligence assistant.'),)
+            self.app_data_list += ({"name": "*Microsoft.549981C3F5F10*", "link": "/?PFN=Microsoft.549981C3F5F10_8wekyb3d8bbwe", "size": 0},)
+
         self.checkbox_list = []
-        for i in range(0, 33):
+        for i in range(0, len(self.app_name_list)):
             self.checkbox_list.append(QCheckBox())
-            if i >= 22:
+            if i % 3 == 2:
                 self.layout_checkboxes_3.addWidget(self.checkbox_list[i])
-            elif i >= 11:
+            elif i % 3 == 1:
                 self.layout_checkboxes_2.addWidget(self.checkbox_list[i])
             else:
                 self.layout_checkboxes.addWidget(self.checkbox_list[i])
