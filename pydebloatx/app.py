@@ -73,7 +73,6 @@ class Logic():
         ui.about_bind.activated.connect(self.app_about)
         ui.quit_btn.clicked.connect(self.app_quit)
         ui.quit_bind.activated.connect(self.app_quit)
-        ui.update_btn.clicked.connect(self.check_updates)
         about.button_quit_about.clicked.connect(about.close)
         for checkbox in ui.checkbox_list:
             checkbox.clicked.connect(self.enable_buttons)
@@ -117,7 +116,6 @@ class Logic():
     def show_updates(self, latest_version):
         """Show updates."""
         if version.parse(latest_version) > version.parse(__version__):
-            ui.update_btn.show()
             msg_update = QCoreApplication.translate("MessageBox", "PyDebloatX {0} is available.\n\nVisit download page?").format(latest_version)
             if self.message_box(msg_update, 2) == QMessageBox.Yes:
                 webbrowser.open_new('https://github.com/Teraskull/PyDebloatX/releases')
