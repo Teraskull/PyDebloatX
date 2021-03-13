@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-import platform
-
 from PySide6.QtWidgets import QFrame, QPushButton, QMainWindow, QWidget, QLabel, QVBoxLayout, QCheckBox, QHBoxLayout, \
     QProgressBar, QToolTip
 from PySide6.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PySide6.QtGui import QIcon, QKeySequence, QFont, QShortcut
+from packaging import version
+import platform
 import sys
 import os
-
-from packaging import version
 
 
 def resource_path(relative_path):
@@ -270,7 +268,7 @@ class Ui_MainWindow(QMainWindow):
             self.app_data_list += ({"name": "*Microsoft.549981C3F5F10*", "link": "/?PFN=Microsoft.549981C3F5F10_8wekyb3d8bbwe", "size": 0},)
 
         self.checkbox_list = []
-        for i in range(0, len(self.app_name_list)):
+        for i, _ in enumerate(self.app_name_list):
             self.checkbox_list.append(QCheckBox())
             if i % 3 == 2:
                 self.layout_checkboxes_3.addWidget(self.checkbox_list[i])
