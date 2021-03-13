@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QFrame, QPushButton, QMainWindow, QWidget, QLabel,
 from PySide6.QtCore import Qt, QRect, QCoreApplication, QMetaObject, QSize
 from PySide6.QtGui import QIcon, QKeySequence, QFont, QShortcut
 from packaging import version
+from bisect import insort
 import platform
 import sys
 import os
@@ -147,7 +148,7 @@ class Ui_MainWindow(QMainWindow):
         self.setWindowTitle(QCoreApplication.translate("Title", "PyDebloatX"))
         self.label_info.setText(QCoreApplication.translate("Label", ""))
 
-        self.app_name_list = (
+        self.app_name_list = [
             QCoreApplication.translate("AppName", "3D Builder"),
             QCoreApplication.translate("AppName", "3D Viewer"),
             QCoreApplication.translate("AppName", "Alarms and Clock"),
@@ -184,8 +185,8 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("AppName", "Xbox"),
             QCoreApplication.translate("AppName", "Xbox Game Bar"),
             QCoreApplication.translate("AppName", "Your Phone")
-        )
-        self.tooltip_list = (
+        ]
+        self.tooltip_list = [
             QCoreApplication.translate("ToolTip", "View, create, and personalize 3D objects."),
             QCoreApplication.translate("ToolTip", "View 3D models and animations in real-time."),
             QCoreApplication.translate("ToolTip", "A combination of alarm clock, world clock, timer, and stopwatch."),
@@ -222,8 +223,8 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("ToolTip", "Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass."),
             QCoreApplication.translate("ToolTip", "Instant access to widgets for screen capture and sharing, and chatting with Xbox friends."),
             QCoreApplication.translate("ToolTip", "Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.")
-        )
-        self.app_data_list = (
+        ]
+        self.app_data_list = [
             {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.Microsoft3DViewer*", "link": "/?PFN=Microsoft.Microsoft3DViewer_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.WindowsAlarms*", "link": "/?PFN=Microsoft.WindowsAlarms_8wekyb3d8bbwe", "size": 0},
@@ -260,12 +261,13 @@ class Ui_MainWindow(QMainWindow):
             {"name": "*Microsoft.GamingApp*", "link": "/?PFN=Microsoft.GamingApp_8wekyb3d8bbwe", "size": 0},
             {"name": "*Xbox*", "link": "/?PFN=Microsoft.XboxGameOverlay_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.YourPhone*", "link": "/?PFN=Microsoft.YourPhone_8wekyb3d8bbwe", "size": 0}
-        )
+        ]
 
         if version.parse(platform.version()) >= version.parse("10.0.19041"):
-            self.app_name_list += (QCoreApplication.translate("AppName", "Cortana"),)
-            self.tooltip_list += (QCoreApplication.translate("ToolTip", "Personal intelligence assistant."),)
-            self.app_data_list += ({"name": "*Microsoft.549981C3F5F10*", "link": "/?PFN=Microsoft.549981C3F5F10_8wekyb3d8bbwe", "size": 0},)
+            insort(self.app_name_list, QCoreApplication.translate("AppName", "Cortana"))
+            cortana_index = self.app_name_list.index("Cortana")
+            self.tooltip_list.insert(cortana_index, QCoreApplication.translate("ToolTip", "Personal intelligence assistant."))
+            self.app_data_list.insert(cortana_index, {"name": "*Microsoft.549981C3F5F10*", "link": "/?PFN=Microsoft.549981C3F5F10_8wekyb3d8bbwe", "size": 0})
 
         self.checkbox_list = []
         for i, _ in enumerate(self.app_name_list):
