@@ -38,17 +38,19 @@
 </div>
 
 
-## Table of contents
-- [Table of contents](#table-of-contents)
-- [Shortcuts](#shortcuts)
-- [Features](#features)
-- [Dependencies](#dependencies)
-- [Usage](#usage)
-- [Building](#building)
-- [Translating](#translating)
-- [Supported Languages](#supported-languages)
-- [License](#license)
-
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#shortcuts">Shortcuts</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#dependencies">Dependencies</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#building">Building</a></li>
+    <li><a href="#translating">Translating</a></li>
+    <li><a href="#supported-languages">Supported Languages</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
 ## Shortcuts
 
@@ -95,7 +97,7 @@ Run `setup-portable.bat` to build a one-file portable executable.
 
 Run the following command to create the translation file:
 ```batch
-pyside6-lupdate gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
+lupdate gui_main.py gui_about.py app.py -ts Language/[locale_CODE].ts
 ```
 
 Where `[locale_CODE]` is written with an underscore, instead of a hyphen. For example, `en_US`.
