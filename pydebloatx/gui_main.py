@@ -171,6 +171,7 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("AppName", "Paint 3D"),
             QCoreApplication.translate("AppName", "People"),
             QCoreApplication.translate("AppName", "Photos"),
+            QCoreApplication.translate("AppName", "Print 3D"),
             QCoreApplication.translate("AppName", "Skype"),
 
             QCoreApplication.translate("AppName", "Snip && Sketch"),
@@ -209,6 +210,7 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("ToolTip", "Make 2D masterpieces or 3D models that you can play with from all angles."),
             QCoreApplication.translate("ToolTip", "Connect with all your friends, family, colleagues, and acquaintances in one place."),
             QCoreApplication.translate("ToolTip", "View and edit your photos and videos, make movies, and create albums."),
+            QCoreApplication.translate("ToolTip", "Quickly and easily prepare objects for 3D printing on your PC."),
             QCoreApplication.translate("ToolTip", "Instant message, voice or video call application."),
 
             QCoreApplication.translate("ToolTip", "Quickly annotate screenshots, photos and other images and save, paste or share with other apps."),
@@ -247,6 +249,7 @@ class Ui_MainWindow(QMainWindow):
             {"name": "*Microsoft.MSPaint*", "link": "/?PFN=Microsoft.MSPaint_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.People*", "link": "/?PFN=Microsoft.People_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.Windows.Photos*", "link": "/?PFN=Microsoft.Windows.Photos_8wekyb3d8bbwe", "size": 0},
+            {"name": "*Microsoft.Print3D*", "link": "/?PFN=Microsoft.Print3D_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.SkypeApp*", "link": "/?PFN=Microsoft.SkypeApp_kzf8qxf38zg5c", "size": 0},
 
             {"name": "*Microsoft.ScreenSketch*", "link": "/?PFN=Microsoft.ScreenSketch_8wekyb3d8bbwe", "size": 0},
