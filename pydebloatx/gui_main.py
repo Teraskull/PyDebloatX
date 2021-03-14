@@ -148,7 +148,7 @@ class Ui_MainWindow(QMainWindow):
         self.setWindowTitle(QCoreApplication.translate("Title", "PyDebloatX"))
         self.label_info.setText(QCoreApplication.translate("Label", ""))
 
-        self.app_name_list = [
+        self.app_name_list = list((  # Convert tuple to list, because lupdate ignores initial lists
             QCoreApplication.translate("AppName", "3D Builder"),
             QCoreApplication.translate("AppName", "3D Viewer"),
             QCoreApplication.translate("AppName", "Alarms and Clock"),
@@ -186,8 +186,8 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("AppName", "Xbox"),
             QCoreApplication.translate("AppName", "Xbox Game Bar"),
             QCoreApplication.translate("AppName", "Your Phone")
-        ]
-        self.tooltip_list = [
+        ))
+        self.tooltip_list = list((
             QCoreApplication.translate("ToolTip", "View, create, and personalize 3D objects."),
             QCoreApplication.translate("ToolTip", "View 3D models and animations in real-time."),
             QCoreApplication.translate("ToolTip", "A combination of alarm clock, world clock, timer, and stopwatch."),
@@ -225,7 +225,7 @@ class Ui_MainWindow(QMainWindow):
             QCoreApplication.translate("ToolTip", "Browse the catalogue, view recommendations, and discover PC games with Xbox Game Pass."),
             QCoreApplication.translate("ToolTip", "Instant access to widgets for screen capture and sharing, and chatting with Xbox friends."),
             QCoreApplication.translate("ToolTip", "Link your Android phone and PC to view and reply to text messages, access mobile apps, and receive notifications.")
-        ]
+        ))
         self.app_data_list = [
             {"name": "*Microsoft.3DBuilder*", "link": "/?PFN=Microsoft.3DBuilder_8wekyb3d8bbwe", "size": 0},
             {"name": "*Microsoft.Microsoft3DViewer*", "link": "/?PFN=Microsoft.Microsoft3DViewer_8wekyb3d8bbwe", "size": 0},
