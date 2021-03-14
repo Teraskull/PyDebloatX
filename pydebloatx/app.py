@@ -210,14 +210,14 @@ class Logic():
                     webbrowser.open_new(f'ms-windows-store://pdp{self.apps_dict[i]["link"]}')
 
     def message_box(self, message: str, buttons: int = 1) -> int:
-        """
+        '''
         Message box with "Yes/No" or "OK" buttons. Defaults to "OK".\n
             Parameters:\n
                 message (str): Message shown inside the message box.
                 buttons (int): Amount of buttons, 1 - "OK" button, 2 - "Yes/No" buttons.
             Returns:\n
                 choice (int): ID of the clicked button.
-        """
+        '''
         pixmap = QPixmap(resource_path('icon.ico')).scaledToWidth(35, Qt.SmoothTransformation)
         msg_box = QMessageBox()
         msg_box.setFont(ui.font)
