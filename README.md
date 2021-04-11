@@ -119,10 +119,11 @@ Splice the output path above with:
 ## Supported Languages
 |Language|Author credits|
 |---|---|
+|[Arabic](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/ar_SA.ts)|[FaresAhmedb](https://github.com/FaresAhmedb/)|
 |[Chinese](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/zh_CN.ts)|[space9bug](https://github.com/space9bug/)|
 |[English](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/en_US.ts)|[Teraskull](https://github.com/Teraskull/)|
 |[Russian](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/ru_RU.ts)|[Teraskull](https://github.com/Teraskull/)|
-|[Ukrainian](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/uk_UA.ts)|[Teraskull](https://github.com/Teraskull/)|
+|[Ukrainian](https://github.com/Teraskull/PyDebloatX/blob/master/pydebloatx/Language/uk_UA.ts)|[Teraskull](https://github.com/Teraskull/)| 
 
 
 ## License
