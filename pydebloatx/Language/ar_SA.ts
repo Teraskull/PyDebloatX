@@ -15,8 +15,8 @@
     </message>
     <message>
         <location filename="../gui_about.py" line="81"/>
-        <source>حقوق النشر</source>
-        <translation></translation>
+        <source>Copyright</source>
+        <translation>حقوق النشر</translation>
     </message>
     <message>
         <location filename="../gui_about.py" line="82"/>
