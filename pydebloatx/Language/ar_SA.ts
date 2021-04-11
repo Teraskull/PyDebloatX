@@ -276,8 +276,8 @@
     </message>
     <message>
         <location filename="../app.py" line="43"/>
-        <source>جارٍ تحديث قائمة التطبيقات المثبتة ...</source>
-        <translation></translation>
+        <source>Refreshing list of installed apps...</source>
+        <translation>جارٍ تحديث قائمة التطبيقات المثبتة ...</translation>
     </message>
     <message>
         <location filename="../app.py" line="44"/>
@@ -320,7 +320,7 @@
 
 Visit download page?</source>
         <translation>.إصدار {0} متوفر
-        
+
 زيارة صفحة التحميل؟</translation>
     </message>
     <message numerus="yes">
@@ -374,7 +374,7 @@ Visit download page?</source>
     <message>
         <location filename="../gui_main.py" line="195"/>
         <source>Stay up to date with email and schedule managing.</source>
-        <translation>يساعدك تطبيقا "البريد" و"التقويم" في البقاء على اطلاع على بريدك الإلكتروني وإدارة جدولك الزمني والبقاء على تواصل مع أكثر الأشخاص المقربين إليك.</translation>
+        <translation>يساعدك تطبيقا &quot;البريد&quot; و&quot;التقويم&quot; في البقاء على اطلاع على بريدك الإلكتروني وإدارة جدولك الزمني والبقاء على تواصل مع أكثر الأشخاص المقربين إليك.</translation>
     </message>
     <message>
         <location filename="../gui_main.py" line="196"/>
