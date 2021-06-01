@@ -41,6 +41,7 @@
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#installing">Installing</a></li>
     <li><a href="#shortcuts">Shortcuts</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#dependencies">Dependencies</a></li>
@@ -51,6 +52,15 @@
     <li><a href="#license">License</a></li>
   </ol>
 </details>
+
+## Installing
+Pre-built binaries are available from the [releases](https://github.com/Teraskull/PyDebloatX/releases) page.
+
+PyDebloatX installer is also available from the Windows Package Manager [Winget](https://github.com/microsoft/winget-cli):
+
+```powershell
+winget install --id=Teraskull.PyDebloatX -e
+```
 
 ## Shortcuts
 
